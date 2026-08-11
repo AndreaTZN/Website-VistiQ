@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/sections/Nav.astro";
+import HeroV2 from "../components/sections/HeroV2.astro";
+import Bloc01 from "../components/sections/Bloc01.astro";
+import Bloc02 from "../components/sections/Bloc02.astro";
+import Bloc03 from "../components/sections/Bloc03.astro";
+import Bloc04 from "../components/sections/Bloc04.astro";
+import Bloc05 from "../components/sections/Bloc05.astro";
+import Bloc06 from "../components/sections/Bloc06.astro";
+import SubFooter from "../components/sections/SubFooter.astro";
+import FooterV2 from "../components/sections/FooterV2.astro";
+
+const title = "VistIQ: AI Investment Operating System for Private Markets";
+const description =
+  "VistIQ connects deal flow, portfolio data, fund activity, and external signals into a single intelligence layer. It automates extraction, monitoring, and reporting so your team stops chasing information and starts acting on it.";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  url: "https://www.vistiq.ai/",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://cdn.prod.website-files.com/699d663f32e38d5fc7a423f9/69a564748b2cb9f6741edccb_logo.png",
+  },
+  name: "Vistiq",
+  description:
+    "VistIQ empowers VC and PE teams to analyze deals faster, monitor portfolios smarter, and make better decisions — all with AI that amplifies your capabilities.",
+  sameAs: ["https://www.linkedin.com/company/vistiq-ai"],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Vistiq",
+  url: "https://www.vistiq.ai/",
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/">
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationSchema)}
+      is:inline
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
+      is:inline
+    />
+  </Fragment>
+
+  <main class="main-wrapper">
+    <Nav />
+    <HeroV2 />
+    <Bloc01 />
+    <Bloc02 />
+    <Bloc03 />
+    <Bloc04 />
+    <Bloc05 />
+    <Bloc06 />
+    <SubFooter />
+    <FooterV2 />
+  </main>
+</BaseLayout>
+
+<script>
+  import "../scripts/main";
+</script>

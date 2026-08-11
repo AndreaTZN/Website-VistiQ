@@ -1,0 +1,122 @@
+---
+/**
+ * "How it runs" — Figma 1525:29160. Four cards; the first one shows the
+ * connected data sources as tags.
+ */
+
+/** Data source tags, in Figma order (node 1525:34868). */
+const DATA_SOURCES = [
+  { name: "Google Drive", logo: "google-drive" },
+  { name: "One Drive", logo: "one-drive" },
+  { name: "Google Calendar", logo: "google-calendar" },
+  { name: "Dropbox", logo: "dropbox" },
+  { name: "Affinity", logo: "affinity" },
+  { name: "Akta", logo: "akta" },
+  { name: "Dealroom", logo: "dealroom" },
+  { name: "Crunchbase", logo: "crunchbase" },
+  { name: "Perplexity", logo: "perplexity" },
+  { name: "Granola", logo: "granola" },
+  { name: "Excel", logo: "excel" },
+  { name: "Gmail", logo: "gmail" },
+  { name: "Microsoft", logo: "microsoft" },
+  { name: "Outlook", logo: "outlook" },
+  { name: "Pappers", logo: "pappers" },
+  { name: "Notion", logo: "notion" },
+];
+
+const CARDS = [
+  {
+    title: "Data sources",
+    body: "Connected to all your data sources",
+    modifier: "is-sources",
+  },
+  {
+    title: "Agents",
+    body: "An agent harness, running 24/7",
+    modifier: "is-agents",
+  },
+  {
+    title: "Informations",
+    body: "Consult and edit your data at any time",
+    modifier: "is-informations",
+  },
+  {
+    title: "Memory",
+    body: "The context of each company and the collective memory of your teams stay in the firm, and keep working",
+    modifier: "is-memory",
+  },
+];
+---
+
+<section class="home-bloc04_section">
+  <div class="container-medium">
+    <div class="home-bloc04_header">
+      <div class="home-bloc04_tag">
+        <div class="home-bloc04_eyebrow">
+          <span class="home-bloc04_square" aria-hidden="true"></span>
+          <span class="home-bloc04_eyebrow-label">How it runs</span>
+        </div>
+        <div class="home-bloc04_line"></div>
+      </div>
+      <h2 class="home-bloc04_heading">
+        <span>Automated system,</span>
+        <span>getting better over time</span>
+      </h2>
+    </div>
+
+    <div class="home-bloc04_cards">
+      {
+        CARDS.map((card) => (
+          <article class={`home-bloc04_card ${card.modifier}`}>
+            <div class="home-bloc04_card-visual">
+              {card.modifier === "is-sources" && (
+                <div class="home-bloc04_sources">
+                  {DATA_SOURCES.map((source) => (
+                    <span class="home-bloc04_source">
+                      <span class="home-bloc04_source-logo">
+                        <img
+                          src={`/images/integrations/${source.logo}.png`}
+                          alt=""
+                          loading="lazy"
+                          width="20"
+                          height="20"
+                        />
+                      </span>
+                      <span class="home-bloc04_source-name">{source.name}</span>
+                      <span
+                        class="home-bloc04_source-line"
+                        aria-hidden="true"
+                      />
+                      <svg
+                        class="home-bloc04_source-check"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="m4 8.5 2.5 2.5L12 5.5"
+                          stroke="#22AD01"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  ))}
+                </div>
+              )}
+              <div class="noise" />
+            </div>
+            <div class="home-bloc04_card-text">
+              <h3 class="home-bloc04_card-title">{card.title}</h3>
+              <p class="home-bloc04_card-body">{card.body}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

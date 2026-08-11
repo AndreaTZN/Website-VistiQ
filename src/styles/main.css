@@ -1,0 +1,44 @@
+/*
+  Cascade order mirrors the original Webflow load order:
+  normalize → webflow base → design tokens → project styles → overrides.
+  Keep it — several project rules rely on winning by source order, not specificity.
+*/
+
+/* 1. Foundations */
+@import "./base/normalize.css";
+@import "./base/webflow-reset.css";
+@import "./base/webflow-components.css";
+@import "./base/fonts.css";
+@import "./base/tokens.css";
+@import "./base/fluid-type.css";
+
+/* 2. Elements and shared utilities */
+@import "./base/elements.css";
+@import "./base/utilities.css";
+
+/* 3. Components */
+@import "./components/button.css";
+@import "./components/button-animate.css";
+@import "./components/icon.css";
+@import "./components/form.css";
+@import "./components/utility-page.css";
+@import "./components/scrollbar.css";
+
+@import "./components/hero-intro.css";
+
+/* 4. Sections */
+@import "./sections/nav.css";
+@import "./sections/hero.css";
+@import "./sections/hero-v2.css";
+@import "./sections/bloc01.css";
+@import "./sections/bloc02.css";
+@import "./sections/bloc03.css";
+@import "./sections/bloc04.css";
+@import "./sections/bloc05.css";
+@import "./sections/bloc06.css";
+@import "./sections/sub-footer.css";
+@import "./sections/footer.css";
+@import "./sections/footer-v2.css";
+
+/* 5. Global overrides (were inline <style> embeds in the Webflow export) */
+@import "./base/globals.css";

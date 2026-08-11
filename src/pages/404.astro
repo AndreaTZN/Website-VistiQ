@@ -1,0 +1,33 @@
+---
+import BaseLayout from"../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Not Found" canonical="/404">
+  <div class="utility-page_component">
+    <div class="utility-page_wrapper">
+      <h3 class="h1">Page Not Found</h3>
+      <div>
+        The page you are looking for does not exist or has been moved<br />
+      </div>
+      <a
+        data-button-animate=""
+        aria-label="Back to home"
+        href="/"
+        class="button_secondary w-variant-061ac14d-c274-ce06-2e0a-cab2ca2e725e"
+      >
+        <div data-button-animate-chars="">Back to home</div>
+        <div
+          data-button-animate-bg=""
+          class="button_secondary-bg w-variant-061ac14d-c274-ce06-2e0a-cab2ca2e725e"
+        >
+        </div>
+      </a>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initButtonCharacterStagger } from"../scripts/buttons";
+
+  initButtonCharacterStagger();
+</script>

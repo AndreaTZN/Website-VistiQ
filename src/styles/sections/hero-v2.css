@@ -1,0 +1,210 @@
+/* Hero v2 — Figma 1525:3722 */
+
+.hero-v2_section {
+  z-index: 0;
+  background-color: var(--base-color--beige-dark);
+  width: 100%;
+  min-height: 49.375rem;
+  padding-top: 10rem;
+  padding-bottom: 6.25rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Corner markers */
+
+.hero-v2_corner {
+  background-color: #1d1e2133;
+  width: 0.5rem;
+  height: 0.5rem;
+  position: absolute;
+}
+
+.hero-v2_corner.is-top-left {
+  top: 8.625rem;
+  left: 1.5rem;
+}
+
+.hero-v2_corner.is-top-right {
+  top: 8.625rem;
+  right: 1.5rem;
+}
+
+.hero-v2_corner.is-bottom-left {
+  bottom: 2rem;
+  left: 1.5rem;
+}
+
+.hero-v2_corner.is-bottom-right {
+  bottom: 2rem;
+  right: 1.5rem;
+}
+
+/* Layout */
+
+.hero-v2_content {
+  grid-row-gap: 2rem;
+  flex-flow: column;
+  align-items: center;
+  max-width: 48.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.hero-v2_text {
+  grid-row-gap: 0.75rem;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.hero-v2_heading {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.hero-v2_heading span {
+  display: block;
+}
+
+/*
+  Figma fades the second line out to the right with a 135° gradient.
+  background-clip keeps it a single text node, so it stays selectable.
+*/
+.hero-v2_heading-gradient {
+  background-image: linear-gradient(
+    135deg,
+    #1d1e21 14%,
+    rgb(117 117 117 / 0) 141%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-v2_paragraph {
+  color: #1d1e2199;
+  max-width: 48.5rem;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Chatbox — decorative, not a real input */
+
+.hero-v2_chatbox {
+  grid-row-gap: 2.5rem;
+  backdrop-filter: blur(8px);
+  background-color: var(--base-color--white);
+  border: 1px solid #ffffff80;
+  border-radius: 1rem;
+  flex-flow: column;
+  width: 100%;
+  max-width: 35.625rem;
+  padding: 1rem;
+  display: flex;
+  box-shadow:
+    0 1px 1px #0000000d,
+    0 20px 40px #0000000d;
+}
+
+.hero-v2_chatbox-placeholder {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+.hero-v2_chatbox-bar {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.hero-v2_chatbox-actions {
+  grid-column-gap: 0.5rem;
+  display: flex;
+}
+
+.hero-v2_chatbox-action {
+  background-color: var(--base-color--white);
+  border: 1px solid #e9eaf0;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  box-shadow: 0 1px 1px #0000000a;
+}
+
+.hero-v2_chatbox-send {
+  background-color: var(--base-color--light-black);
+  border: 1px solid var(--base-color--light-black);
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  box-shadow: 0 1px 2px #0000000a;
+}
+
+.hero-v2_chatbox-action svg,
+.hero-v2_chatbox-send svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Buttons */
+
+.hero-v2_buttons {
+  grid-column-gap: 0.9375rem;
+  grid-row-gap: 0.9375rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .hero-v2_section {
+    min-height: auto;
+    padding-top: 7.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .hero-v2_corner {
+    display: none;
+  }
+
+  .hero-v2_heading {
+    font-size: 2.25rem;
+  }
+
+  .hero-v2_heading span {
+    display: inline;
+  }
+
+  .hero-v2_paragraph {
+    font-size: 1.125rem;
+  }
+
+  .hero-v2_chatbox {
+    grid-row-gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .hero-v2_buttons {
+    flex-flow: column;
+    width: 100%;
+  }
+}

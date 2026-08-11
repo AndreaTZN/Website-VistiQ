@@ -1,0 +1,148 @@
+/* Closing call to action — Figma 1525:40015 */
+
+.sub-footer_section {
+  z-index: 0;
+  background-color: var(--base-color--beige-dark);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 28.75rem;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Corner markers */
+
+.sub-footer_corner {
+  background-color: #1d1e2133;
+  width: 0.75rem;
+  height: 0.75rem;
+  position: absolute;
+}
+
+.sub-footer_corner.is-top-left {
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.sub-footer_corner.is-top-right {
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+.sub-footer_corner.is-bottom-left {
+  bottom: 1.5rem;
+  left: 1.5rem;
+}
+
+.sub-footer_corner.is-bottom-right {
+  bottom: 1.5rem;
+  right: 1.5rem;
+}
+
+/* Content */
+
+.sub-footer_content {
+  grid-row-gap: 2rem;
+  flex-flow: column;
+  align-items: center;
+  max-width: 48.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.sub-footer_text {
+  grid-row-gap: 1rem;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.sub-footer_eyebrow {
+  grid-column-gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  /* Figma sets 24px between the eyebrow and the title, 16px below it. */
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.sub-footer_square {
+  background-color: var(--base-color--green);
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.sub-footer_eyebrow-label {
+  color: #1d1e2199;
+  letter-spacing: 0.0175rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.sub-footer_heading {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.sub-footer_heading span {
+  display: block;
+}
+
+.sub-footer_paragraph {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.sub-footer_buttons {
+  grid-column-gap: 0.9375rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .sub-footer_section {
+    min-height: auto;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .sub-footer_corner {
+    display: none;
+  }
+
+  .sub-footer_heading {
+    font-size: 2.25rem;
+  }
+
+  .sub-footer_heading span {
+    display: inline;
+  }
+
+  .sub-footer_paragraph {
+    font-size: 1.125rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sub-footer_buttons {
+    flex-flow: column;
+    align-items: stretch;
+    width: 100%;
+  }
+}

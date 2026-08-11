@@ -1,0 +1,110 @@
+---
+/**
+ * "What it does for you" — Figma 1525:4699 (closed) / 1525:10472 (open).
+ * Accordion: one panel open at a time, animated in scripts/accordion.js.
+ */
+const ITEMS = [
+  {
+    eyebrow: "Ask anything",
+    title: "Get answers at any time",
+    body: "Ask in plain language. Vistiq answers from every deal, document and conversation you already have, with the source attached.",
+  },
+  {
+    eyebrow: "Data consolidation",
+    title: "Consolidate knowledge without thinking about it",
+    body: "Emails, decks, spreadsheets and calls land in one structured memory that stays current on its own.",
+  },
+  {
+    eyebrow: "Portfolio monitoring",
+    title: "See the full picture in real time",
+    body: "KPIs, cash and ownership are always up to date, so every board prep starts from live numbers.",
+  },
+  {
+    eyebrow: "Deal assessment",
+    title: "Get deal insights in seconds",
+    body: "Each inbound deal arrives screened, benchmarked against comparables and flagged where it meets or misses your thesis.",
+  },
+  {
+    eyebrow: "Reporting",
+    title: "Create customized LP reportings",
+    body: "LP updates and IC memos drafted in your own format, every figure traceable back to its source.",
+  },
+];
+---
+
+<section id="Solutions" class="home-bloc03_section">
+  <div class="container-medium">
+    <div class="home-bloc03_header">
+      <div class="home-bloc03_tag">
+        <div class="home-bloc03_eyebrow">
+          <span class="home-bloc03_square" aria-hidden="true"></span>
+          <span class="home-bloc03_eyebrow-label">What it does for you</span>
+        </div>
+        <div class="home-bloc03_line"></div>
+      </div>
+      <h2 class="home-bloc03_heading">
+        <span>Save hours.</span>
+        <span>Work smarter.</span>
+      </h2>
+    </div>
+
+    <div class="home-bloc03_layout">
+      <div class="home-bloc03_accordion" data-accordion>
+        {
+          ITEMS.map((item, index) => (
+            <div class="home-bloc03_item" data-accordion-item>
+              <div class="home-bloc03_item-line" />
+              <h3 class="home-bloc03_item-heading">
+                <button
+                  type="button"
+                  class="home-bloc03_item-trigger"
+                  data-accordion-trigger
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  aria-controls={`bloc03-panel-${index}`}
+                  id={`bloc03-trigger-${index}`}
+                >
+                  <span class="home-bloc03_item-eyebrow">
+                    <span
+                      class="home-bloc03_item-square"
+                      data-accordion-square
+                      aria-hidden="true"
+                    />
+                    <span class="home-bloc03_item-eyebrow-label">
+                      {item.eyebrow}
+                    </span>
+                  </span>
+                  <span class="home-bloc03_item-title">{item.title}</span>
+                </button>
+              </h3>
+              {item.body && (
+                <div
+                  class="home-bloc03_item-panel"
+                  data-accordion-panel
+                  id={`bloc03-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`bloc03-trigger-${index}`}
+                >
+                  <p class="home-bloc03_item-body">{item.body}</p>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="home-bloc03_visual" data-accordion-visual>
+        <span class="home-bloc03_visual-corner is-top-left" aria-hidden="true"
+        ></span>
+        <span class="home-bloc03_visual-corner is-top-right" aria-hidden="true"
+        ></span>
+        <span
+          class="home-bloc03_visual-corner is-bottom-left"
+          aria-hidden="true"></span>
+        <span
+          class="home-bloc03_visual-corner is-bottom-right"
+          aria-hidden="true"></span>
+        <div class="noise"></div>
+      </div>
+    </div>
+  </div>
+</section>

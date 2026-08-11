@@ -1,0 +1,126 @@
+---
+/**
+ * "They trust us" — Figma 1525:35336. Auto-playing testimonial carousel;
+ * the transitions live in scripts/testimonials.js.
+ *
+ * One slide and one progress bar per entry: add or remove testimonials here
+ * and the carousel follows.
+ */
+const TESTIMONIALS = [
+  {
+    quote:
+      "Every number on our dashboard traces straight back to the source document with one click. That level of audit-readiness is exactly what our LPs expect from us.",
+    name: "Thibault Magnen",
+    role: "Senior Associate",
+    logo: "/images/testimonials/founders-future.svg",
+    logoAlt: "Founders Future",
+    portrait: "/images/testimonials/thibault-magnen.jpg",
+    portraitAlt: "Portrait of Thibault Magnen, Senior Associate.",
+  },
+  {
+    quote:
+      "Every number on our dashboard traces straight back to the source document with one click. That level of audit-readiness is exactly what our LPs expect from us.",
+    name: "Thibault",
+    role: "Senior Associate",
+    logo: "/images/testimonials/founders-future.svg",
+    logoAlt: "Founders Future",
+    portrait: "/images/testimonials/thibault-magnen.jpg",
+    portraitAlt: "Portrait of Thibault Magnen, Senior Associate.",
+  },
+];
+---
+
+<section id="Investors" class="home-bloc05_section">
+  <div class="container-medium">
+    <div class="home-bloc05_header">
+      <div class="home-bloc05_tag">
+        <div class="home-bloc05_eyebrow">
+          <span class="home-bloc05_square" aria-hidden="true"></span>
+          <span class="home-bloc05_eyebrow-label">They trust us</span>
+        </div>
+        <div class="home-bloc05_line"></div>
+      </div>
+      <h2 class="home-bloc05_heading">Adopted by industry leaders</h2>
+    </div>
+
+    <div
+      class="home-bloc05_carousel"
+      data-testimonials
+      aria-roledescription="carousel"
+      aria-label="Customer testimonials"
+    >
+      <div class="home-bloc05_slides">
+        {
+          TESTIMONIALS.map((item, index) => (
+            <div
+              class="home-bloc05_slide"
+              data-testimonial-slide
+              aria-roledescription="slide"
+              aria-label={`${index + 1} of ${TESTIMONIALS.length}`}
+              aria-hidden={index === 0 ? "false" : "true"}
+            >
+              <div class="home-bloc05_content">
+                <img
+                  class="home-bloc05_logo"
+                  data-testimonial-logo
+                  src={item.logo}
+                  alt={item.logoAlt}
+                  width="117"
+                  height="48"
+                  loading="lazy"
+                />
+                <p class="home-bloc05_quote" data-testimonial-quote>
+                  {item.quote}
+                </p>
+                <div class="home-bloc05_author" data-testimonial-author>
+                  <p class="home-bloc05_author-name">{item.name}</p>
+                  <p class="home-bloc05_author-role">{item.role}</p>
+                </div>
+              </div>
+
+              <div class="home-bloc05_picture" data-testimonial-picture>
+                <img
+                  src={item.portrait}
+                  alt={item.portraitAlt}
+                  loading="lazy"
+                  class="image-fit-cover"
+                />
+                <span
+                  class="home-bloc05_picture-corner is-top-left"
+                  aria-hidden="true"
+                />
+                <span
+                  class="home-bloc05_picture-corner is-top-right"
+                  aria-hidden="true"
+                />
+                <span
+                  class="home-bloc05_picture-corner is-bottom-left"
+                  aria-hidden="true"
+                />
+                <span
+                  class="home-bloc05_picture-corner is-bottom-right"
+                  aria-hidden="true"
+                />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="home-bloc05_dots">
+        {
+          TESTIMONIALS.map((_, index) => (
+            <button
+              type="button"
+              class="home-bloc05_dot"
+              data-testimonial-dot
+              aria-label={`Show testimonial ${index + 1}`}
+            >
+              <span class="home-bloc05_dot-fill" data-testimonial-dot-fill />
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,255 @@
+/* "How it runs" — Figma 1525:29160 */
+
+.home-bloc04_section {
+  background-color: var(--base-color--beige-dark);
+  width: 100%;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+/* Header */
+
+.home-bloc04_header {
+  grid-row-gap: 1.5rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.home-bloc04_tag {
+  grid-row-gap: 0.75rem;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.home-bloc04_eyebrow {
+  grid-column-gap: 0.75rem;
+  align-items: center;
+  display: flex;
+}
+
+.home-bloc04_square {
+  background-color: var(--base-color--green);
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.home-bloc04_eyebrow-label {
+  color: #1d1e2199;
+  letter-spacing: 0.0175rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.home-bloc04_line {
+  background-color: #1d1e211a;
+  width: 100%;
+  height: 1px;
+}
+
+.home-bloc04_heading {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.1;
+}
+
+.home-bloc04_heading span {
+  display: block;
+}
+
+/* Cards — row 1 is 2/3 + 1/3, row 2 mirrors it. */
+
+.home-bloc04_cards {
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 3rem;
+  display: grid;
+}
+
+.home-bloc04_card {
+  background-color: var(--base-color--white);
+  flex-flow: column;
+  display: flex;
+  overflow: hidden;
+}
+
+.home-bloc04_card.is-sources,
+.home-bloc04_card.is-memory {
+  grid-column: span 2;
+}
+
+.home-bloc04_card-visual {
+  z-index: 0;
+  aspect-ratio: 16 / 9;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-bloc04_card.is-sources .home-bloc04_card-visual {
+  background-image: linear-gradient(160deg, #dbe4f0 0%, #f7f7f7 55%, #fff 100%);
+}
+
+.home-bloc04_card.is-agents .home-bloc04_card-visual {
+  aspect-ratio: 8 / 9;
+  background-image: linear-gradient(200deg, #eef1f8 0%, #cfe0d3 100%);
+}
+
+.home-bloc04_card.is-informations .home-bloc04_card-visual {
+  aspect-ratio: 8 / 9;
+  background-image: linear-gradient(200deg, #cfdcd3 0%, #eef1ee 100%);
+}
+
+.home-bloc04_card.is-memory .home-bloc04_card-visual {
+  background-color: #eef1f8;
+}
+
+.home-bloc04_card-text {
+  grid-row-gap: 0.25rem;
+  flex-flow: column;
+  padding: 1.5rem;
+  display: flex;
+}
+
+.home-bloc04_card-title {
+  color: var(--base-color--light-black);
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.home-bloc04_card-body {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Data source tags */
+
+.home-bloc04_sources {
+  z-index: 1;
+  grid-column-gap: 0.75rem;
+  grid-row-gap: 0.75rem;
+  flex-flow: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  max-width: 38rem;
+  padding: 1.5rem;
+  display: flex;
+  position: relative;
+}
+
+.home-bloc04_source {
+  grid-column-gap: 0.335rem;
+  backdrop-filter: blur(1.5px);
+  background-color: var(--base-color--white);
+  border-radius: 100vw;
+  align-items: center;
+  padding: 0.335rem;
+  display: flex;
+  box-shadow:
+    0 0.04rem 0.04rem #0f0f0f0d,
+    0 0.165rem 0.33rem #0f0f0f0d;
+}
+
+.home-bloc04_source-logo {
+  background-color: #f7f7f7;
+  border-radius: 100vw;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.home-bloc04_source-logo img {
+  object-fit: contain;
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.home-bloc04_source-name {
+  color: var(--base-color--light-black);
+  white-space: nowrap;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.home-bloc04_source-line {
+  background-color: #1d1e211a;
+  flex: none;
+  width: 1px;
+  height: 0.875rem;
+}
+
+.home-bloc04_source-check {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .home-bloc04_cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-bloc04_card.is-sources,
+  .home-bloc04_card.is-memory {
+    grid-column: span 2;
+  }
+
+  .home-bloc04_card.is-agents .home-bloc04_card-visual,
+  .home-bloc04_card.is-informations .home-bloc04_card-visual {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .home-bloc04_section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .home-bloc04_heading {
+    font-size: 2.25rem;
+  }
+
+  .home-bloc04_heading span {
+    display: inline;
+  }
+
+  .home-bloc04_cards {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 2.5rem;
+  }
+
+  .home-bloc04_card.is-sources,
+  .home-bloc04_card.is-memory {
+    grid-column: span 1;
+  }
+
+  .home-bloc04_card-visual,
+  .home-bloc04_card.is-agents .home-bloc04_card-visual,
+  .home-bloc04_card.is-informations .home-bloc04_card-visual {
+    aspect-ratio: 4 / 3;
+  }
+
+  .home-bloc04_card-text {
+    padding: 1.25rem;
+  }
+}

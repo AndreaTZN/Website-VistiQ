@@ -1,0 +1,111 @@
+---
+/**
+ * Hero v2 — Figma 1525:3722. Centred layout on the light beige backdrop, with a
+ * decorative chatbox standing in for the product. The chatbox is presentational
+ * only: it is not a real form, so it stays non-interactive.
+ */
+import Button from "../ui/Button.astro";
+---
+
+<section class="hero-v2_section">
+  <span class="hero-v2_corner is-top-left" aria-hidden="true"></span>
+  <span class="hero-v2_corner is-top-right" aria-hidden="true"></span>
+  <span class="hero-v2_corner is-bottom-left" aria-hidden="true"></span>
+  <span class="hero-v2_corner is-bottom-right" aria-hidden="true"></span>
+
+  <div class="container-medium">
+    <div class="hero-v2_content">
+      <div class="hero-v2_text">
+        <h1 class="hero-v2_heading">
+          <span>The AI operating system</span>
+          <span class="hero-v2_heading-gradient"
+            >for Private Equity and VC funds</span
+          >
+        </h1>
+        <p class="hero-v2_paragraph">
+          One platform, combining AI intelligence with human oversight.
+        </p>
+      </div>
+
+      <div class="hero-v2_chatbox" aria-hidden="true">
+        <p class="hero-v2_chatbox-placeholder">
+          Ask about your funds, deals and portfolio...
+        </p>
+        <div class="hero-v2_chatbox-bar">
+          <div class="hero-v2_chatbox-actions">
+            <span class="hero-v2_chatbox-action">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M16.1 10.0005 11.2071 14.9247c-1.5343 1.5441-4.0221 1.5441-5.5564 0-1.5399-1.5498-1.5335-4.0646.016-5.6063l4.5154-4.5265c1.0498-1.0565 2.7519-1.0565 3.8017 0 1.0537 1.0605 1.0492 2.7811-.0099 2.8361l-4.5661 4.5682c-.5668.5703-1.4857.5703-2.0524 0-.5668-.5704-.5668-1.4952 0-2.0656l3.7812-3.8053"
+                  stroke="#1D1E21"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </span>
+            <span class="hero-v2_chatbox-action">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M7.2917 6.9583c0-1.4957 1.2126-2.7083 2.7083-2.7083s2.7083 1.2126 2.7083 2.7083v2.5c0 1.4958-1.2126 2.7084-2.7083 2.7084s-2.7083-1.2126-2.7083-2.7084V6.9583Z"
+                  stroke="#1D1E21"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M4.7917 10.625s.2083 3.75 5.2083 3.75 5.2083-3.75 5.2083-3.75"
+                  stroke="#1D1E21"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M10 14.9583v1.25"
+                  stroke="#1D1E21"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </div>
+          <span class="hero-v2_chatbox-send">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M5.625 9.5833 10 5.2083l4.375 4.375M10 5.2083v10.5834"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-v2_buttons">
+        <Button
+          variant="hero-primary"
+          href="https://foundersfuturecp.typeform.com/to/gTW2mUSp"
+        >
+          Test the solution
+        </Button>
+        <Button
+          variant="hero-secondary"
+          href="https://foundersfuturecp.typeform.com/to/gTW2mUSp"
+        >
+          Contact us
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

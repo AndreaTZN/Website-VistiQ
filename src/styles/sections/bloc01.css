@@ -1,0 +1,112 @@
+/* "How the system works" — Figma 1433:1038 */
+
+.home-bloc01_section {
+  background-color: var(--base-color--white);
+  width: 100%;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+.home-bloc01_text {
+  grid-row-gap: 1rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+/* Eyebrow */
+
+.home-bloc01_tag {
+  grid-row-gap: 0.75rem;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.home-bloc01_eyebrow {
+  grid-column-gap: 0.75rem;
+  align-items: center;
+  display: flex;
+}
+
+.home-bloc01_square {
+  background-color: var(--base-color--green);
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.home-bloc01_eyebrow-label {
+  color: #1d1e2199;
+  letter-spacing: 0.0175rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.home-bloc01_line {
+  background-color: #1d1e211a;
+  width: 100%;
+  height: 1px;
+}
+
+/* Heading and paragraph */
+
+.home-bloc01_heading {
+  /* 48px in Figma — larger than the shared .h2 (2.25rem), so it is set here. */
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.1;
+}
+
+/* Figma breaks the title after the first sentence; below 768px it wraps freely. */
+.home-bloc01_heading span {
+  display: block;
+}
+
+.home-bloc01_paragraph {
+  max-width: 36rem;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* Visual */
+
+.home-bloc01_visual {
+  z-index: 0;
+  background-color: var(--base-color--sage);
+  width: 100%;
+  /* 1176 × 576 in Figma. */
+  aspect-ratio: 1176 / 576;
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  .home-bloc01_section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .home-bloc01_heading {
+    font-size: 2.25rem;
+  }
+
+  .home-bloc01_heading span {
+    display: inline;
+  }
+
+  .home-bloc01_paragraph {
+    font-size: 1.125rem;
+  }
+
+  .home-bloc01_visual {
+    aspect-ratio: 4 / 3;
+    margin-top: 2rem;
+  }
+}

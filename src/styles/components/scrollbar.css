@@ -1,0 +1,60 @@
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Native scrollbar is hidden; .scrollbar below is the custom one Lenis drives. */
+html {
+  scrollbar-width: none !important;
+}
+
+html body {
+  -ms-overflow-style: none;
+}
+
+html body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.scrollbar {
+  position: fixed;
+  display: block;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 10000;
+}
+
+.scrollbar .inner {
+  height: 100%;
+  position: relative;
+}
+
+.scrollbar .thumb {
+  transition: opacity 0.6s ease-in-out;
+  min-height: 64px;
+  width: 6px;
+  background-color: #0f0f0f;
+  position: absolute;
+  right: 4px;
+  border-radius: 100vw;
+  opacity: 0;
+  cursor: grab;
+}

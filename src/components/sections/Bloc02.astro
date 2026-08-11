@@ -1,0 +1,84 @@
+---
+/** Steps of the investment lifecycle — Figma 1433:1142. */
+const STEPS = [
+  {
+    number: "01",
+    title: "Dealflow pipeline",
+    items: [
+      "Sourcing & market signals.",
+      "Centralised inbound.",
+      "Auto triage & scoring.",
+      "One pipeline view.",
+    ],
+  },
+  {
+    number: "02",
+    title: "Due Diligence &\nInvestment Committee",
+    items: ["Evidence extracted.", "Red flags surfaced.", "IC memos drafted."],
+  },
+  {
+    number: "03",
+    title: "Portfolio monitoring",
+    items: [
+      "KPIs always current.",
+      "Board prep in one click.",
+      "Follow-on signals.",
+    ],
+  },
+  {
+    number: "04",
+    title: "Exits monitoring",
+    items: ["LP reporting.", "Fundraising & LP outreach."],
+  },
+  {
+    number: "05",
+    title: "Investor relations",
+    items: [
+      "Acquirer mapping.",
+      "Comparables & multiples.",
+      "Scenario analysis.",
+    ],
+  },
+];
+---
+
+<section class="home-bloc02_section">
+  <div class="home-bloc02_pattern" aria-hidden="true"></div>
+
+  <span class="home-bloc02_corner is-top-left" aria-hidden="true"></span>
+  <span class="home-bloc02_corner is-top-right" aria-hidden="true"></span>
+  <span class="home-bloc02_corner is-bottom-left" aria-hidden="true"></span>
+  <span class="home-bloc02_corner is-bottom-right" aria-hidden="true"></span>
+
+  <div class="container-medium">
+    <div class="home-bloc02_header">
+      <div class="home-bloc02_eyebrow">
+        <span class="home-bloc02_square" aria-hidden="true"></span>
+        <span class="home-bloc02_eyebrow-label">End-to-end coverage</span>
+      </div>
+      <h2 class="home-bloc02_heading">
+        <span>End-to-end solution covering</span>
+        <span>the full investment lifecycle</span>
+      </h2>
+    </div>
+
+    <ol class="home-bloc02_steps">
+      {
+        STEPS.map((step) => (
+          <li class="home-bloc02_step">
+            <div class="home-bloc02_step-line" />
+            <p class="home-bloc02_step-number">{step.number}</p>
+            <div class="home-bloc02_step-text">
+              <h3 class="home-bloc02_step-title">{step.title}</h3>
+              <ul class="home-bloc02_step-list">
+                {step.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

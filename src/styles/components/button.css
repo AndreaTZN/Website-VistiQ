@@ -1,0 +1,137 @@
+.button_inner {
+  justify-content: center;
+  padding: 0.875rem;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.button_primary {
+  grid-column-gap: 0.25rem;
+  color: var(--base-color--white);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.5;
+  display: flex;
+  position: relative;
+}
+
+.button_secondary {
+  grid-column-gap: 0.25rem;
+  color: var(--base-color--white);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.5;
+  display: flex;
+  position: relative;
+}
+
+.button_secondary:where(.w-variant-061ac14d-c274-ce06-2e0a-cab2ca2e725e) {
+  color: var(--base-color--light-black);
+}
+
+.button_text {
+  grid-column-gap: 0.25rem;
+  cursor: pointer;
+  justify-content: center;
+  align-self: flex-start;
+  align-items: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1;
+  display: flex;
+}
+
+.button_primary-bg {
+  z-index: -1;
+  background-color: var(--base-color--light-black);
+  color: var(--base-color--white);
+  border-radius: 0.5rem;
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    0 2px 4px #1d1e211f,
+    0 7px 14px #1d1e210a;
+}
+
+.button_secondary-bg {
+  z-index: -1;
+  border: 1px solid #fff3;
+  border-radius: 0.5rem;
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    0 2px 4px #1d1e211f,
+    0 7px 14px #1d1e210a;
+}
+
+.button_secondary-bg:where(.w-variant-061ac14d-c274-ce06-2e0a-cab2ca2e725e) {
+  background-color: var(--base-color--white);
+  border-style: none;
+}
+
+/* Hero v2 CTAs — squared corners and a lit gradient (Figma 1525:4245/4247). */
+
+.button_hero-primary {
+  z-index: 0;
+  color: var(--base-color--white);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.00875rem;
+  line-height: 1.5;
+  display: flex;
+  position: relative;
+  filter: drop-shadow(0 2px 3px #0c0c0c33);
+}
+
+.button_hero-primary-bg {
+  z-index: -1;
+  background-image: linear-gradient(to top, #0c0c0c 50%, #aca094 217%);
+  border-radius: 0.5rem;
+  position: absolute;
+  inset: 0;
+  /* Inner highlight/shade that gives the button its raised look. */
+  box-shadow:
+    inset 0 -2px 1px #ffffff0d,
+    inset 0 1px 0.6px #00000080;
+}
+
+.button_hero-secondary {
+  color: var(--base-color--light-black);
+  cursor: pointer;
+  border: 1px solid #1d1e2133;
+  border-radius: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.00875rem;
+  line-height: 1.5;
+  display: flex;
+  position: relative;
+}
+
+@media screen and (max-width: 479px) {
+  .button_primary,
+  .button_secondary,
+  .button_hero-primary,
+  .button_hero-secondary {
+    width: 100%;
+  }
+}

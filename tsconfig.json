@@ -1,0 +1,14 @@
+{
+  "extends": "astro/tsconfigs/base",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    // Scripts are plain JS: keep editor IntelliSense from the JSDoc, but no type checking.
+    "allowJs": true,
+    "checkJs": false
+  }
+}

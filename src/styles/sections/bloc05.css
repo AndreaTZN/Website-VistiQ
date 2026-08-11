@@ -1,0 +1,234 @@
+/* "They trust us" — Figma 1525:35336 */
+
+.home-bloc05_section {
+  background-color: var(--base-color--beige-dark);
+  width: 100%;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+/* Header */
+
+.home-bloc05_header {
+  grid-row-gap: 1.5rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.home-bloc05_tag {
+  grid-row-gap: 0.75rem;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.home-bloc05_eyebrow {
+  grid-column-gap: 0.75rem;
+  align-items: center;
+  display: flex;
+}
+
+.home-bloc05_square {
+  background-color: var(--base-color--green);
+  flex: none;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.home-bloc05_eyebrow-label {
+  color: #1d1e2199;
+  letter-spacing: 0.0175rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.home-bloc05_line {
+  background-color: #1d1e211a;
+  width: 100%;
+  height: 1px;
+}
+
+.home-bloc05_heading {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.1;
+}
+
+/* Carousel */
+
+.home-bloc05_carousel {
+  background-color: #4a4441;
+  margin-top: 3rem;
+  padding: 3rem;
+  position: relative;
+}
+
+/*
+  Slides are stacked so they can cross-fade; the grid keeps the tallest one
+  driving the height, which avoids a jump between quotes of different lengths.
+*/
+.home-bloc05_slides {
+  display: grid;
+  position: relative;
+}
+
+.home-bloc05_slide {
+  grid-column-gap: 2rem;
+  grid-area: 1 / 1;
+  grid-template-columns: minmax(0, 600fr) minmax(0, 377fr);
+  align-items: center;
+  display: grid;
+}
+
+.home-bloc05_content {
+  grid-row-gap: 2rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.home-bloc05_logo {
+  width: 7.3rem;
+  height: auto;
+}
+
+.home-bloc05_quote {
+  color: var(--base-color--white);
+  max-width: 37.5rem;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+/* SplitText output: lines clip so the words can rise into view. */
+.home-bloc05_quote-line {
+  overflow: hidden;
+}
+
+.home-bloc05_quote-word {
+  display: inline-block;
+}
+
+.home-bloc05_author {
+  flex-flow: column;
+  display: flex;
+}
+
+.home-bloc05_author-name {
+  color: var(--base-color--white);
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.home-bloc05_author-role {
+  color: #ffffff99;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Portrait */
+
+.home-bloc05_picture {
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.home-bloc05_picture-corner {
+  z-index: 1;
+  background-color: #ffffff4d;
+  width: 0.75rem;
+  height: 0.75rem;
+  position: absolute;
+}
+
+.home-bloc05_picture-corner.is-top-left {
+  top: 1.25rem;
+  left: 1.25rem;
+}
+
+.home-bloc05_picture-corner.is-top-right {
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+.home-bloc05_picture-corner.is-bottom-left {
+  bottom: 1.25rem;
+  left: 1.25rem;
+}
+
+.home-bloc05_picture-corner.is-bottom-right {
+  bottom: 1.25rem;
+  right: 1.25rem;
+}
+
+/* Progress bars */
+
+.home-bloc05_dots {
+  grid-column-gap: 0.5rem;
+  display: flex;
+  position: relative;
+}
+
+.home-bloc05_dot {
+  cursor: pointer;
+  background-color: #fff3;
+  border: 0;
+  border-radius: 0;
+  width: 2rem;
+  height: 2px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Scaled from the left by GSAP to show how long the slide has left. */
+.home-bloc05_dot-fill {
+  transform-origin: 0 50%;
+  background-color: var(--base-color--white);
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  inset: 0;
+  transform: scaleX(0);
+}
+
+@media screen and (max-width: 991px) {
+  .home-bloc05_slide {
+    grid-row-gap: 2rem;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-bloc05_picture {
+    order: -1;
+    max-width: 20rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .home-bloc05_section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .home-bloc05_heading {
+    font-size: 2.25rem;
+  }
+
+  .home-bloc05_carousel {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+  }
+
+  .home-bloc05_quote {
+    font-size: 1.125rem;
+  }
+}
