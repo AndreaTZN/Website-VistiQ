@@ -1,0 +1,12 @@
+{
+  // Static Astro build: no `main` entrypoint on purpose. Without this file wrangler
+  // auto-detects, assumes SSR, and runs `astro add cloudflare` on its own.
+  "name": "vistiq",
+  "compatibility_date": "2026-08-11",
+  "assets": {
+    "directory": "dist"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
