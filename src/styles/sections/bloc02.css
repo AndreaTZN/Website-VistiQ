@@ -1,4 +1,4 @@
-/* "End-to-end coverage" — Figma 1433:1142 */
+/* "End-to-end coverage" — Figma 1433:1142, steps 1433:1258 */
 
 .home-bloc02_section {
   z-index: 0;
@@ -118,7 +118,9 @@
 .home-bloc02_steps {
   grid-column-gap: 1.5rem;
   grid-row-gap: 2.5rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Columns start at the top: the three steps have different text lengths. */
+  align-items: start;
   margin: 3rem 0 0;
   padding-left: 0;
   list-style-type: none;
@@ -154,31 +156,26 @@
 .home-bloc02_step-title {
   color: var(--base-color--light-black);
   margin: 0;
-  /* Figma breaks the "Due Diligence &" title onto two lines. */
-  white-space: pre-line;
   font-family: Inter, sans-serif;
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5;
 }
 
-.home-bloc02_step-list {
+.home-bloc02_step-body {
   color: #1d1e2199;
-  margin: 0;
-  padding-left: 1.5rem;
   font-size: 1rem;
   line-height: 1.5;
-  list-style-type: disc;
 }
 
-.home-bloc02_step-list li {
-  margin-bottom: 0;
+.home-bloc02_step-body p {
+  margin: 0;
+  /* Figma separates the paragraphs with an empty line — one line-height. */
+  white-space: pre-line;
 }
 
-@media screen and (max-width: 991px) {
-  .home-bloc02_steps {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.home-bloc02_step-body p + p {
+  margin-top: 1.5em;
 }
 
 @media screen and (max-width: 767px) {
@@ -195,19 +192,9 @@
     display: inline;
   }
 
-  .home-bloc02_steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 2.5rem;
-  }
-
-  .home-bloc02_step-title {
-    /* Let the title wrap naturally once the columns get narrow. */
-    white-space: normal;
-  }
-}
-
-@media screen and (max-width: 479px) {
+  /* Single column: the steps are prose now, too dense to split in two here. */
   .home-bloc02_steps {
     grid-template-columns: minmax(0, 1fr);
+    margin-top: 2.5rem;
   }
 }

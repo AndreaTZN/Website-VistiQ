@@ -1,0 +1,289 @@
+---
+const base = "/images/hero-cards";
+
+type IconPiece = { src: string; inset: string };
+
+const icons: Record<string, IconPiece[]> = {
+  arrowUp: [
+    { src: "arrow-up-1.svg", inset: "28.13% 28.13% 36.46% 36.46%" },
+    { src: "arrow-up-2.svg", inset: "29.17% 29.17% 28.13% 28.13%" },
+  ],
+  info: [{ src: "icon-info.svg", inset: "19.79%" }],
+  edit: [{ src: "icon-edit.svg", inset: "19.85% 19.85% 19.79% 19.79%" }],
+};
+
+const fundMetrics = [
+  { label: "Nav", value: "$15.8M" },
+  { label: "Proceeds", value: "$1M" },
+  { label: "Total value", value: "$16.8M", delta: "+6.3%" },
+  { label: "IRR", value: "3.1%" },
+  { label: "DPI", value: "0.06" },
+  { label: "RVPI", value: "0/99" },
+  { label: "TVPI", value: "1.05" },
+  { label: "Companies", value: "10" },
+];
+
+const timelineRows = [
+  { icon: "calendar.svg", label: "Date", value: "Jun 11, 2025" },
+  { icon: "euro.svg", label: "Price per Share", value: "7.50€" },
+  { icon: "money.svg", label: "Amount Raised", value: "559.9k" },
+  { icon: "folder.svg", label: "our funds", value: "FF1", badge: true },
+];
+const timelineEntries = [1, 2, 3];
+
+const chartTabs = [
+  "Overview",
+  "Equity Story",
+  "Financials",
+  "Transactions",
+  "Signals & Events",
+  "Smart Library",
+];
+const chartYLabels = [
+  "0€",
+  "45€",
+  "40€",
+  "35€",
+  "30€",
+  "25€",
+  "20€",
+  "15€",
+  "10€",
+  "5€",
+  "0€",
+];
+const chartXLabels = [
+  "Agriloop pre-seed",
+  "Agriloop seed",
+  "Agriloop pre series B",
+  "Agriloop secondary",
+];
+
+const dealMetrics = [
+  {
+    label: "ARR",
+    value: "€1.8M",
+    note: "+214% Yoy",
+    tone: "is-green",
+    arrow: true,
+  },
+  {
+    label: "Net revenue retention",
+    value: "142%",
+    note: "Best-in-class",
+    tone: "is-green",
+  },
+  { label: "Raising", value: "€4.2M", note: "€22M post" },
+  { label: "Runway", value: "€14mo", note: "Tight", tone: "is-red" },
+];
+---
+
+<div class="hero-v2_cards" aria-hidden="true">
+  <!-- Card — Health Score (1433:725) -->
+  <div class="hero-v2_card is-health">
+    <div class="hero-v2_card-health-head">
+      <p class="hero-v2_card-health-score">49</p>
+      <div class="hero-v2_card-health-text">
+        <p class="hero-v2_card-health-title">Health Score</p>
+        <p class="hero-v2_card-health-sub">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor
+        </p>
+      </div>
+    </div>
+    <div class="hero-v2_card-health-progress">
+      <span class="hero-v2_card-health-seg is-p1"></span>
+      <span class="hero-v2_card-health-seg is-p2"></span>
+      <span class="hero-v2_card-health-seg is-p3"></span>
+      <span class="hero-v2_card-health-seg"></span>
+      <span class="hero-v2_card-health-seg"></span>
+      <img
+        class="hero-v2_card-health-pointer"
+        src={`${base}/pointer.svg`}
+        alt=""
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <!-- Card — Fund "DV 2018" (1433:658) -->
+  <div class="hero-v2_card is-fund">
+    <div class="hero-v2_card-fund-head">
+      <span class="hero-v2_card-fund-avatar">DV</span>
+      <div class="hero-v2_card-fund-names">
+        <p class="hero-v2_card-fund-name">DV</p>
+        <p class="hero-v2_card-fund-year">2018</p>
+      </div>
+      <span class="hero-v2_card-icon is-edit">
+        {
+          icons.edit.map((p) => (
+            <span style={`inset:${p.inset}`}>
+              <img src={`${base}/${p.src}`} alt="" loading="lazy" />
+            </span>
+          ))
+        }
+      </span>
+    </div>
+    <div class="hero-v2_card-fund-grid">
+      {
+        fundMetrics.map((m) => (
+          <div class="hero-v2_card-fund-cell">
+            <div class="hero-v2_card-fund-label">
+              <span>{m.label}</span>
+              <span class="hero-v2_card-icon is-info">
+                {icons.info.map((p) => (
+                  <span style={`inset:${p.inset}`}>
+                    <img src={`${base}/${p.src}`} alt="" loading="lazy" />
+                  </span>
+                ))}
+              </span>
+            </div>
+            <div class="hero-v2_card-fund-value">
+              <span>{m.value}</span>
+              {m.delta && (
+                <span class="hero-v2_card-delta is-green">
+                  <span class="hero-v2_card-icon is-arrow">
+                    {icons.arrowUp.map((p) => (
+                      <span style={`inset:${p.inset}`}>
+                        <img src={`${base}/${p.src}`} alt="" loading="lazy" />
+                      </span>
+                    ))}
+                  </span>
+                  {m.delta}
+                </span>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Card — Funding Timeline (1433:776) -->
+  <div class="hero-v2_card is-timeline">
+    <p class="hero-v2_card-timeline-title">Funding Timeline</p>
+    {
+      timelineEntries.map(() => (
+        <div class="hero-v2_card-timeline-entry">
+          <img
+            class="hero-v2_card-timeline-bullet"
+            src={`${base}/bullet.svg`}
+            alt=""
+            loading="lazy"
+          />
+          <p class="hero-v2_card-timeline-name">Agriloop Pre-Seed</p>
+          {timelineRows.map((row) => (
+            <div class="hero-v2_card-timeline-row">
+              <img
+                class="hero-v2_card-icon is-13"
+                src={`${base}/${row.icon}`}
+                alt=""
+                loading="lazy"
+              />
+              <span class="hero-v2_card-timeline-label">{row.label}</span>
+              {row.badge ? (
+                <span class="hero-v2_card-timeline-badge">{row.value}</span>
+              ) : (
+                <span class="hero-v2_card-timeline-value">{row.value}</span>
+              )}
+            </div>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Card — Equity Story chart (1433:742) -->
+  <div class="hero-v2_card is-chart">
+    <div class="hero-v2_card-chart-tabs">
+      {
+        chartTabs.map((tab) => (
+          <span
+            class:list={[
+              "hero-v2_card-chart-tab",
+              { "is-active": tab === "Equity Story" },
+            ]}
+          >
+            {tab}
+          </span>
+        ))
+      }
+    </div>
+    <div class="hero-v2_card-chart-inner">
+      <p class="hero-v2_card-chart-kicker">Price per share evolution</p>
+      <div class="hero-v2_card-chart-h2">
+        <span class="hero-v2_card-chart-figure">32</span>
+        <span class="hero-v2_card-delta is-green">
+          <span class="hero-v2_card-icon is-arrow">
+            {
+              icons.arrowUp.map((p) => (
+                <span style={`inset:${p.inset}`}>
+                  <img src={`${base}/${p.src}`} alt="" loading="lazy" />
+                </span>
+              ))
+            }
+          </span>
+          +6.3%
+        </span>
+      </div>
+      <div class="hero-v2_card-chart-plot">
+        <div class="hero-v2_card-chart-y">
+          {chartYLabels.map((l) => <span>{l}</span>)}
+        </div>
+        <img
+          class="hero-v2_card-chart-graph"
+          src={`${base}/graph.svg`}
+          alt=""
+          loading="lazy"
+        />
+      </div>
+      <div class="hero-v2_card-chart-x">
+        {chartXLabels.map((l) => <span>{l}</span>)}
+      </div>
+    </div>
+  </div>
+
+  <!-- Card — Agriloop deal (1433:935) -->
+  <div class="hero-v2_card is-deal">
+    <div class="hero-v2_card-deal-head">
+      <img
+        class="hero-v2_card-deal-avatar"
+        src={`${base}/avatar-agriloop.png`}
+        alt=""
+        loading="lazy"
+      />
+      <div class="hero-v2_card-deal-names">
+        <p class="hero-v2_card-deal-name">Agriloop</p>
+        <p class="hero-v2_card-deal-site">agriloop.co</p>
+      </div>
+      <div class="hero-v2_card-deal-score">
+        <p class="hero-v2_card-deal-score-figure">8.1</p>
+        <p class="hero-v2_card-deal-score-label">Deal score</p>
+      </div>
+    </div>
+    <div class="hero-v2_card-deal-grid">
+      {
+        dealMetrics.map((m) => (
+          <div class="hero-v2_card-deal-cell">
+            <p class="hero-v2_card-deal-label">{m.label}</p>
+            <div class="hero-v2_card-deal-value">
+              <span>{m.value}</span>
+              <span class:list={["hero-v2_card-deal-note", m.tone]}>
+                {m.arrow && (
+                  <span class="hero-v2_card-icon is-arrow">
+                    {icons.arrowUp.map((p) => (
+                      <span style={`inset:${p.inset}`}>
+                        <img src={`${base}/${p.src}`} alt="" loading="lazy" />
+                      </span>
+                    ))}
+                  </span>
+                )}
+                {m.note}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

@@ -1,10 +1,6 @@
 ---
-/**
- * Hero v2 — Figma 1525:3722. Centred layout on the light beige backdrop, with a
- * decorative chatbox standing in for the product. The chatbox is presentational
- * only: it is not a real form, so it stays non-interactive.
- */
 import Button from "../ui/Button.astro";
+import HeroV2Cards from "./HeroV2Cards.astro";
 ---
 
 <section class="hero-v2_section">
@@ -18,19 +14,23 @@ import Button from "../ui/Button.astro";
       <div class="hero-v2_text">
         <h1 class="hero-v2_heading">
           <span>The AI operating system</span>
-          <span class="hero-v2_heading-gradient"
-            >for Private Equity and VC funds</span
-          >
+          <span class="hero-v2_heading-gradient">for investment team</span>
         </h1>
         <p class="hero-v2_paragraph">
-          One platform, combining AI intelligence with human oversight.
+          One platform for your entire investment team, amplified by AI.
+          Sourcing. Monitoring. Reporting. One platform, zero friction.
         </p>
       </div>
 
-      <div class="hero-v2_chatbox" aria-hidden="true">
-        <p class="hero-v2_chatbox-placeholder">
-          Ask about your funds, deals and portfolio...
-        </p>
+      <div class="hero-v2_chatbox" data-chatbox>
+        <input
+          class="hero-v2_chatbox-input"
+          type="text"
+          placeholder="Ask about your funds, deals and portfolio..."
+          aria-label="Ask about your funds, deals and portfolio"
+          autocomplete="off"
+          data-chatbox-input
+        />
         <div class="hero-v2_chatbox-bar">
           <div class="hero-v2_chatbox-actions">
             <span class="hero-v2_chatbox-action">
@@ -74,7 +74,12 @@ import Button from "../ui/Button.astro";
               </svg>
             </span>
           </div>
-          <span class="hero-v2_chatbox-send">
+          <button
+            class="hero-v2_chatbox-send"
+            type="button"
+            aria-label="Send"
+            data-chatbox-send
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -88,7 +93,7 @@ import Button from "../ui/Button.astro";
                 stroke-linecap="round"
                 stroke-linejoin="round"></path>
             </svg>
-          </span>
+          </button>
         </div>
       </div>
 
@@ -108,4 +113,9 @@ import Button from "../ui/Button.astro";
       </div>
     </div>
   </div>
+  <div class="hero-v2_anim" aria-hidden="true">
+    <div class="hero-v2_anim-globe-gradient"></div>
+    <div class="hero-v2_anim-canvas"></div>
+  </div>
+  <HeroV2Cards />
 </section>

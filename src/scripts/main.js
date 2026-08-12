@@ -1,5 +1,8 @@
 import { initAccordions } from "./accordion";
 import { initAnimations } from "./animations";
+import { initChatbox } from "./chatbox";
+import { initGlobeParticles } from "./globe-particles";
+import { initHeroCards } from "./hero-cards";
 import { initMenu } from "./menu";
 import { initSmoothScroll } from "./smooth-scroll";
 import { initTestimonials } from "./testimonials";
@@ -19,4 +22,7 @@ initMenu();
 initAccordions();
 initTestimonials();
 initAnimations();
+initGlobeParticles();
+initHeroCards();
+initChatbox();
 initYear();

@@ -7,6 +7,12 @@ export interface Props {
   /** Path only, e.g. "/404" — resolved against `site` for the canonical URL. */
   canonical?: string;
   ogImage?: string;
+  /**
+   * Pages whose scripts animate elements in: hides those targets from the
+   * first paint until a script adds `.is-ready` on <html>, so they never
+   * flash in their final state before GSAP takes over.
+   */
+  animated?: boolean;
 }
 
 const {
@@ -14,13 +20,14 @@ const {
   description,
   canonical = Astro.url.pathname,
   ogImage = "/images/openGraph.webp",
+  animated = false,
 } = Astro.props;
 
 const canonicalURL = new URL(canonical, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class:list={[{ "has-reveals": animated }]}>
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -56,6 +63,19 @@ const canonicalURL = new URL(canonical, Astro.site);
       type="font/woff2"
       crossorigin
     />
+
+    {
+      /* Inline so the guard applies before any stylesheet/script loads.
+         Add every new reveal target's selector here. */
+      animated && (
+        <style is:inline>
+          .has-reveals:not(.is-ready) .hero-v2_card {
+            opacity: 0;
+            visibility: hidden;
+          }
+        </style>
+      )
+    }
 
     <slot name="head" />
   </head>

@@ -1,42 +1,28 @@
 ---
-/** Steps of the investment lifecycle — Figma 1433:1142. */
+/** Steps of the investment lifecycle — Figma 1433:1258. */
 const STEPS = [
   {
     number: "01",
-    title: "Dealflow pipeline",
-    items: [
-      "Sourcing & market signals.",
-      "Centralised inbound.",
-      "Auto triage & scoring.",
-      "One pipeline view.",
+    title: "Deal assessment",
+    paragraphs: [
+      "Centralized pipeline with AI scoring, pitch deck analysis, automated risk assessment and auto-generated IC memos.",
+      "Go from sourcing to signature without friction.\nA collaborative workspace where specialized AI agents work alongside your investment team—from opportunity scoring and pitch deck analysis to IC memo drafting, due diligence orchestration, and closing.",
     ],
   },
   {
     number: "02",
-    title: "Due Diligence &\nInvestment Committee",
-    items: ["Evidence extracted.", "Red flags surfaced.", "IC memos drafted."],
-  },
-  {
-    number: "03",
     title: "Portfolio monitoring",
-    items: [
-      "KPIs always current.",
-      "Board prep in one click.",
-      "Follow-on signals.",
+    paragraphs: [
+      "AI-powered dashboards, quantitative & qualitative KPIs, proactive alerts and exit scenario modeling.",
+      "Stay ahead of every portfolio company, in real time.",
+      "Your AI portfolio team, continuously monitoring real time every company, coordinating reporting, identifying risks and opportunities, and preparing the path to liquidity.",
     ],
   },
   {
-    number: "04",
-    title: "Exits monitoring",
-    items: ["LP reporting.", "Fundraising & LP outreach."],
-  },
-  {
-    number: "05",
-    title: "Investor relations",
-    items: [
-      "Acquirer mapping.",
-      "Comparables & multiples.",
-      "Scenario analysis.",
+    number: "03",
+    title: "Fund operations and reporting",
+    paragraphs: [
+      "AI agents orchestrating every investment vehicles, from funds and co-investment SPVs and holdings, with automated governance, reporting, and investor communications.",
     ],
   },
 ];
@@ -70,11 +56,11 @@ const STEPS = [
             <p class="home-bloc02_step-number">{step.number}</p>
             <div class="home-bloc02_step-text">
               <h3 class="home-bloc02_step-title">{step.title}</h3>
-              <ul class="home-bloc02_step-list">
-                {step.items.map((item) => (
-                  <li>{item}</li>
+              <div class="home-bloc02_step-body">
+                {step.paragraphs.map((paragraph) => (
+                  <p>{paragraph}</p>
                 ))}
-              </ul>
+              </div>
             </div>
           </li>
         ))
