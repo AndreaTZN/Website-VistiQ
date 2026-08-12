@@ -4,9 +4,7 @@
   z-index: 0;
   background-color: var(--base-color--beige-dark);
   width: 100%;
-  min-height: 49.375rem;
-  padding-top: 10rem;
-  padding-bottom: 6.25rem;
+  height: 100svh;
   display: flex;
   align-items: center;
   position: relative;
@@ -793,7 +791,6 @@
 
 @media screen and (max-width: 767px) {
   .hero-v2_section {
-    min-height: auto;
     padding-top: 7.5rem;
     padding-bottom: 3.5rem;
   }

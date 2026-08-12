@@ -67,7 +67,7 @@
 
 .home-bloc03_layout {
   grid-column-gap: 2.125rem;
-  grid-template-columns: minmax(0, 476fr) minmax(0, 464fr);
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
   align-items: start;
   margin-top: 3rem;
   display: grid;

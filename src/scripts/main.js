@@ -6,6 +6,7 @@ import { initHeroCards } from "./hero-cards";
 import { initMenu } from "./menu";
 import { initSmoothScroll } from "./smooth-scroll";
 import { initTestimonials } from "./testimonials";
+import { initWatermark } from "./watermark";
 
 /** Sets the current year on any [data-el="year"] element. */
 function initYear() {
@@ -25,4 +26,5 @@ initAnimations();
 initGlobeParticles();
 initHeroCards();
 initChatbox();
+initWatermark();
 initYear();

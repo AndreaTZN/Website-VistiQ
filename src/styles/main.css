@@ -6,8 +6,7 @@
 
 /* 1. Foundations */
 @import "./base/normalize.css";
-@import "./base/webflow-reset.css";
-@import "./base/webflow-components.css";
+
 @import "./base/fonts.css";
 @import "./base/tokens.css";
 @import "./base/fluid-type.css";
