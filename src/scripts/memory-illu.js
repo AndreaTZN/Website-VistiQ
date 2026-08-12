@@ -45,12 +45,13 @@ export function initMemoryIllu() {
   const lines = gsap.utils.toArray(
     root.querySelectorAll(".home-bloc04_memory-line"),
   );
+
   root.querySelectorAll(".home-bloc04_memory-drop").forEach((drop) => {
     const line = lines[Number(drop.dataset.line)];
     if (!line) return;
 
     const duration = gsap.utils.random(1.5, 2.4);
-    gsap
+    const loop = gsap
       .timeline({
         repeat: -1,
         delay: gsap.utils.random(0, 2),
@@ -88,6 +89,9 @@ export function initMemoryIllu() {
   // dash at the chip end and lets the stroke grow back down towards the tags.
   gsap.set(lines, { drawSVG: "100% 100%" });
   gsap.set(tags, { autoAlpha: 0, y: 14 });
+  // The loops fade each drop in themselves; keep them hidden until then so
+  // they don't sit parked at cx/cy once the reveal guard lifts.
+  gsap.set(root.querySelectorAll(".home-bloc04_memory-drop"), { autoAlpha: 0 });
 
   gsap
     .timeline({
