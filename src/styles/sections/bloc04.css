@@ -436,7 +436,7 @@
 }
 
 /* Inline SVG: a faint white base layer plus the green "fluid" paths that
-   memory-illu.js pours from the chip down to the tags. */
+   bloc04-cards.js pours from the chip down to the tags. */
 .home-bloc04_memory-tentacle {
   pointer-events: none;
   width: 21.25rem;

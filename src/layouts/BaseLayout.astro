@@ -73,7 +73,7 @@ const canonicalURL = new URL(canonical, Astro.site);
             opacity: 0;
             visibility: hidden;
           }
-          /* Bloc04 memory: everything initMemoryIllu() starts hidden. The fan
+          /* Bloc04 memory: everything bloc04-cards.js starts hidden. The fan
              lines hide via stroke-opacity only — the drops share this SVG. */
           .has-reveals:not(.is-ready) .home-bloc04_memory-chip,
           .has-reveals:not(.is-ready) .home-bloc04_memory-tag,
@@ -82,6 +82,17 @@ const canonicalURL = new URL(canonical, Astro.site);
             visibility: hidden;
           }
           .has-reveals:not(.is-ready) .home-bloc04_memory-line {
+            stroke-opacity: 0;
+          }
+          /* Bloc04 sources/agents/signals: entrance targets of bloc04-cards.js. */
+          .has-reveals:not(.is-ready) .home-bloc04_source,
+          .has-reveals:not(.is-ready) .home-bloc04_agents-head,
+          .has-reveals:not(.is-ready) .home-bloc04_agents-ghost,
+          .has-reveals:not(.is-ready) .home-bloc04_agents-card {
+            opacity: 0;
+            visibility: hidden;
+          }
+          .has-reveals:not(.is-ready) .home-bloc04_source-check path {
             stroke-opacity: 0;
           }
         </style>

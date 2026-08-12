@@ -1,9 +1,9 @@
 import { initAccordions } from "./accordion";
 import { initAnimations } from "./animations";
+import { initBloc04Cards } from "./bloc04-cards";
 import { initChatbox } from "./chatbox";
 import { initGlobeParticles } from "./globe-particles";
 import { initHeroCards } from "./hero-cards";
-import { initMemoryIllu } from "./memory-illu";
 import { initMenu } from "./menu";
 import { initSmoothScroll } from "./smooth-scroll";
 import { initTestimonials } from "./testimonials";
@@ -25,8 +25,10 @@ initAccordions();
 initTestimonials();
 initAnimations();
 initGlobeParticles();
-
-initMemoryIllu();
+// Before initHeroCards(): that module lifts the reveal guard by adding
+// `.is-ready`, so these targets must already be hidden inline or they flash
+// in their final state.
+initBloc04Cards();
 initHeroCards();
 initChatbox();
 initWatermark();
