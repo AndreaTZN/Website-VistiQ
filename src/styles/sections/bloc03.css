@@ -168,40 +168,17 @@
 /* Visual */
 
 .home-bloc03_visual {
+  /* --corners-z lifts the markers above this visual's noise overlay. */
+  --corners-size: 0.5rem;
+  --corners-offset: 0.75rem;
+  --corners-z: 2;
+
   z-index: 0;
   background-color: var(--base-color--sage);
   aspect-ratio: 1 / 1;
   position: relative;
   overflow: hidden;
   transition: background-color 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-}
-
-.home-bloc03_visual-corner {
-  z-index: 2;
-  background-color: #1d1e2133;
-  width: 0.5rem;
-  height: 0.5rem;
-  position: absolute;
-}
-
-.home-bloc03_visual-corner.is-top-left {
-  top: 0.75rem;
-  left: 0.75rem;
-}
-
-.home-bloc03_visual-corner.is-top-right {
-  top: 0.75rem;
-  right: 0.75rem;
-}
-
-.home-bloc03_visual-corner.is-bottom-left {
-  bottom: 0.75rem;
-  left: 0.75rem;
-}
-
-.home-bloc03_visual-corner.is-bottom-right {
-  bottom: 0.75rem;
-  right: 0.75rem;
 }
 
 @media screen and (max-width: 991px) {

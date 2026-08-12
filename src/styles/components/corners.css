@@ -1,0 +1,33 @@
+/* Corner markers — components/ui/Corners.astro
+   Sections tune the four custom properties on their own scope; the positions
+   themselves are declared once here. */
+
+.corners_item {
+  z-index: var(--corners-z, auto);
+  background-color: var(--corners-color, #1d1e2133);
+  width: var(--corners-size, 0.75rem);
+  height: var(--corners-size, 0.75rem);
+  position: absolute;
+}
+
+/* The vertical offset is split out so the hero can pull its top markers down
+   below the fixed nav without redeclaring the horizontal one. */
+.corners_item.is-top-left {
+  top: var(--corners-offset-top, var(--corners-offset, 1.5rem));
+  left: var(--corners-offset, 1.5rem);
+}
+
+.corners_item.is-top-right {
+  top: var(--corners-offset-top, var(--corners-offset, 1.5rem));
+  right: var(--corners-offset, 1.5rem);
+}
+
+.corners_item.is-bottom-left {
+  bottom: var(--corners-offset-bottom, var(--corners-offset, 1.5rem));
+  left: var(--corners-offset, 1.5rem);
+}
+
+.corners_item.is-bottom-right {
+  bottom: var(--corners-offset-bottom, var(--corners-offset, 1.5rem));
+  right: var(--corners-offset, 1.5rem);
+}

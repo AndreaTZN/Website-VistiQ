@@ -40,33 +40,6 @@
 
 /* Corner markers */
 
-.home-bloc02_corner {
-  background-color: #1d1e2133;
-  width: 0.75rem;
-  height: 0.75rem;
-  position: absolute;
-}
-
-.home-bloc02_corner.is-top-left {
-  top: 1.5rem;
-  left: 1.5rem;
-}
-
-.home-bloc02_corner.is-top-right {
-  top: 1.5rem;
-  right: 1.5rem;
-}
-
-.home-bloc02_corner.is-bottom-left {
-  bottom: 1.5rem;
-  left: 1.5rem;
-}
-
-.home-bloc02_corner.is-bottom-right {
-  bottom: 1.5rem;
-  right: 1.5rem;
-}
-
 /* Header */
 
 .home-bloc02_header {
@@ -196,5 +169,9 @@
   .home-bloc02_steps {
     grid-template-columns: minmax(0, 1fr);
     margin-top: 2.5rem;
+    text-align: center;
+  }
+  .home-bloc02_step {
+    align-items: center;
   }
 }

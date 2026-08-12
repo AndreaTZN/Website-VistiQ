@@ -25,9 +25,7 @@ initAccordions();
 initTestimonials();
 initAnimations();
 initGlobeParticles();
-// Before initHeroCards(): that module lifts the reveal guard by adding
-// `.is-ready`, so these targets must already be hidden inline or they flash
-// in their final state.
+initGlobeParticles(".sub-footer_section");
 initBloc04Cards();
 initHeroCards();
 initChatbox();

@@ -1,13 +1,17 @@
 ---
 /** Closing call to action — Figma 1525:40015. */
 import Button from "../ui/Button.astro";
+import Corners from "../ui/Corners.astro";
 ---
 
 <section class="sub-footer_section">
-  <span class="sub-footer_corner is-top-left" aria-hidden="true"></span>
-  <span class="sub-footer_corner is-top-right" aria-hidden="true"></span>
-  <span class="sub-footer_corner is-bottom-left" aria-hidden="true"></span>
-  <span class="sub-footer_corner is-bottom-right" aria-hidden="true"></span>
+  {/* Same markup as the hero: scripts/globe-particles.js reuses the layer. */}
+  <div class="hero-v2_anim" aria-hidden="true">
+    <div class="hero-v2_anim-globe-gradient"></div>
+    <div class="hero-v2_anim-canvas"></div>
+  </div>
+
+  <Corners />
 
   <div class="container-medium">
     <div class="sub-footer_content">

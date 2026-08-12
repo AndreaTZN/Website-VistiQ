@@ -1,12 +1,14 @@
 ---
 /** Steps of the investment lifecycle — Figma 1433:1258. */
+import Corners from "../ui/Corners.astro";
+
 const STEPS = [
   {
     number: "01",
     title: "Deal assessment",
     paragraphs: [
       "Centralized pipeline with AI scoring, pitch deck analysis, automated risk assessment and auto-generated IC memos.",
-      "Go from sourcing to signature without friction.\nA collaborative workspace where specialized AI agents work alongside your investment team—from opportunity scoring and pitch deck analysis to IC memo drafting, due diligence orchestration, and closing.",
+      "Go from sourcing to signature without friction.\nA collaborative workspace where specialized AI agents work alongside your investment team from opportunity scoring and pitch deck analysis to IC memo drafting, due diligence orchestration, and closing.",
     ],
   },
   {
@@ -31,10 +33,7 @@ const STEPS = [
 <section class="home-bloc02_section">
   <div class="home-bloc02_pattern" aria-hidden="true"></div>
 
-  <span class="home-bloc02_corner is-top-left" aria-hidden="true"></span>
-  <span class="home-bloc02_corner is-top-right" aria-hidden="true"></span>
-  <span class="home-bloc02_corner is-bottom-left" aria-hidden="true"></span>
-  <span class="home-bloc02_corner is-bottom-right" aria-hidden="true"></span>
+  <Corners />
 
   <div class="container-medium">
     <div class="home-bloc02_header">

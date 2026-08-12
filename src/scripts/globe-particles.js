@@ -2,18 +2,26 @@ import * as THREE from "three";
 import gsap from "gsap";
 
 /**
- * Hero background — WebGL particle ring.
+ * WebGL particle ring, used as a section background.
  *
  * Scattered "stars" fade in, pulse once, then converge onto a diffuse ring:
  * a thick, grainy annulus with uneven angular density and sparse outliers,
  * slowly swirling. The mouse locally thickens the ring while hovering it.
+ *
+ * `root` is the section that owns the `.hero-v2_anim-*` layer — the hero by
+ * default, but the sub-footer reuses the same markup, so each caller passes
+ * its own element and gets an independent instance. `minDiameter` is the
+ * desktop floor for the ring: the hero's 800px would overflow a short band.
  */
-export function initGlobeParticles() {
+export function initGlobeParticles(
+  root = ".hero-v2_section",
+  { minDiameter = 800 } = {},
+) {
   // Same guard as the other modules: no background animation for users who
-  // prefer reduced motion — the hero simply keeps its static backdrop.
+  // prefer reduced motion — the section simply keeps its static backdrop.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const el = document.querySelector(".hero-v2_section");
+  const el = typeof root === "string" ? document.querySelector(root) : root;
   if (!el) return;
 
   const canvas = el.querySelector(".hero-v2_anim-canvas");
@@ -47,11 +55,12 @@ export function initGlobeParticles() {
   camera.position.z = 1;
 
   // Mobile: fit to 90% of the height, no forced minimum.
-  // Desktop: max 90% H / 85% W, with a minimum diameter of 800px.
+  // Desktop: max 90% H / 85% W, with a minimum diameter (800px in the hero —
+  // short sections pass a smaller one so the ring stays inside the band).
   // 380 is kept as the reference diameter so the sizing rules stay unchanged.
   const globeScale = isMobile
     ? (H * 0.9) / 380
-    : Math.max(Math.min(W * 0.85, H * 0.9) / 380, 800 / 380);
+    : Math.max(Math.min(W * 0.85, H * 0.9) / 380, minDiameter / 380);
   const ringR = 190 * globeScale;
   // Gaussian thickness of the ring body; outliers scatter much further out.
   const ringSigma = ringR * 0.13;

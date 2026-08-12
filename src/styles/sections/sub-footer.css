@@ -16,33 +16,6 @@
 
 /* Corner markers */
 
-.sub-footer_corner {
-  background-color: #1d1e2133;
-  width: 0.75rem;
-  height: 0.75rem;
-  position: absolute;
-}
-
-.sub-footer_corner.is-top-left {
-  top: 1.5rem;
-  left: 1.5rem;
-}
-
-.sub-footer_corner.is-top-right {
-  top: 1.5rem;
-  right: 1.5rem;
-}
-
-.sub-footer_corner.is-bottom-left {
-  bottom: 1.5rem;
-  left: 1.5rem;
-}
-
-.sub-footer_corner.is-bottom-right {
-  bottom: 1.5rem;
-  right: 1.5rem;
-}
-
 /* Content */
 
 .sub-footer_content {
@@ -122,7 +95,7 @@
     padding-bottom: 3.5rem;
   }
 
-  .sub-footer_corner {
+  .sub-footer_section .corners_item {
     display: none;
   }
 

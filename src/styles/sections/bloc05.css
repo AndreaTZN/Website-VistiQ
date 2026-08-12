@@ -64,7 +64,6 @@
 .home-bloc05_carousel {
   background-color: #4a4441;
   margin-top: 3rem;
-  padding: 3rem;
   position: relative;
 }
 
@@ -81,7 +80,6 @@
   grid-column-gap: 2rem;
   grid-area: 1 / 1;
   grid-template-columns: minmax(0, 600fr) minmax(0, 377fr);
-  align-items: center;
   display: grid;
 }
 
@@ -90,6 +88,8 @@
   flex-flow: column;
   align-items: flex-start;
   display: flex;
+  padding: 3rem;
+  padding-bottom: 0rem;
 }
 
 .home-bloc05_logo {
@@ -137,36 +137,16 @@
 /* Portrait */
 
 .home-bloc05_picture {
+  /* White markers: these sit on top of the portrait, not on a light panel. */
+  --corners-color: #ffffff4d;
+  --corners-offset: 1.25rem;
+  --corners-z: 1;
+
+  padding: 1.25rem;
   aspect-ratio: 1 / 1;
+}
+.home-bloc05_picture-inner {
   position: relative;
-}
-
-.home-bloc05_picture-corner {
-  z-index: 1;
-  background-color: #ffffff4d;
-  width: 0.75rem;
-  height: 0.75rem;
-  position: absolute;
-}
-
-.home-bloc05_picture-corner.is-top-left {
-  top: 1.25rem;
-  left: 1.25rem;
-}
-
-.home-bloc05_picture-corner.is-top-right {
-  top: 1.25rem;
-  right: 1.25rem;
-}
-
-.home-bloc05_picture-corner.is-bottom-left {
-  bottom: 1.25rem;
-  left: 1.25rem;
-}
-
-.home-bloc05_picture-corner.is-bottom-right {
-  bottom: 1.25rem;
-  right: 1.25rem;
 }
 
 /* Progress bars */
@@ -174,7 +154,10 @@
 .home-bloc05_dots {
   grid-column-gap: 0.5rem;
   display: flex;
-  position: relative;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 3rem;
+  bottom: 3rem;
 }
 
 .home-bloc05_dot {
@@ -199,18 +182,6 @@
   position: absolute;
   inset: 0;
   transform: scaleX(0);
-}
-
-@media screen and (max-width: 991px) {
-  .home-bloc05_slide {
-    grid-row-gap: 2rem;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .home-bloc05_picture {
-    order: -1;
-    max-width: 20rem;
-  }
 }
 
 @media screen and (max-width: 767px) {

@@ -1,0 +1,28 @@
+---
+/**
+ * Four decorative square markers pinned to the corners of the nearest
+ * positioned ancestor. Replaces the four hand-written spans that each section
+ * used to repeat.
+ *
+ * Every variant only differed by size / offset / colour / stacking, so those
+ * are custom properties rather than modifier classes: a section overrides
+ * `--corners-*` on its own scope instead of redeclaring the four positions.
+ */
+interface Props {
+  /** Extra class on each marker, for section-level overrides. */
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const POSITIONS = ["top-left", "top-right", "bottom-left", "bottom-right"];
+---
+
+{
+  POSITIONS.map((position) => (
+    <span
+      class:list={["corners_item", `is-${position}`, className]}
+      aria-hidden="true"
+    />
+  ))
+}

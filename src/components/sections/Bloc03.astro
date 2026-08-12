@@ -3,6 +3,8 @@
  * "What it does for you" — Figma 1525:4699 (closed) / 1525:10472 (open).
  * Accordion: one panel open at a time, animated in scripts/accordion.js.
  */
+import Corners from "../ui/Corners.astro";
+
 const ITEMS = [
   {
     eyebrow: "Ask anything",
@@ -97,16 +99,7 @@ const ITEMS = [
       </div>
 
       <div class="home-bloc03_visual" data-accordion-visual>
-        <span class="home-bloc03_visual-corner is-top-left" aria-hidden="true"
-        ></span>
-        <span class="home-bloc03_visual-corner is-top-right" aria-hidden="true"
-        ></span>
-        <span
-          class="home-bloc03_visual-corner is-bottom-left"
-          aria-hidden="true"></span>
-        <span
-          class="home-bloc03_visual-corner is-bottom-right"
-          aria-hidden="true"></span>
+        <Corners />
         <div class="noise"></div>
       </div>
     </div>

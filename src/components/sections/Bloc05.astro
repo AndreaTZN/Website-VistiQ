@@ -6,6 +6,8 @@
  * One slide and one progress bar per entry: add or remove testimonials here
  * and the carousel follows.
  */
+import Corners from "../ui/Corners.astro";
+
 const TESTIMONIALS = [
   {
     quote:
@@ -79,28 +81,15 @@ const TESTIMONIALS = [
               </div>
 
               <div class="home-bloc05_picture" data-testimonial-picture>
-                <img
-                  src={item.portrait}
-                  alt={item.portraitAlt}
-                  loading="lazy"
-                  class="image-fit-cover"
-                />
-                <span
-                  class="home-bloc05_picture-corner is-top-left"
-                  aria-hidden="true"
-                />
-                <span
-                  class="home-bloc05_picture-corner is-top-right"
-                  aria-hidden="true"
-                />
-                <span
-                  class="home-bloc05_picture-corner is-bottom-left"
-                  aria-hidden="true"
-                />
-                <span
-                  class="home-bloc05_picture-corner is-bottom-right"
-                  aria-hidden="true"
-                />
+                <div class="home-bloc05_picture-inner">
+                  <img
+                    src={item.portrait}
+                    alt={item.portraitAlt}
+                    loading="lazy"
+                    class="image-fit-cover"
+                  />
+                  <Corners />
+                </div>
               </div>
             </div>
           ))

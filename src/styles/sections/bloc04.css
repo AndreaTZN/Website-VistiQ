@@ -526,10 +526,6 @@
     font-size: 2.25rem;
   }
 
-  .home-bloc04_heading span {
-    display: inline;
-  }
-
   .home-bloc04_cards {
     grid-template-columns: minmax(0, 1fr);
     margin-top: 2.5rem;
@@ -541,7 +537,8 @@
   }
 
   .home-bloc04_card-visual {
-    height: 18rem;
+    height: auto;
+    padding: 5rem 0rem;
   }
 
   .home-bloc04_card-text {
