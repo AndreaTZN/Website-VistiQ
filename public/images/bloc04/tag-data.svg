@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="20.083" height="20.083" viewBox="0 0 20.083 20.083" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="logo">
+<circle id="background" cx="10.0415" cy="10.0415" r="10.0415" fill="#F4F2F0"/>
+<g id="database">
+<path id="Vector" d="M14.2706 7.12497C14.2706 7.7693 12.2966 8.43747 10.0415 8.43747C7.78631 8.43747 5.81231 7.7693 5.81231 7.12497C5.81231 6.48064 7.78631 5.81247 10.0415 5.81247C12.2966 5.81247 14.2706 6.48064 14.2706 7.12497Z" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M14.2706 10.0416C14.2706 10.686 12.2966 11.3541 10.0415 11.3541C7.78631 11.3541 5.81231 10.686 5.81231 10.0416" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M14.2706 7.12497V12.9583C14.2706 13.6026 12.2966 14.2708 10.0415 14.2708C7.78631 14.2708 5.81231 13.6026 5.81231 12.9583V7.12497" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

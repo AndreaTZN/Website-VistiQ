@@ -87,7 +87,9 @@
 
 .home-bloc04_card-visual {
   z-index: 0;
-  aspect-ratio: 16 / 9;
+  /* One shared height (not aspect-ratio): the cards span different column
+     widths, so ratios can never land on the same height everywhere. */
+  height: 22rem;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -100,12 +102,10 @@
 }
 
 .home-bloc04_card.is-agents .home-bloc04_card-visual {
-  aspect-ratio: 8 / 9;
   background-image: linear-gradient(200deg, #eef1f8 0%, #cfe0d3 100%);
 }
 
 .home-bloc04_card.is-informations .home-bloc04_card-visual {
-  aspect-ratio: 8 / 9;
   background-image: linear-gradient(200deg, #cfdcd3 0%, #eef1ee 100%);
 }
 
@@ -134,6 +134,7 @@
   margin: 0;
   font-size: 1rem;
   line-height: 1.5;
+  max-width: 27rem;
 }
 
 /* Data source tags */
@@ -203,6 +204,303 @@
   height: 1rem;
 }
 
+/* Agents card visual — notification stack (Figma 1433:12940) */
+
+.home-bloc04_agents {
+  z-index: 1;
+  width: 17.5rem;
+  position: relative;
+}
+
+.home-bloc04_agents-head {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.home-bloc04_agents-title {
+  color: #1d1e21;
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.home-bloc04_agents-live {
+  grid-column-gap: 0.25rem;
+  background-color: var(--base-color--white);
+  border-radius: 100vw;
+  align-items: center;
+  padding: 0.125rem 0.375rem;
+  color: #2aa555;
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+}
+
+/* The dot SVG ships with its glow halo on a 3× canvas, hence the overflow. */
+.home-bloc04_agents-live-dot {
+  flex: none;
+  width: 0.375rem;
+  height: 0.375rem;
+  position: relative;
+}
+
+.home-bloc04_agents-live-dot img {
+  max-width: none;
+  width: 300%;
+  height: 300%;
+  position: absolute;
+  top: -100%;
+  left: -100%;
+}
+
+.home-bloc04_agents-stack {
+  grid-row-gap: 0.75rem;
+  flex-flow: column;
+  margin-top: 1.65rem;
+  display: flex;
+  position: relative;
+}
+
+/* The signals variant has no header row above its stack. */
+.home-bloc04_agents.is-signals .home-bloc04_agents-stack {
+  margin-top: 0;
+}
+
+.home-bloc04_agents-h1-lines span {
+  display: block;
+}
+
+/* Half-visible card peeking above the stack, pure depth cue. */
+.home-bloc04_agents-ghost {
+  backdrop-filter: blur(4px);
+  background-color: #ffffff80;
+  border-radius: 0.75rem;
+  width: 16rem;
+  height: 2.125rem;
+  position: absolute;
+  top: -0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow:
+    0 0.125rem 0.25rem -0.0625rem #262a3e0d,
+    0 0.625rem 1.25rem -0.3125rem #262a3e1f;
+}
+
+.home-bloc04_agents-card {
+  grid-column-gap: 0.5rem;
+  backdrop-filter: blur(8px);
+  background-color: var(--base-color--white);
+  border: 1px solid #ffffff80;
+  border-radius: 0.75rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  display: flex;
+  position: relative;
+  box-shadow:
+    0 0.125rem 0.25rem -0.0625rem #262a3e0d,
+    0 0.625rem 1.875rem -0.3125rem #262a3e1f;
+}
+
+.home-bloc04_agents-icon {
+  background-color: #f4f2f0;
+  border-radius: 100vw;
+  flex: none;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+}
+
+.home-bloc04_agents-icon img {
+  object-fit: contain;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.home-bloc04_agents-icon.is-calendar img {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.home-bloc04_agents-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-bloc04_agents-h1 {
+  color: #1d1e21;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+}
+
+.home-bloc04_agents-unread {
+  background-color: #2aa555;
+  border-radius: 100vw;
+  flex: none;
+  width: 0.315rem;
+  height: 0.315rem;
+}
+
+.home-bloc04_agents-meta {
+  grid-column-gap: 0.235rem;
+  color: #616172;
+  align-items: center;
+  margin: 0;
+  font-size: 0.5625rem;
+  line-height: 1.5;
+  display: flex;
+}
+
+.home-bloc04_agents-sep {
+  background-color: #1d1e211f;
+  border-radius: 100vw;
+  flex: none;
+  width: 0.157rem;
+  height: 0.157rem;
+}
+
+.home-bloc04_agents-lead {
+  color: #1d1e21;
+  margin: 0.25rem 0 0;
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.home-bloc04_agents-line {
+  color: #616172;
+  margin: 0;
+  font-size: 0.625rem;
+  line-height: 1.5;
+}
+
+/* Memory card visual — IQ chip fanning out to capability tags (Figma 1433:13104) */
+
+.home-bloc04_memory {
+  z-index: 1;
+  width: 35.125rem;
+  max-width: 100%;
+  position: relative;
+}
+
+.home-bloc04_memory-chip {
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.8) -9.26%,
+    rgba(255, 255, 255, 0.8) 63.04%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-image: url("/images/bloc04/bg.jpg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 0.875rem;
+  justify-content: center;
+  align-items: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 2px 4px 0 rgba(0, 0, 0, 0.05),
+    0 40px 80px -10px rgba(0, 0, 0, 0.08);
+}
+
+.home-bloc04_memory-chip-inner {
+  backdrop-filter: blur(1.25rem);
+  border: 1px solid #ffffff;
+
+  border-radius: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  display: flex;
+  box-shadow:
+    0 2px 4px 0 rgba(0, 0, 0, 0.08),
+    0 4px 12px -5px rgba(0, 0, 0, 0.08);
+}
+
+.home-bloc04_memory-chip-inner img {
+  width: 1.55rem;
+  height: 1.5rem;
+}
+
+/* Inline SVG: a faint white base layer plus the green "fluid" paths that
+   memory-illu.js pours from the chip down to the tags. */
+.home-bloc04_memory-tentacle {
+  pointer-events: none;
+  width: 21.25rem;
+  height: 5rem;
+  display: block;
+  position: absolute;
+  top: 5.06rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.home-bloc04_memory-tentacle svg {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.home-bloc04_memory-tags {
+  grid-column-gap: 0.75rem;
+  grid-row-gap: 0.75rem;
+  flex-flow: wrap;
+  justify-content: center;
+  margin-top: 3.125rem;
+  display: flex;
+  position: relative;
+}
+
+.home-bloc04_memory-tag {
+  grid-column-gap: 0.335rem;
+  backdrop-filter: blur(1.5px);
+  background-color: var(--base-color--white);
+  border-radius: 100vw;
+  align-items: center;
+  padding: 0.335rem;
+  color: #1d1e21;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+  box-shadow:
+    0 0.04rem 0.04rem #0f0f0f0d,
+    0 0.165rem 0.33rem #0f0f0f0d;
+}
+
+.home-bloc04_memory-tag-logo {
+  flex: none;
+  width: 1.255rem;
+  height: 1.255rem;
+}
+
+.home-bloc04_memory-spinner {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  display: block;
+}
+
+.home-bloc04_memory-spinner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 @media screen and (max-width: 991px) {
   .home-bloc04_cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -213,9 +511,8 @@
     grid-column: span 2;
   }
 
-  .home-bloc04_card.is-agents .home-bloc04_card-visual,
-  .home-bloc04_card.is-informations .home-bloc04_card-visual {
-    aspect-ratio: 1 / 1;
+  .home-bloc04_card-visual {
+    height: 22rem;
   }
 }
 
@@ -243,10 +540,8 @@
     grid-column: span 1;
   }
 
-  .home-bloc04_card-visual,
-  .home-bloc04_card.is-agents .home-bloc04_card-visual,
-  .home-bloc04_card.is-informations .home-bloc04_card-visual {
-    aspect-ratio: 4 / 3;
+  .home-bloc04_card-visual {
+    height: 18rem;
   }
 
   .home-bloc04_card-text {

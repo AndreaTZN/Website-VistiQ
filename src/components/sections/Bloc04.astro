@@ -24,6 +24,76 @@ const DATA_SOURCES = [
   { name: "Notion", logo: "notion" },
 ];
 
+/** Agent notifications for the "Agents" card visual (node 1433:12940). */
+const AGENT_NOTIFICATIONS = [
+  {
+    icon: "/images/integrations/google-calendar.png",
+    iconClass: "is-calendar",
+    title: "Calendar agent",
+    time: "2m ago",
+    tag: "Deal",
+    lead: 'Tomorro: upcoming meeting "board tomorro" on 2026-08-10 at 11:00 to 12:00',
+    lines: [
+      "Organizer: severine@vistiq.ai",
+      "Meeting: board tomorro, 2026-08-10 at 11:00 to 12:00",
+    ],
+  },
+  {
+    icon: "/images/bloc04/warning-triangle.svg",
+    iconClass: "is-warning",
+    title: "Monitoring agent",
+    time: "9m ago",
+    tag: "Risk",
+    lead: "Runway alert · Northlane (Fund II)",
+    lines: [
+      "Metrics extracted from data room, comps benchmarked, red flags highlighted.",
+    ],
+  },
+];
+
+/**
+ * Signal notifications for the "Signal & event" card visual (node 1578:1283).
+ * Titles are arrays: each entry is one forced line, as in the design.
+ */
+const SIGNAL_NOTIFICATIONS = [
+  {
+    title: ["Cinderlake signs 3 utility-scale clients", "(+€2.1M ARR)"],
+    meta: ["Insight", "Cinderlake"],
+  },
+  {
+    title: ["Wavely named in a top 50 EU", "climate-tech list"],
+    meta: ["Signal", "Sifted"],
+  },
+  {
+    title: ["Cinderlake competitor raises €20M"],
+    meta: ["Signal", "Watch"],
+  },
+];
+
+/**
+ * Fan lines of the "Memory" visual, drawn bottom → top (each path starts at a
+ * tag and ends under the chip). The droplets in memory-illu.js follow them
+ * with motionPath from start:1 to end:0, i.e. pouring chip → tags.
+ */
+const TENTACLE_PATHS = [
+  "M169.732 79.464V.69",
+  "M68.375 64.742s2.622-13.647 17.783-25.417 50.022-7.55 56.886-16.392C150.799 12.943 155.253.5 155.253.5",
+  "M271.09 64.742s-2.623-13.518-17.784-25.317c-15.162-11.8-50.022-7.57-56.886-16.435C188.665 12.974 184.211.5 184.211.5",
+  "M.5 79.464s2.866-36.551 34.358-48.515c29.777-10.41 75.931-6.367 85.166-12.271C135.365 8.871 140.773.69 140.773.69",
+  "M338.954 79.464s-2.866-36.551-34.357-48.515c-29.778-10.41-75.932-6.367-85.167-12.271C204.09 8.871 198.681.69 198.681.69",
+];
+
+/** Capability tags for the "Memory" card visual (node 1433:13104). */
+const MEMORY_TAGS = [
+  { label: "Data", logo: "tag-data" },
+  { label: "Connectors", logo: "tag-connectors" },
+  { label: "Memory", logo: "tag-memory" },
+  { label: "Business context", logo: "tag-business" },
+  { label: "Security", logo: "tag-security" },
+  { label: "Orchestration", logo: "tag-orchestration" },
+  { label: "Agents", logo: "tag-agents" },
+];
+
 const CARDS = [
   {
     title: "Data sources",
@@ -36,8 +106,8 @@ const CARDS = [
     modifier: "is-agents",
   },
   {
-    title: "Informations",
-    body: "Consult and edit your data at any time",
+    title: "Signal & event",
+    body: "Press, funding rounds, M&A, product launches and regulatory changes, tracked daily on your portfolio companies, their competitors and their markets.",
     modifier: "is-informations",
   },
   {
@@ -59,15 +129,15 @@ const CARDS = [
         <div class="home-bloc04_line"></div>
       </div>
       <h2 class="home-bloc04_heading">
-        <span>Automated system,</span>
-        <span>getting better over time</span>
+        <span>Connect once.</span>
+        <span>Everything is already up to date</span>
       </h2>
     </div>
 
     <div class="home-bloc04_cards">
       {
         CARDS.map((card) => (
-          <article class={`home-bloc04_card ${card.modifier}`}>
+          <div class={`home-bloc04_card ${card.modifier}`}>
             <div class="home-bloc04_card-visual">
               {card.modifier === "is-sources" && (
                 <div class="home-bloc04_sources">
@@ -108,13 +178,177 @@ const CARDS = [
                   ))}
                 </div>
               )}
+              {card.modifier === "is-memory" && (
+                <div class="home-bloc04_memory">
+                  <div class="home-bloc04_memory-chip">
+                    <span class="home-bloc04_memory-chip-inner">
+                      <img
+                        src="/images/bloc04/iq-logo.svg"
+                        alt=""
+                        loading="lazy"
+                      />
+                    </span>
+                  </div>
+                  <span class="home-bloc04_memory-tentacle" aria-hidden="true">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 340 80"
+                      fill="none"
+                    >
+                      <g stroke="#fff" stroke-linecap="round" opacity=".8">
+                        {TENTACLE_PATHS.map((d) => (
+                          <path class="home-bloc04_memory-line" d={d} />
+                        ))}
+                      </g>
+                      <g fill="#2aa555">
+                        {TENTACLE_PATHS.map((_, i) => (
+                          <>
+                            <circle
+                              class="home-bloc04_memory-drop"
+                              data-line={i}
+                              r="2.2"
+                              cx="-10"
+                              cy="-10"
+                            />
+                            <circle
+                              class="home-bloc04_memory-drop"
+                              data-line={i}
+                              r="1.5"
+                              cx="-10"
+                              cy="-10"
+                            />
+                          </>
+                        ))}
+                      </g>
+                    </svg>
+                  </span>
+                  <div class="home-bloc04_memory-tags">
+                    {MEMORY_TAGS.map((tag) => (
+                      <span class="home-bloc04_memory-tag">
+                        <img
+                          class="home-bloc04_memory-tag-logo"
+                          src={`/images/bloc04/${tag.logo}.svg`}
+                          alt=""
+                          loading="lazy"
+                        />
+                        {tag.label}
+                        <span
+                          class="home-bloc04_memory-spinner"
+                          aria-hidden="true"
+                        >
+                          <img
+                            src="/images/bloc04/spinner.svg"
+                            alt=""
+                            loading="lazy"
+                          />
+                        </span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {card.modifier === "is-informations" && (
+                <div class="home-bloc04_agents is-signals">
+                  <div class="home-bloc04_agents-stack">
+                    <span class="home-bloc04_agents-ghost" aria-hidden="true" />
+                    {SIGNAL_NOTIFICATIONS.map((n) => (
+                      <div class="home-bloc04_agents-card">
+                        <span class="home-bloc04_agents-icon">
+                          <img
+                            src="/images/bloc04/bell.svg"
+                            alt=""
+                            loading="lazy"
+                          />
+                        </span>
+                        <div class="home-bloc04_agents-text">
+                          <div class="home-bloc04_agents-h1">
+                            <span class="home-bloc04_agents-h1-lines">
+                              {n.title.map((line) => (
+                                <span>{line}</span>
+                              ))}
+                            </span>
+                            <span
+                              class="home-bloc04_agents-unread"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <p class="home-bloc04_agents-meta">
+                            {n.meta.map((part, i) => (
+                              <>
+                                {i > 0 && (
+                                  <span
+                                    class="home-bloc04_agents-sep"
+                                    aria-hidden="true"
+                                  />
+                                )}
+                                {part}
+                              </>
+                            ))}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {card.modifier === "is-agents" && (
+                <div class="home-bloc04_agents">
+                  <div class="home-bloc04_agents-head">
+                    <p class="home-bloc04_agents-title">Agents running (8)</p>
+                    <span class="home-bloc04_agents-live">
+                      <span
+                        class="home-bloc04_agents-live-dot"
+                        aria-hidden="true"
+                      >
+                        <img
+                          src="/images/bloc04/live-dot.svg"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </span>
+                      Running 24/7
+                    </span>
+                  </div>
+                  <div class="home-bloc04_agents-stack">
+                    <span class="home-bloc04_agents-ghost" aria-hidden="true" />
+                    {AGENT_NOTIFICATIONS.map((n) => (
+                      <div class="home-bloc04_agents-card">
+                        <span class={`home-bloc04_agents-icon ${n.iconClass}`}>
+                          <img src={n.icon} alt="" loading="lazy" />
+                        </span>
+                        <div class="home-bloc04_agents-text">
+                          <div class="home-bloc04_agents-h1">
+                            <span>{n.title}</span>
+                            <span
+                              class="home-bloc04_agents-unread"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <p class="home-bloc04_agents-meta">
+                            {n.time}
+                            <span
+                              class="home-bloc04_agents-sep"
+                              aria-hidden="true"
+                            />
+                            {n.tag}
+                          </p>
+                          <p class="home-bloc04_agents-lead">{n.lead}</p>
+                          {n.lines.map((line) => (
+                            <p class="home-bloc04_agents-line">{line}</p>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               <div class="noise" />
             </div>
             <div class="home-bloc04_card-text">
               <h3 class="home-bloc04_card-title">{card.title}</h3>
               <p class="home-bloc04_card-body">{card.body}</p>
             </div>
-          </article>
+          </div>
         ))
       }
     </div>

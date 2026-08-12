@@ -55,11 +55,10 @@
 /* Title + CTAs sit on the same row, buttons pinned right. */
 
 .home-bloc06_intro {
-  grid-column-gap: 2rem;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
   display: flex;
+  flex-flow: column;
+  gap: 2rem;
 }
 
 .home-bloc06_intro-text {

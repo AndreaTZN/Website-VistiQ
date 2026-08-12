@@ -73,6 +73,17 @@ const canonicalURL = new URL(canonical, Astro.site);
             opacity: 0;
             visibility: hidden;
           }
+          /* Bloc04 memory: everything initMemoryIllu() starts hidden. The fan
+             lines hide via stroke-opacity only — the drops share this SVG. */
+          .has-reveals:not(.is-ready) .home-bloc04_memory-chip,
+          .has-reveals:not(.is-ready) .home-bloc04_memory-tag,
+          .has-reveals:not(.is-ready) .home-bloc04_memory-drop" {
+            opacity: 0;
+            visibility: hidden;
+          }
+          .has-reveals:not(.is-ready) .home-bloc04_memory-line {
+            stroke-opacity: 0;
+          }
         </style>
       )
     }

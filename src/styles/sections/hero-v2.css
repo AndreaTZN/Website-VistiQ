@@ -497,7 +497,7 @@
 
 .hero-v2_card.is-timeline {
   /* Bleeds below the section edge like in the composition. */
-  top: 32.41rem;
+  bottom: -5rem;
   left: 5.19rem;
   width: 14.5rem;
   padding: 0.68rem;

@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="20.083" height="20.083" viewBox="0 0 20.083 20.083" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="logo">
+<circle id="background" cx="10.0415" cy="10.0415" r="10.0415" fill="#F4F2F0"/>
+<g id="robot">
+<path id="Vector" d="M5.81231 9.89566C5.81231 8.60699 6.85698 7.56232 8.14564 7.56232H11.9373C13.226 7.56232 14.2706 8.60699 14.2706 9.89566V11.9373C14.2706 13.226 13.226 14.2707 11.9373 14.2707H8.14564C6.85698 14.2707 5.81231 13.226 5.81231 11.9373V9.89566Z" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M10.0415 7.27066V5.81232" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M9.02064 10.0415C9.02064 10.4442 8.69418 10.7707 8.29148 10.7707C7.88877 10.7707 7.56231 10.4442 7.56231 10.0415C7.56231 9.63878 7.88877 9.31232 8.29148 9.31232C8.69418 9.31232 9.02064 9.63878 9.02064 10.0415Z" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M12.5206 10.0415C12.5206 10.4442 12.1942 10.7707 11.7915 10.7707C11.3888 10.7707 11.0623 10.4442 11.0623 10.0415C11.0623 9.63878 11.3888 9.31232 11.7915 9.31232C12.1942 9.31232 12.5206 9.63878 12.5206 10.0415Z" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M9.31231 12.5207H10.7706" stroke="#1D1E21" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>

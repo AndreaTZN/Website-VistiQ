@@ -126,12 +126,3 @@
   display: flex;
   position: relative;
 }
-
-@media screen and (max-width: 479px) {
-  .button_primary,
-  .button_secondary,
-  .button_hero-primary,
-  .button_hero-secondary {
-    width: 100%;
-  }
-}

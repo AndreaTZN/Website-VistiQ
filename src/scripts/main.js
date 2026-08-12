@@ -3,6 +3,7 @@ import { initAnimations } from "./animations";
 import { initChatbox } from "./chatbox";
 import { initGlobeParticles } from "./globe-particles";
 import { initHeroCards } from "./hero-cards";
+import { initMemoryIllu } from "./memory-illu";
 import { initMenu } from "./menu";
 import { initSmoothScroll } from "./smooth-scroll";
 import { initTestimonials } from "./testimonials";
@@ -24,6 +25,8 @@ initAccordions();
 initTestimonials();
 initAnimations();
 initGlobeParticles();
+
+initMemoryIllu();
 initHeroCards();
 initChatbox();
 initWatermark();

@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="spinner">
+<path id="Ellipse 1" d="M1.12 7C1.12 3.75257 3.75257 1.12 7 1.12C10.2474 1.12 12.88 3.75257 12.88 7C12.88 10.2474 10.2474 12.88 7 12.88C3.7735 12.88 1.15397 10.2813 1.12033 7.06272M1.12 7C1.12 7.02093 1.12011 7.04184 1.12033 7.06272M1.12 7L1.12033 7.06272" stroke="#2AA555"/>
+<path id="Ellipse 2" d="M1.12 7C1.12 3.75257 3.75257 1.12 7 1.12C10.2474 1.12 12.88 3.75257 12.88 7C12.88 10.2474 10.2474 12.88 7 12.88" stroke="#F4F2F0" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
