@@ -2,6 +2,7 @@
 /** Closing call to action. */
 import Button from "../ui/Button.astro";
 import Corners from "../ui/Corners.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
 ---
 
 <section class="sub-footer_section">
@@ -16,10 +17,7 @@ import Corners from "../ui/Corners.astro";
   <div class="container-medium">
     <div class="sub-footer_content">
       <div class="sub-footer_text">
-        <div class="sub-footer_eyebrow">
-          <span class="sub-footer_square" aria-hidden="true"></span>
-          <span class="sub-footer_eyebrow-label">Get started</span>
-        </div>
+        <Eyebrow label="Get started" align="center" class="sub-footer_eyebrow" />
         <h2 class="heading is-centered">
           <span>10x your investment</span>
           <span>team with AI</span>

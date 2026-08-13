@@ -1,0 +1,46 @@
+---
+/**
+ * Section eyebrow: a green square followed by an uppercase label, optionally
+ * underlined by a hairline rule. Every section repeated the same markup and an
+ * identical copy of the CSS, so the variants that actually differed are props:
+ * the alignment and the presence of the rule.
+ *
+ * Alignment is left by default at every width. `alignMobile` is opt-in: leave it
+ * out and mobile keeps `align`, or set it to override below 767px.
+ */
+interface Props {
+  /** Label text. Uppercased through CSS, so pass it in natural casing. */
+  label: string;
+  /** Alignment from 768px up, and below it unless `alignMobile` overrides. */
+  align?: "left" | "center";
+  /** Alignment below 768px. Defaults to `align`. */
+  alignMobile?: "left" | "center";
+  /** Hairline rule under the eyebrow, full width of the section. */
+  line?: boolean;
+  /** Extra class on the wrapper, for section-level overrides. */
+  class?: string;
+}
+
+const {
+  label,
+  align = "left",
+  alignMobile,
+  line = false,
+  class: className,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "eyebrow",
+    `is-${align}`,
+    alignMobile && `is-mobile-${alignMobile}`,
+    className,
+  ]}
+>
+  <div class="eyebrow_row">
+    <span class="eyebrow_square" aria-hidden="true"></span>
+    <span class="eyebrow_label">{label}</span>
+  </div>
+  {line && <div class="eyebrow_line" />}
+</div>

@@ -1,6 +1,7 @@
 ---
 /** Steps of the investment lifecycle. */
 import Corners from "../ui/Corners.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
 
 const STEPS = [
   {
@@ -37,10 +38,7 @@ const STEPS = [
 
   <div class="container-medium">
     <div class="home-bloc02_header">
-      <div class="home-bloc02_eyebrow">
-        <span class="home-bloc02_square" aria-hidden="true"></span>
-        <span class="home-bloc02_eyebrow-label">End-to-end coverage</span>
-      </div>
+      <Eyebrow label="End-to-end coverage" align="center" />
       <h2 class="heading is-centered">
         <span>End-to-end solution covering</span>
         <span>the full investment lifecycle</span>

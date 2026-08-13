@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import Corners from "../ui/Corners.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
 
 import askAnything from "../../assets/bloc03/ask-anything.png";
 import automatic from "../../assets/bloc03/automatic.png";
@@ -56,13 +57,7 @@ const ITEMS = [
 <section id="Solutions" class="home-bloc03_section">
   <div class="container-medium">
     <div class="home-bloc03_header">
-      <div class="home-bloc03_tag">
-        <div class="home-bloc03_eyebrow">
-          <span class="home-bloc03_square" aria-hidden="true"></span>
-          <span class="home-bloc03_eyebrow-label">What it does for you</span>
-        </div>
-        <div class="home-bloc03_line"></div>
-      </div>
+      <Eyebrow label="What it does for you" line />
       <h2 class="heading">10x your investment team</h2>
     </div>
 
