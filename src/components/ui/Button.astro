@@ -1,37 +1,23 @@
 ---
 /**
- * CTA button — wraps the Webflow button markup and its hover animation
- * (`data-button-animate*`, driven by scripts/buttons.js).
- *
- * The variants map 1:1 onto the classes already in the stylesheet, so the
- * rendered markup stays byte-identical to what the Webflow export produced.
+ * CTA button. The label rolls on hover, driven per character by
+ * scripts/buttons.js through the `data-button-animate*` hooks.
  */
-
-/** Webflow's generated variant class for the white secondary button. */
-const WF_SECONDARY_WHITE = "w-variant-061ac14d-c274-ce06-2e0a-cab2ca2e725e";
 
 interface Props {
   /** Link target. */
   href: string;
-  /** Visual style. Each maps to an existing class in components/button.css. */
-  variant?:
-    | "primary"
-    | "secondary"
-    | "secondary-white"
-    | "text"
-    | "nav"
-    | "hero-primary"
-    | "hero-secondary";
   /**
-   * Font size. Omitted by default so each variant keeps the size it already
-   * has in CSS — only pass this to deliberately override it.
+   * Visual style:
+   * - `primary` — dark gradient fill, the main CTA
+   * - `secondary` — outlined, sits next to a primary
+   * - `secondary-white` — outlined on dark backgrounds
+   * - `nav` — compact, for the navigation bar
    */
-  size?: "tiny" | "small" | "regular" | "medium" | "large";
-  /** Show the trailing arrow. Defaults to true for `text`, false elsewhere. */
-  icon?: boolean;
+  variant?: "primary" | "secondary" | "secondary-white" | "nav";
   /** Opens in a new tab. Defaults to true for external (http) links. */
   newTab?: boolean;
-  /** Defaults to the label text. */
+  /** Accessible name. Defaults to the label text. */
   label?: string;
   class?: string;
 }
@@ -39,87 +25,45 @@ interface Props {
 const {
   href,
   variant = "primary",
-  size,
-  icon,
   newTab,
   label,
   class: extraClass,
 } = Astro.props;
 
-/** Base class per variant, mirroring the classes used across the sections. */
+/** Base class per variant. */
 const VARIANT_CLASS = {
   primary: "button_primary",
   secondary: "button_secondary",
-  "secondary-white": `button_secondary ${WF_SECONDARY_WHITE}`,
-  text: "button_text",
+  "secondary-white": "button_secondary is-white",
   nav: "nav-button_primary",
-  "hero-primary": "button_primary",
-  "hero-secondary": "button_secondary",
 };
 
-/** Variants that render the animated background layer behind the label. */
+/**
+ * The animated layer behind the label. `secondary` draws its own border
+ * instead, so it has no background element.
+ */
 const BG_CLASS = {
   primary: "button_primary-bg",
-  secondary: "button_secondary-bg",
-  "secondary-white": `button_secondary-bg ${WF_SECONDARY_WHITE}`,
-  text: null,
+  secondary: null,
+  "secondary-white": "button_secondary-bg is-white",
   nav: "nav-button_primary-bg",
-  "hero-primary": "button_hero-primary-bg",
-  "hero-secondary": null,
 };
 
 const bgClass = BG_CLASS[variant];
-// `text` is the only variant that ships an arrow in the export.
-const showIcon = icon ?? variant === "text";
 // External links open in a new tab unless explicitly overridden.
-const isExternal = href.startsWith("http");
-const opensNewTab = newTab ?? isExternal;
+const opensNewTab = newTab ?? href.startsWith("http");
 
-const classes = [
-  VARIANT_CLASS[variant],
-  size && `text-size-${size}`,
-  extraClass,
-]
-  .filter(Boolean)
-  .join(" ");
-
-// Webflow keeps this attribute on the secondary buttons; the CSS variants read it.
-const wfVariant =
-  variant === "secondary-white"
-    ? "white"
-    : variant === "secondary"
-      ? "base"
-      : undefined;
+const classes = [VARIANT_CLASS[variant], extraClass].filter(Boolean).join(" ");
 ---
 
 <a
   data-button-animate=""
   aria-label={label ?? undefined}
-  data-wf--button---secondary--variant={wfVariant}
   href={href}
   target={opensNewTab ? "_blank" : undefined}
   rel={opensNewTab ? "noopener" : undefined}
   class={classes}
 >
   <div data-button-animate-chars=""><slot /></div>
-  {
-    showIcon && (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16px"
-        fill="none"
-        viewBox="0 0 16 16"
-        class="svg"
-        aria-hidden="true"
-      >
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M9.167 4.5 12.834 8l-3.667 3.5m3.5-3.5h-9.5"
-        />
-      </svg>
-    )
-  }
   {bgClass && <div data-button-animate-bg="" class={bgClass} />}
 </a>

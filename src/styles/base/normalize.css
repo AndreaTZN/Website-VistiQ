@@ -235,8 +235,8 @@ select {
  * 2. Correct inability to style clickable `input` types in iOS.
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
- * 4. CUSTOM FOR WEBFLOW: Removed the input[type="submit"] selector to reduce
- *    specificity and defer to the .w-button selector
+ * 4. input[type="submit"] is intentionally absent, so button styling stays
+ *    low-specificity and easy to override.
  */
 button,
 html input[type="button"],
