@@ -61,18 +61,6 @@
   line-height: 1.5;
 }
 
-.sub-footer_heading {
-  margin: 0;
-  font-size: 3rem;
-  letter-spacing: -0.03rem;
-  line-height: 1.1;
-  text-align: center;
-}
-
-.sub-footer_heading span {
-  display: block;
-}
-
 .sub-footer_paragraph {
   color: #1d1e2199;
   margin: 0;
@@ -99,14 +87,7 @@
     display: none;
   }
 
-  .sub-footer_heading {
-    font-size: 2.25rem;
-  }
-
-  .sub-footer_heading span {
-    display: inline;
-  }
-
+  
   .sub-footer_paragraph {
     font-size: 1.125rem;
   }

@@ -21,7 +21,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Every number on our dashboard traces straight back to the source document with one click. That level of audit-readiness is exactly what our LPs expect from us.",
+      "Every number on our dashboard traces straight back to the source document with one click.",
     name: "Thibault",
     role: "Senior Associate",
     logo: "/images/testimonials/founders-future.svg",
@@ -42,7 +42,7 @@ const TESTIMONIALS = [
         </div>
         <div class="home-bloc05_line"></div>
       </div>
-      <h2 class="home-bloc05_heading">Adopted by industry leaders</h2>
+      <h2 class="heading">Adopted by industry leaders</h2>
     </div>
 
     <div
@@ -51,17 +51,24 @@ const TESTIMONIALS = [
       aria-roledescription="carousel"
       aria-label="Customer testimonials"
     >
-      <div class="home-bloc05_slides">
-        {
-          TESTIMONIALS.map((item, index) => (
-            <div
-              class="home-bloc05_slide"
-              data-testimonial-slide
-              aria-roledescription="slide"
-              aria-label={`${index + 1} of ${TESTIMONIALS.length}`}
-              aria-hidden={index === 0 ? "false" : "true"}
-            >
-              <div class="home-bloc05_content">
+      {
+        /*
+        Two parallel lists, like the Webflow reference: the text panel and the
+        portraits are separate stacks cross-faded by index, so the dots can
+        live inside the content panel without being repeated per slide.
+      */
+      }
+      <div class="home-bloc05_content">
+        <div class="home-bloc05_texts">
+          {
+            TESTIMONIALS.map((item, index) => (
+              <div
+                class="home-bloc05_text"
+                data-testimonial-text
+                aria-roledescription="slide"
+                aria-label={`${index + 1} of ${TESTIMONIALS.length}`}
+                aria-hidden={index === 0 ? "false" : "true"}
+              >
                 <img
                   class="home-bloc05_logo"
                   data-testimonial-logo
@@ -79,34 +86,44 @@ const TESTIMONIALS = [
                   <p class="home-bloc05_author-role">{item.role}</p>
                 </div>
               </div>
+            ))
+          }
+        </div>
 
-              <div class="home-bloc05_picture" data-testimonial-picture>
-                <div class="home-bloc05_picture-inner">
-                  <img
-                    src={item.portrait}
-                    alt={item.portraitAlt}
-                    loading="lazy"
-                    class="image-fit-cover"
-                  />
-                  <Corners />
-                </div>
-              </div>
-            </div>
-          ))
-        }
+        <div class="home-bloc05_dots">
+          {
+            TESTIMONIALS.map((_, index) => (
+              <button
+                type="button"
+                class="home-bloc05_dot"
+                data-testimonial-dot
+                aria-label={`Show testimonial ${index + 1}`}
+              >
+                <span class="home-bloc05_dot-fill" data-testimonial-dot-fill />
+              </button>
+            ))
+          }
+        </div>
       </div>
 
-      <div class="home-bloc05_dots">
+      <div class="home-bloc05_pictures">
         {
-          TESTIMONIALS.map((_, index) => (
-            <button
-              type="button"
-              class="home-bloc05_dot"
-              data-testimonial-dot
-              aria-label={`Show testimonial ${index + 1}`}
+          TESTIMONIALS.map((item, index) => (
+            <div
+              class="home-bloc05_picture"
+              data-testimonial-picture
+              aria-hidden={index === 0 ? "false" : "true"}
             >
-              <span class="home-bloc05_dot-fill" data-testimonial-dot-fill />
-            </button>
+              <div class="home-bloc05_picture-inner">
+                <img
+                  src={item.portrait}
+                  alt={item.portraitAlt}
+                  loading="lazy"
+                  class="image-fit-cover"
+                />
+                <Corners />
+              </div>
+            </div>
           ))
         }
       </div>

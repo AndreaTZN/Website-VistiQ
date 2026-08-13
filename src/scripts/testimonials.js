@@ -11,15 +11,23 @@ const SLIDE_DURATION = 5;
  * interaction: the quote is split into words that rise in a stagger while the
  * portrait and logo cross-fade, and the progress bar of the active slide fills
  * over SLIDE_DURATION before handing over to the next one.
+ *
+ * The markup keeps texts and portraits in two parallel lists (the dots sit in
+ * the content panel, so they cannot live inside a slide); both are indexed the
+ * same way and cross-faded together.
  */
 export function initTestimonials() {
   document.querySelectorAll("[data-testimonials]").forEach((root) => {
-    const slides = Array.from(root.querySelectorAll("[data-testimonial-slide]"));
+    // Text panel and portraits are two parallel lists sharing one index.
+    const texts = Array.from(root.querySelectorAll("[data-testimonial-text]"));
+    const pictures = Array.from(
+      root.querySelectorAll("[data-testimonial-picture]"),
+    );
     const dots = Array.from(root.querySelectorAll("[data-testimonial-dot]"));
     const fills = Array.from(
       root.querySelectorAll("[data-testimonial-dot-fill]"),
     );
-    if (slides.length < 2) {
+    if (texts.length < 2) {
       // A single slide still needs its bar filled so the design looks complete.
       gsap.set(fills, { scaleX: 1 });
       return;
@@ -30,8 +38,8 @@ export function initTestimonials() {
     ).matches;
 
     /** Words of each quote, split once so the stagger can target them. */
-    const splits = slides.map((slide) => {
-      const quote = slide.querySelector("[data-testimonial-quote]");
+    const splits = texts.map((text) => {
+      const quote = text.querySelector("[data-testimonial-quote]");
       return quote
         ? SplitText.create(quote, {
             type: "lines,words",
@@ -44,30 +52,37 @@ export function initTestimonials() {
     let active = 0;
     let autoplay;
 
-    /** Hides every slide but `index`, without animating. */
+    /** Hides every text and portrait but `index`, without animating. */
     function reset(index) {
-      slides.forEach((slide, i) => {
-        const isActive = i === index;
-        gsap.set(slide, { autoAlpha: isActive ? 1 : 0 });
-        slide.setAttribute("aria-hidden", String(!isActive));
+      [texts, pictures].forEach((list) => {
+        list.forEach((el, i) => {
+          const isActive = i === index;
+          gsap.set(el, { autoAlpha: isActive ? 1 : 0 });
+          el.setAttribute("aria-hidden", String(!isActive));
+        });
       });
       gsap.set(fills, { scaleX: 0 });
     }
 
-    /** Cross-fades to `index` and replays the word stagger. */
+    /** Cross-fades both lists to `index` and replays the word stagger. */
     function goTo(index) {
       if (index === active) return;
 
-      const next = slides[index];
-      const prev = slides[active];
       const duration = reduced ? 0 : 1;
-
-      prev.setAttribute("aria-hidden", "true");
-      next.setAttribute("aria-hidden", "false");
-
       const tl = gsap.timeline();
-      tl.to(prev, { autoAlpha: 0, duration, ease: "power2.inOut" });
-      tl.to(next, { autoAlpha: 1, duration, ease: "power2.inOut" }, "<");
+
+      // Both columns cross-fade on the same beat, hence the shared "<".
+      [texts, pictures].forEach((list) => {
+        const next = list[index];
+        const prev = list[active];
+        if (!next || !prev) return;
+
+        prev.setAttribute("aria-hidden", "true");
+        next.setAttribute("aria-hidden", "false");
+
+        tl.to(prev, { autoAlpha: 0, duration, ease: "power2.inOut" }, "<");
+        tl.to(next, { autoAlpha: 1, duration, ease: "power2.inOut" }, "<");
+      });
 
       const words = splits[index]?.words;
       if (words?.length && !reduced) {
@@ -99,7 +114,7 @@ export function initTestimonials() {
         scaleX: 1,
         duration: SLIDE_DURATION,
         ease: "none",
-        onComplete: () => goTo((active + 1) % slides.length),
+        onComplete: () => goTo((active + 1) % texts.length),
       });
     }
 

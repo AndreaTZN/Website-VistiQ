@@ -52,17 +52,6 @@
   height: 1px;
 }
 
-.home-bloc03_heading {
-  margin: 0;
-  font-size: 3rem;
-  letter-spacing: -0.03rem;
-  line-height: 1.1;
-}
-
-.home-bloc03_heading span {
-  display: block;
-}
-
 /* Layout */
 
 .home-bloc03_layout {
@@ -167,6 +156,11 @@
 
 /* Visual */
 
+/* One per slide, only shown in the mobile slider (see the media query). */
+.home-bloc03_item-visual {
+  display: none;
+}
+
 .home-bloc03_visual {
   /* --corners-z lifts the markers above this visual's noise overlay. */
   --corners-size: 0.5rem;
@@ -176,20 +170,11 @@
   z-index: 0;
   background-color: var(--base-color--sage);
   aspect-ratio: 1 / 1;
-  position: relative;
+
+  position: sticky;
+  top: 6rem;
   overflow: hidden;
   transition: background-color 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-}
-
-@media screen and (max-width: 991px) {
-  .home-bloc03_layout {
-    grid-row-gap: 2.5rem;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .home-bloc03_visual {
-    order: -1;
-  }
 }
 
 @media screen and (max-width: 767px) {
@@ -198,19 +183,97 @@
     padding-bottom: 3.5rem;
   }
 
-  .home-bloc03_heading {
-    font-size: 2.25rem;
-  }
-
-  .home-bloc03_heading span {
-    display: inline;
-  }
-
+  
   .home-bloc03_item-trigger {
     padding: 1.25rem;
   }
 
   .home-bloc03_item-body {
     padding: 0 1.25rem 1.25rem;
+  }
+  .home-bloc03_layout {
+    grid-row-gap: 2.5rem;
+    grid-template-columns: minmax(0, 1fr);
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .home-bloc03_visual {
+    order: -1;
+  }
+
+  .home-bloc03_accordion {
+    grid-column-gap: 1rem;
+    grid-auto-columns: 92%;
+    grid-auto-flow: column;
+    display: grid;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scroll-padding-left: 1rem;
+    scroll-padding-right: 1rem;
+  }
+
+  .home-bloc03_accordion::-webkit-scrollbar {
+    display: none;
+  }
+
+  .home-bloc03_item {
+    background-color: #f7f7f7;
+    scroll-snap-align: start;
+  }
+
+  /* Each card carries its own visual; the shared one is desktop-only. */
+  .home-bloc03_visual {
+    display: none;
+  }
+
+  .home-bloc03_item-visual {
+    --corners-size: 0.5rem;
+    --corners-offset: 0.75rem;
+    --corners-z: 2;
+
+    z-index: 0;
+    aspect-ratio: 1 / 1;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Mirrors VISUAL_COLORS in accordion.js, which does not run at this width. */
+  .home-bloc03_item:nth-child(1) .home-bloc03_item-visual {
+    background-color: #ccd9d0;
+  }
+
+  .home-bloc03_item:nth-child(2) .home-bloc03_item-visual {
+    background-color: #eef1f8;
+  }
+
+  .home-bloc03_item:nth-child(3) .home-bloc03_item-visual {
+    background-color: #e6e3dd;
+  }
+
+  .home-bloc03_item:nth-child(4) .home-bloc03_item-visual {
+    background-color: #e9e4ef;
+  }
+
+  .home-bloc03_item:nth-child(5) .home-bloc03_item-visual {
+    background-color: #e3ebe6;
+  }
+
+  /* Every card shows its text: there is no open/closed state in this mode. */
+  .home-bloc03_item-panel {
+    height: auto;
+  }
+
+  .home-bloc03_item-line,
+  .home-bloc03_item.is-open .home-bloc03_item-trigger {
+    background-color: #0000;
+  }
+
+  .home-bloc03_item-square {
+    background-color: var(--base-color--green);
   }
 }

@@ -51,7 +51,7 @@ const ITEMS = [
         </div>
         <div class="home-bloc03_line"></div>
       </div>
-      <h2 class="home-bloc03_heading">10x your investment team</h2>
+      <h2 class="heading">10x your investment team</h2>
     </div>
 
     <div class="home-bloc03_layout">
@@ -59,6 +59,12 @@ const ITEMS = [
         {
           ITEMS.map((item, index) => (
             <div class="home-bloc03_item" data-accordion-item>
+              {/* Per-slide visual, mobile only — the desktop layout uses the
+                  single shared one below and hides these. */}
+              <div class="home-bloc03_item-visual" aria-hidden="true">
+                <Corners />
+                <div class="noise" />
+              </div>
               <div class="home-bloc03_item-line" />
               <h3 class="home-bloc03_item-heading">
                 <button

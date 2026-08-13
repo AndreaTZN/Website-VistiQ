@@ -52,21 +52,6 @@
   height: 1px;
 }
 
-/* Heading and paragraph */
-
-.home-bloc01_heading {
-  /* 48px in Figma — larger than the shared .h2 (2.25rem), so it is set here. */
-  margin: 0;
-  font-size: 3rem;
-  letter-spacing: -0.03rem;
-  line-height: 1.1;
-}
-
-/* Figma breaks the title after the first sentence; below 768px it wraps freely. */
-.home-bloc01_heading span {
-  display: block;
-}
-
 .home-bloc01_paragraph {
   max-width: 54.75rem;
   margin: 0;
@@ -93,14 +78,7 @@
     padding-bottom: 3.5rem;
   }
 
-  .home-bloc01_heading {
-    font-size: 2.25rem;
-  }
-
-  .home-bloc01_heading span {
-    display: inline;
-  }
-
+  
   .home-bloc01_paragraph {
     font-size: 1.125rem;
   }
