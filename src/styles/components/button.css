@@ -1,11 +1,3 @@
-.button_inner {
-  justify-content: center;
-  padding: 0.875rem;
-  display: flex;
-  position: relative;
-  overflow: hidden;
-}
-
 .button_primary {
   grid-column-gap: 0.25rem;
   color: var(--base-color--white);
@@ -17,6 +9,8 @@
   font-size: 0.88rem;
   font-weight: 600;
   line-height: 1.5;
+  letter-spacing: -0.0088rem;
+
   display: flex;
   position: relative;
 }
@@ -32,6 +26,7 @@
   font-size: 0.88rem;
   font-weight: 600;
   line-height: 1.5;
+  letter-spacing: -0.0088rem;
   display: flex;
   position: relative;
 }
@@ -54,14 +49,15 @@
 
 .button_primary-bg {
   z-index: -1;
-  background-color: var(--base-color--light-black);
+  background: linear-gradient(0deg, #0c0c0c 50%, #aca094 217.71%);
+  box-shadow:
+    0 2px 6px 0 rgba(12, 12, 12, 0.2),
+    0 -2px 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 1px 0.6px 0 rgba(0, 0, 0, 0.5) inset;
   color: var(--base-color--white);
   border-radius: 0.5rem;
   position: absolute;
   inset: 0;
-  box-shadow:
-    0 2px 4px #1d1e211f,
-    0 7px 14px #1d1e210a;
 }
 
 .button_secondary-bg {
@@ -82,7 +78,7 @@
 
 /* Hero v2 CTAs — squared corners and a lit gradient. */
 
-.button_hero-primary {
+.button_primary {
   z-index: 0;
   color: var(--base-color--white);
   cursor: pointer;
@@ -111,7 +107,7 @@
     inset 0 1px 0.6px #00000080;
 }
 
-.button_hero-secondary {
+.button_secondary {
   color: var(--base-color--light-black);
   cursor: pointer;
   border: 1px solid #1d1e2133;

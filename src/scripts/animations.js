@@ -5,7 +5,7 @@ import { initButtonCharacterStagger } from "./buttons";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function initNavScroll(mm) {
+/* function initNavScroll(mm) {
   const nav = document.querySelector(".nav_container");
   if (!nav) return;
 
@@ -17,12 +17,12 @@ function initNavScroll(mm) {
       onLeaveBack: () => nav.classList.remove("is-scroll"),
     });
   });
-}
+} */
 
 export function initAnimations() {
   const mm = gsap.matchMedia();
 
-  initNavScroll(mm);
+  /*   initNavScroll(mm); */
 
   initButtonCharacterStagger();
 }

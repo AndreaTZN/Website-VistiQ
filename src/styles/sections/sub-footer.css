@@ -68,16 +68,7 @@
     display: none;
   }
 
-  
   .sub-footer_paragraph {
     font-size: 1.125rem;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .sub-footer_buttons {
-    flex-flow: column;
-    align-items: stretch;
-    width: 100%;
   }
 }

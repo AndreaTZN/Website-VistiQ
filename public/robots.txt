@@ -1,0 +1,69 @@
+# https://www.vistiq.ai/robots.txt
+# Marketing site — everything here is public by design.
+
+# Search engines and AI assistants: full access.
+User-agent: *
+Allow: /
+
+# Astro build artefacts: no crawl value, and they waste crawl budget.
+Disallow: /_astro/
+
+# --- AI crawlers -------------------------------------------------------------
+# Named explicitly so the intent is a decision, not a default. VistIQ wants to
+# be citable by AI assistants (see /llms.txt), so these are allowed.
+# To opt out of model training while staying citable in live answers, switch
+# GPTBot / ClaudeBot / Applebot-Extended / meta-externalagent to Disallow and
+# leave the retrieval agents (OAI-SearchBot, ChatGPT-User, Claude-User,
+# PerplexityBot) on Allow.
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google (Gemini / AI Overviews grounding)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Microsoft Copilot
+User-agent: bingbot
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+# Common Crawl — feeds many downstream datasets.
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://www.vistiq.ai/sitemap-index.xml

@@ -6,7 +6,7 @@ Webflow, the interactions were rewritten by hand in GSAP.
 
 ## Stack
 
-- **Framework**: Astro 5 (static output, no UI framework — `.astro` components only)
+- **Framework**: Astro 7 (static output, no UI framework — `.astro` components only)
 - **Language**: plain JavaScript, typed through JSDoc. `tsconfig.json` extends
   `astro/tsconfigs/base` with `allowJs: true` / `checkJs: false` — the editor reads the JSDoc
   for IntelliSense, but the scripts are not type-checked. `.astro` frontmatter is still
@@ -14,8 +14,12 @@ Webflow, the interactions were rewritten by hand in GSAP.
 - **Styling**: plain CSS with custom properties, imported through a single `main.css`
 - **Animations**: GSAP — always use GSAP (never CSS transitions, never another library)
 - **Smooth scroll**: Lenis, driven by the GSAP ticker
-- **Sliders**: Swiper 11
+- **WebGL**: three.js — only in [globe-particles.js](src/scripts/globe-particles.js)
+- **Sitemap**: `@astrojs/sitemap`, registered in [astro.config.mjs](astro.config.mjs)
 - **Package manager**: pnpm
+
+No slider library: the testimonial carousel is hand-written in
+[testimonials.js](src/scripts/testimonials.js).
 
 ## Commands
 
@@ -30,20 +34,27 @@ pnpm check     # astro check (TypeScript + template diagnostics)
 
 ```
 src/
-  pages/                 # index, 404, style-guide
+  pages/                 # index, 404
   layouts/BaseLayout.astro   # <head>, meta/OG, font preloads, reveal guard
-  components/sections/   # Nav, Hero, Bloc01…Bloc06, Slider, SubFooter, Footer
+  components/sections/   # Nav, HeroV2 (+HeroV2Cards), Bloc01…Bloc06, SubFooter, FooterV2
+  components/ui/         # Button, Corners, Eyebrow — shared across sections
   scripts/               # main.js entry + one module per behaviour
-  styles/                # base/ · components/ · pages/ · sections/, via main.css
+  styles/                # base/ · components/ · sections/, via main.css
+  assets/                # images imported through astro:assets (bloc03, testimonials)
 public/
-  images/                # AVIF exports from Webflow (+ a few svg/png)
+  images/                # AVIF/PNG/SVG exports from Webflow (+ per-section subfolders)
   fonts/                 # Inter (400/500/600) + FacultyGlyphic, woff2
+  robots.txt · llms.txt  # crawler + AI-assistant metadata, served as-is
 ```
 
 `index.astro` composes section components inside `BaseLayout`, then loads behaviour with a
 single `<script>import '../scripts/main';</script>`. Astro bundles it — never add inline
-handlers. The lighter pages (`404`, `style-guide`) skip `main` and import only
-`initButtonCharacterStagger` from `scripts/buttons`.
+handlers. `404.astro` skips `main` and imports only `initButtonCharacterStagger` from
+`scripts/buttons`.
+
+Two image pipelines coexist, on purpose: `src/assets/` goes through `astro:assets`
+(`<Image>` emits WebP variants and a srcset — see [Bloc03.astro](src/components/sections/Bloc03.astro)),
+while `public/images/` is copied verbatim for SVGs and anything referenced from CSS.
 
 ## Scripts — entry order matters
 
@@ -51,20 +62,30 @@ handlers. The lighter pages (`404`, `style-guide`) skip `main` and import only
 
 1. `initSmoothScroll()` **first** — the other modules register ScrollTriggers that must read
    positions after Lenis has taken over scrolling
-2. `initMenu()` → `initSliders()` → `initAnimations()` → `initReveals()` → `initYear()`
+2. `initMenu()` → `initAccordions()` → `initTestimonials()` → `initAnimations()` →
+   `initGlobeParticles()` → `initBloc04Cards()` → `initHeroCards()` → `initChatbox()` →
+   `initWatermark()` → `initYear()`
 
-| Module                                           | Responsibility                                       |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| [smooth-scroll.js](src/scripts/smooth-scroll.js) | Lenis instance, GSAP ticker integration              |
-| [menu.js](src/scripts/menu.js)                   | Mobile menu (ported from Webflow IX2)                |
-| [sliders.js](src/scripts/sliders.js)             | Swiper instances, declared in the `SLIDERS` array    |
-| [animations.js](src/scripts/animations.js)       | Hero/footer drifting SVG shapes, Flip, scroll scenes |
-| [buttons.js](src/scripts/buttons.js)             | Per-character split of button labels                 |
-| [reveals.js](src/scripts/reveals.js)             | Scroll reveals (ported from Webflow IX3)             |
+| Module                                               | Responsibility                                            |
+| ---------------------------------------------------- | --------------------------------------------------------- |
+| [smooth-scroll.js](src/scripts/smooth-scroll.js)     | Lenis instance, GSAP ticker integration                   |
+| [menu.js](src/scripts/menu.js)                       | Mobile menu (ported from Webflow IX2)                     |
+| [accordion.js](src/scripts/accordion.js)             | Bloc03 accordion + its visual — desktop widths only       |
+| [testimonials.js](src/scripts/testimonials.js)       | Bloc05 auto-playing carousel, word stagger, progress bars |
+| [animations.js](src/scripts/animations.js)           | Scroll scenes; also calls `initButtonCharacterStagger()`  |
+| [globe-particles.js](src/scripts/globe-particles.js) | three.js particle ring background                         |
+| [bloc04-cards.js](src/scripts/bloc04-cards.js)       | Bloc04 card visuals (sources, agents, memory)             |
+| [hero-cards.js](src/scripts/hero-cards.js)           | Hero floating cards — **sets `.is-ready`** (reveal guard) |
+| [chatbox.js](src/scripts/chatbox.js)                 | Hero chatbox teaser — wired to nothing, makes no request  |
+| [watermark.js](src/scripts/watermark.js)             | Footer watermark, emboss light follows the cursor         |
+| [buttons.js](src/scripts/buttons.js)                 | Per-character split of button labels                      |
+
+`initGlobeParticles()` is called **twice** — once with no argument, once with
+`".sub-footer_section"` — because the same ring renders behind two sections.
 
 `initYear()` lives in `main.js` itself. `buttons.js` has no `init*` entry in that list — it is
-called by [animations.js](src/scripts/animations.js), and imported directly by the pages that
-don't load `main`.
+called by [animations.js](src/scripts/animations.js), and imported directly by `404.astro`,
+which doesn't load `main`.
 
 ## Scroll — Lenis
 
@@ -80,23 +101,26 @@ don't load `main`.
 
 ## Reduced motion
 
-`initSmoothScroll()` and `initReveals()` both bail out on
-`(prefers-reduced-motion: reduce)` — native scrolling stays intact and reveal targets are
-shown immediately. Any new animation must respect the same guard (or `gsap.matchMedia()`).
+Every animated module guards on `(prefers-reduced-motion: reduce)` — `smooth-scroll`,
+`accordion`, `testimonials`, `globe-particles`, `bloc04-cards`, `hero-cards`, `chatbox`,
+`watermark`. Native scrolling stays intact and reveal targets are shown immediately. Any new
+animation must respect the same guard (or `gsap.matchMedia()`).
 
 ## Reveal guard (flash prevention)
 
-Pages that animate pass `animated` to `BaseLayout`. That adds `.has-reveals` on `<html>` and
-inlines a style hiding reveal targets until `initReveals()` sets `.is-ready`. If you add a new
-reveal target, add its selector to that inline style in
+Pages that animate pass `animated` to `BaseLayout` (today only `index.astro`). That adds
+`.has-reveals` on `<html>` and inlines a style hiding reveal targets until
+[hero-cards.js](src/scripts/hero-cards.js) adds `.is-ready` — it writes the hidden state as
+inline styles first, so the class can be dropped without a flash. If you add a new reveal
+target, add its selector to that inline style in
 [BaseLayout.astro](src/layouts/BaseLayout.astro) — otherwise it flashes in its final state.
 
 ## Styling
 
 - Everything is imported by [main.css](src/styles/main.css) in a deliberate cascade order:
-  `normalize → webflow-reset → webflow-components → fonts → tokens → fluid-type → elements →
-utilities → grid-nodes → components/* → sections/* → globals`. **Several rules win by
-  source order, not specificity — keep the order when adding an import.**
+  `normalize → fonts → tokens → fluid-type → elements → components/* → sections/* → globals`.
+  **Several rules win by source order, not specificity — keep the order when adding an
+  import.**
 - `globals.css` comes last on purpose: it holds what were inline `<style>` embeds in the
   Webflow export, and must override everything above it.
 - Design tokens live in [tokens.css](src/styles/base/tokens.css) as Webflow-style custom
@@ -107,19 +131,22 @@ utilities → grid-nodes → components/* → sections/* → globals`. **Several
   ([fluid-type.css](src/styles/base/fluid-type.css)), so every rem value scales with the
   viewport instead of stepping at breakpoints.
 - A new section gets its own file in `styles/sections/` plus one import in `main.css`.
-- One exception to the single-entry rule: [styleguide.css](src/styles/pages/styleguide.css)
-  is imported by `style-guide.astro` directly, so page-only CSS stays out of the main bundle.
+  `main.css` is the single entry point — no page imports its own stylesheet.
 
 ## JS hooks — `data-*`, not `id`
 
 Scripts target elements through classes and `data-*` attributes, never `id`:
 
-| Attribute                                                                    | Used by                    |
-| ---------------------------------------------------------------------------- | -------------------------- |
-| `data-el="year"`                                                             | current year injection     |
-| `data-menu-open` / `data-menu-close`                                         | menu triggers              |
-| `data-button-animate`, `data-button-animate-chars`, `data-button-animate-bg` | button hover               |
-| `data-select="title"`                                                        | per-character title reveal |
+| Attribute                                                                               | Used by                    |
+| --------------------------------------------------------------------------------------- | -------------------------- |
+| `data-el="year"`                                                                        | current year injection     |
+| `data-menu-open` / `data-menu-close`                                                    | menu triggers              |
+| `data-lenis-stop` / `data-lenis-start`                                                  | scroll lock (Lenis' own)   |
+| `data-button-animate`, `data-button-animate-chars`, `data-button-animate-bg`            | button hover               |
+| `data-accordion*` (`-item`, `-trigger`, `-panel`, `-visual`, `-illu`, `-square`)        | Bloc03 accordion           |
+| `data-testimonials`, `data-testimonial-*` (`quote`, `author`, `logo`, `picture`, `dot`) | Bloc05 carousel            |
+| `data-chatbox`, `data-chatbox-input`, `data-chatbox-send`                               | hero chatbox               |
+| `data-line`                                                                             | line-drawing scroll scenes |
 
 Add a new hook as a `data-*` attribute and query it in the matching module. Keep Webflow's
 own `data-wf--*` attributes untouched — the exported CSS variants depend on them.
@@ -135,7 +162,17 @@ referencing an asset — never guess `.jpg` vs `.avif`.
 
 `BaseLayout` handles title, description, canonical, OG and Twitter tags — pass props, don't
 add duplicate tags in a page. JSON-LD goes in the `head` slot as an `is:inline` script
-(see [index.astro](src/pages/index.astro)).
+(see [index.astro](src/pages/index.astro), which declares `Organization` + `WebSite`).
+
+- **Sitemap**: generated at build by `@astrojs/sitemap` → `dist/sitemap-index.xml`. A `filter`
+  in [astro.config.mjs](astro.config.mjs) keeps `/404` out. New pages are picked up
+  automatically — nothing to maintain by hand.
+- **[robots.txt](public/robots.txt)**: static. AI crawlers are listed and **allowed** on
+  purpose (VistIQ wants to be citable); the file documents how to opt out of training while
+  staying citable. `Disallow: /_astro/`.
+- **[llms.txt](public/llms.txt)**: product summary for AI assistants. It restates section
+  copy, so update it when Bloc02/Bloc03/Bloc06 wording changes.
+- Both live in `public/` and are served verbatim at the domain root.
 
 ## Conventions
 

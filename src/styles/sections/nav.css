@@ -3,7 +3,7 @@
   width: 100%;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  position: fixed;
+  position: absolute;
   inset: 0% 0% auto;
 }
 
@@ -131,7 +131,10 @@
 }
 
 .menu_link_item {
-  font-size: var(--size--20px);
+  /* Was var(--size--20px), a Webflow token that never shipped: the declaration
+     was invalid and dropped, so the item silently inherited. 1.25rem is the
+     20px the token stood for. */
+  font-size: 1.25rem;
   margin-left: 0;
   margin-right: 0;
 }
@@ -166,17 +169,18 @@
 
 .nav-button_primary {
   color: var(--base-color--light-black);
-  font-size: var(--size--14px);
+  font-size: 0.875rem;
   border-radius: 0.5rem;
   padding: 0.63rem 1rem;
-  font-weight: 600;
+  letter-spacing: -0.0088rem;
+  font-weight: 500;
   position: relative;
 }
 
 .nav-button_primary-bg {
   z-index: -1;
-  background-color: var(--base-color--white);
-  border: 1px solid var(--base-color--white);
+  background: white;
+
   border-radius: 0.5rem;
   position: absolute;
   inset: 0;
@@ -272,10 +276,6 @@
 
 .nav_container.is-scroll .nav_logo-link {
   max-width: 3rem;
-}
-
-.nav_container.is-scroll .nav-button_primary {
-  color: white;
 }
 
 .nav_container.is-scroll .nav-button_primary .nav-button_primary-bg {

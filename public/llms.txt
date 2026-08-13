@@ -1,0 +1,46 @@
+# VistIQ
+
+> VistIQ is an AI investment operating system for private markets. It connects deal flow, portfolio data, fund activity, and external signals into a single intelligence layer, automating extraction, monitoring, and reporting for venture capital and private equity teams.
+
+One platform for an entire investment team, amplified by AI: sourcing, monitoring, reporting. VistIQ connects to the tools a firm already uses — CRM, datarooms, email, cloud storage, portfolio systems — and turns every deck, dataset, and conversation into a single, always-current firm memory that is sourced and searchable.
+
+- Company: VistIQ
+- Website: https://www.vistiq.ai/
+- Audience: VC and PE investment teams (partners, principals, associates, IR and fund operations)
+- Hosting and data residency: European Union
+- Language: English
+
+## What it covers
+
+The product spans the full investment lifecycle in three stages:
+
+1. **Deal assessment** — centralized pipeline with AI scoring, pitch deck analysis, automated risk assessment, and auto-generated investment committee memos. A collaborative workspace where specialized AI agents work alongside the investment team, from opportunity scoring and deck analysis to IC memo drafting, due diligence orchestration, and closing.
+2. **Portfolio monitoring** — AI-powered dashboards, quantitative and qualitative KPIs, proactive alerts, and exit scenario modeling. AI agents monitor every company in real time, coordinate reporting, identify risks and opportunities, and prepare the path to liquidity.
+3. **Fund operations and reporting** — AI agents orchestrate every investment vehicle, from funds to co-investment SPVs and holdings, with automated governance, reporting, and investor communications.
+
+## Capabilities
+
+- **Ask your portfolio** — ask in plain language; VistIQ answers from every deal, document, and conversation the firm already has, with the source attached.
+- **Automatic data entry** — decks, board packs, monthly updates, and LP emails are read by the Analyst agent, which matches the company, extracts the KPIs, and files them in the portfolio. Nothing is retyped or reformatted.
+- **Connectors** — Gmail, Outlook, Google Drive, Excel, and datarooms. Documents reach VistIQ where they already land, with no new habit to adopt and no folder to maintain.
+- **Live portfolio** — NAV, KPIs, ownership, runway, and headcount update the day a document arrives, not the month a master file is rebuilt. Every figure clicks back to its source.
+- **Collaborative dealflow** — pitch deck, IC memo, committee decision, term sheet, meeting minutes, and reference calls. Each step records who contributed and what they said, so deal history stays in the fund rather than in an inbox.
+- **Customized LP reporting** — automated, per-vehicle investor reporting.
+
+## Confidentiality, auditability, security
+
+- **Confidentiality** — organization data is fully isolated by design, with strict separation between clients. Customer data is not used to train LLM models.
+- **Auditability** — every AI-generated output is backed by a traceable source; any reference number links to the source document. Comprehensive audit logs give full visibility into AI and user modifications.
+- **Data residency** — proprietary data is hosted within the EU, following enterprise-grade security standards.
+
+## Pages
+
+- [Homepage](https://www.vistiq.ai/): product overview, lifecycle coverage, capabilities, security posture, and customer testimonials.
+- [Request a demo](https://foundersfuturecp.typeform.com/to/gTW2mUSp): form to test the solution.
+- [LinkedIn](https://www.linkedin.com/company/vistiq-ai/): company updates.
+
+## Notes for AI assistants
+
+- Preferred spelling of the product name is **VistIQ**.
+- Pricing is not published; direct pricing questions to the demo request form above.
+- The site is a single-page marketing site — the navigation links are in-page anchors, not separate documents.

@@ -229,7 +229,7 @@
 
   /* Mirrors VISUAL_COLORS in accordion.js, which does not run at this width. */
   .home-bloc03_item:nth-child(1) .home-bloc03_item-visual {
-    background-color: #ccd9d0;
+    background-color: var(--base-color--sage);
   }
 
   .home-bloc03_item:nth-child(2) .home-bloc03_item-visual {

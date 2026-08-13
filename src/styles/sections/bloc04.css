@@ -172,7 +172,7 @@
 }
 
 .home-bloc04_agents-title {
-  color: #1d1e21;
+  color: var(--base-color--light-black);
   margin: 0;
   font-size: 0.6875rem;
   font-weight: 500;
@@ -258,7 +258,7 @@
 }
 
 .home-bloc04_agents-icon {
-  background-color: #f4f2f0;
+  background-color: var(--base-color--beige-dark);
   border-radius: 100vw;
   flex: none;
   justify-content: center;
@@ -285,7 +285,7 @@
 }
 
 .home-bloc04_agents-h1 {
-  color: #1d1e21;
+  color: var(--base-color--light-black);
   justify-content: space-between;
   align-items: center;
   font-size: 0.625rem;
@@ -321,7 +321,7 @@
 }
 
 .home-bloc04_agents-lead {
-  color: #1d1e21;
+  color: var(--base-color--light-black);
   margin: 0.25rem 0 0;
   font-size: 0.625rem;
   font-weight: 500;
@@ -425,7 +425,7 @@
   border-radius: 100vw;
   align-items: center;
   padding: 0.335rem;
-  color: #1d1e21;
+  color: var(--base-color--light-black);
   font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1.5;
