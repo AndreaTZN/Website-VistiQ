@@ -1,4 +1,4 @@
-/* "Security & compliance" — Figma 1433:13331 */
+/* "Security & compliance" */
 
 .home-bloc06_section {
   background-color: var(--base-color--white);
@@ -149,7 +149,7 @@
   line-height: 1.5;
 }
 
-/* Figma separates the paragraphs with an empty line. */
+/* The design separates the paragraphs with an empty line. */
 .home-bloc06_pillar-paragraph + .home-bloc06_pillar-paragraph {
   margin-top: 1.5rem;
 }

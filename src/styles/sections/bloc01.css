@@ -1,4 +1,4 @@
-/* "How the system works" — Figma 1433:1038 */
+/* "How the system works" */
 
 .home-bloc01_section {
   background-color: var(--base-color--white);
@@ -65,7 +65,7 @@
   z-index: 0;
   background-color: var(--base-color--sage);
   width: 100%;
-  /* 1176 × 576 in Figma. */
+  /* 1176 × 576 in the design. */
   aspect-ratio: 1176 / 576;
   margin-top: 3rem;
   position: relative;

@@ -1,4 +1,4 @@
-/* "What it does for you" — Figma 1525:4699 / 1525:10472 */
+/* "What it does for you" */
 
 .home-bloc03_section {
   background-color: var(--base-color--white);
@@ -161,15 +161,37 @@
   display: none;
 }
 
+/*
+  Interface mockups. In the shared desktop visual they are stacked in the same
+  spot and cross-faded by accordion.js, hence the absolute positioning; the
+  mobile per-slide copy is the only child of its square so it just fills it.
+*/
+.home-bloc03_illu {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+/* Hidden until accordion.js fades the active one in, so the stack does not
+   flash all mockups at once on first paint. */
+.home-bloc03_visual .home-bloc03_illu {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .home-bloc03_visual {
   /* --corners-z lifts the markers above this visual's noise overlay. */
-  --corners-size: 0.5rem;
+  --corners-size: 0.75rem;
   --corners-offset: 0.75rem;
   --corners-z: 2;
 
   z-index: 0;
   background-color: var(--base-color--sage);
   aspect-ratio: 1 / 1;
+  border: 1px solid rgba(29, 30, 33, 0.1);
 
   position: sticky;
   top: 6rem;
@@ -183,7 +205,6 @@
     padding-bottom: 3.5rem;
   }
 
-  
   .home-bloc03_item-trigger {
     padding: 1.25rem;
   }

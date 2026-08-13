@@ -1,4 +1,4 @@
-/* "They trust us" — Figma 1525:35336 */
+/* "They trust us" */
 
 .home-bloc05_section {
   background-color: var(--base-color--beige-dark);
@@ -188,7 +188,7 @@
   transform: scaleX(0);
 }
 
-/* Mobile — Figma 1599:13869: one column, portrait stacked above the text. */
+/* Mobile: one column, portrait stacked above the text. */
 @media screen and (max-width: 767px) {
   .home-bloc05_section {
     padding-top: 3.5rem;

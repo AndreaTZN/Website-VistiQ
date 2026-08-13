@@ -1,12 +1,18 @@
 ---
 /**
- * "They trust us" — Figma 1525:35336. Auto-playing testimonial carousel;
+ * "They trust us". Auto-playing testimonial carousel;
  * the transitions live in scripts/testimonials.js.
  *
  * One slide and one progress bar per entry: add or remove testimonials here
  * and the carousel follows.
  */
+import { Image } from "astro:assets";
+
 import Corners from "../ui/Corners.astro";
+// Imported, not a public/ path: that is what lets astro:assets emit the
+// WebP variants and the srcset. The logo stays in public/ — SVGs are copied
+// as-is either way.
+import thibaultMagnen from "../../assets/testimonials/thibault-magnen.jpg";
 
 const TESTIMONIALS = [
   {
@@ -16,7 +22,7 @@ const TESTIMONIALS = [
     role: "Senior Associate",
     logo: "/images/testimonials/founders-future.svg",
     logoAlt: "Founders Future",
-    portrait: "/images/testimonials/thibault-magnen.jpg",
+    portrait: thibaultMagnen,
     portraitAlt: "Portrait of Thibault Magnen, Senior Associate.",
   },
   {
@@ -26,7 +32,7 @@ const TESTIMONIALS = [
     role: "Senior Associate",
     logo: "/images/testimonials/founders-future.svg",
     logoAlt: "Founders Future",
-    portrait: "/images/testimonials/thibault-magnen.jpg",
+    portrait: thibaultMagnen,
     portraitAlt: "Portrait of Thibault Magnen, Senior Associate.",
   },
 ];
@@ -115,9 +121,11 @@ const TESTIMONIALS = [
               aria-hidden={index === 0 ? "false" : "true"}
             >
               <div class="home-bloc05_picture-inner">
-                <img
+                <Image
                   src={item.portrait}
                   alt={item.portraitAlt}
+                  widths={[377, 754]}
+                  sizes="(max-width: 767px) 92vw, 30vw"
                   loading="lazy"
                   class="image-fit-cover"
                 />

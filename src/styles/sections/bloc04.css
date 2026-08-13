@@ -1,4 +1,4 @@
-/* "How it runs" — Figma 1525:29160 */
+/* "How it runs" */
 
 .home-bloc04_section {
   background-color: var(--base-color--beige-dark);
@@ -193,7 +193,7 @@
   height: 1rem;
 }
 
-/* Agents card visual — notification stack (Figma 1433:12940) */
+/* Agents card visual — notification stack */
 
 .home-bloc04_agents {
   z-index: 1;
@@ -371,7 +371,7 @@
   line-height: 1.5;
 }
 
-/* Memory card visual — IQ chip fanning out to capability tags (Figma 1433:13104) */
+/* Memory card visual — IQ chip fanning out to capability tags */
 
 .home-bloc04_memory {
   z-index: 1;

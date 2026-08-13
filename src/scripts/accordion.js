@@ -13,6 +13,11 @@ function setupAccordion(accordion) {
 
   const section = accordion.closest("section") ?? document;
   const visual = section.querySelector("[data-accordion-visual]");
+  // Interface mockups stacked inside the visual, keyed by item index. Items
+  // without one simply leave the coloured square bare.
+  const illus = visual
+    ? Array.from(visual.querySelectorAll("[data-accordion-illu]"))
+    : [];
 
   // Honour the same reduced-motion guard the rest of the site uses.
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -50,6 +55,16 @@ function setupAccordion(accordion) {
         ease: EASE,
       });
     }
+
+    illus.forEach((illu) => {
+      const isActive = Number(illu.dataset.accordionIllu) === index;
+      gsap.to(illu, {
+        autoAlpha: isActive ? 1 : 0,
+        duration,
+        ease: EASE,
+        overwrite: true,
+      });
+    });
 
     openIndex = index;
   }

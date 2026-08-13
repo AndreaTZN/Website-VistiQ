@@ -1,42 +1,54 @@
 ---
-/**
- * "What it does for you" — Figma 1525:4699 (closed) / 1525:10472 (open).
- * Accordion: one panel open at a time, animated in scripts/accordion.js.
- */
+import { Image } from "astro:assets";
+
 import Corners from "../ui/Corners.astro";
+
+import askAnything from "../../assets/bloc03/ask-anything.png";
+import automatic from "../../assets/bloc03/automatic.png";
+import collab from "../../assets/bloc03/collab.png";
+import connectors from "../../assets/bloc03/connectors.png";
+import portfolio from "../../assets/bloc03/portfolio.png";
+import reporting from "../../assets/bloc03/reporting.png";
 
 const ITEMS = [
   {
     eyebrow: "Ask anything",
     title: "Ask your portfolio",
     body: "Ask in plain language. Vistiq answers from every deal, document and conversation you already have, with the source attached.",
+    visual: askAnything,
   },
   {
     eyebrow: "AUTOMATIC DATA ENTRY",
     title: "No manual entry - every document is integrated on its own",
     body: "Decks, board packs, monthly updates, LP emails. The Analyst reads the document, matches the company, extracts the KPIs and files them in the portfolio. Nothing is retyped, nothing is reformatted.",
+    visual: automatic,
   },
   {
     eyebrow: "CONNECTORS",
     title: "Connected to your data and to the tools your team already works in",
+
     body: "Gmail, Outlook, Google Drive, Excel and your dataroom. Documents reach VistiQ where they already land no new habit to adopt, no folder to maintain.",
+    visual: connectors,
   },
   {
     eyebrow: "Portfolio monitoring",
     title:
       "A portfolio that is always up to date, and the health of every company in real time",
     body: "NAV, KPIs, ownership, runway and headcount move the day a document arrives not the month the master file is rebuilt. Every figure clicks back to its source.",
+    visual: portfolio,
   },
   {
     eyebrow: "COLLABORATIVE DEALFLOW",
     title:
       "The whole deal team on the same file, from first deck to signed term sheet",
     body: "Pitch deck, IC memo, committee decision, term sheet, meeting minutes, reference calls. Each step records who contributed and what they said the deal history stays in the fund, not in an inbox.",
+    visual: collab,
   },
   {
     eyebrow: "Fund operations and reporting",
     title: "Create customized LP reportings",
     body: "AI agents orchestrating every investment vehicles, from funds and co-investment SPVs and holdings, with automated governance, reporting, and investor communications.",
+    visual: reporting,
   },
 ];
 ---
@@ -62,6 +74,16 @@ const ITEMS = [
               {/* Per-slide visual, mobile only — the desktop layout uses the
                   single shared one below and hides these. */}
               <div class="home-bloc03_item-visual" aria-hidden="true">
+                {item.visual && (
+                  <Image
+                    class="home-bloc03_illu"
+                    src={item.visual}
+                    alt=""
+                    widths={[652, 1304]}
+                    sizes="(max-width: 767px) 92vw, 0px"
+                    loading="lazy"
+                  />
+                )}
                 <Corners />
                 <div class="noise" />
               </div>
@@ -105,6 +127,25 @@ const ITEMS = [
       </div>
 
       <div class="home-bloc03_visual" data-accordion-visual>
+        {
+          /* One illustration per item, stacked; accordion.js cross-fades to
+            the one matching the open panel. */
+        }
+        {
+          ITEMS.map((item, index) =>
+            item.visual ? (
+              <Image
+                class="home-bloc03_illu"
+                data-accordion-illu={index}
+                src={item.visual}
+                alt=""
+                widths={[652, 1304]}
+                sizes="(min-width: 768px) 40vw, 0px"
+                loading="lazy"
+              />
+            ) : null,
+          )
+        }
         <Corners />
         <div class="noise"></div>
       </div>

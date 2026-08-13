@@ -1,4 +1,4 @@
-/* Hero v2 — Figma 1525:3722 */
+/* Hero v2 */
 
 .hero-v2_section {
   z-index: 0;
@@ -101,7 +101,7 @@
 }
 
 /*
-  Figma fades the second line out to the right with a 135° gradient.
+  The second line fades out to the right with a 135° gradient.
   background-clip keeps it a single text node, so it stays selectable.
 */
 .hero-v2_heading-gradient {
@@ -246,7 +246,7 @@
     0 2.375rem 4.75rem #00000014;
 }
 
-/* Composed line icons: each piece keeps its Figma-exported inset (inline). */
+/* Composed line icons: each piece keeps its exported inset (inline). */
 .hero-v2_card-icon {
   position: relative;
   display: block;
@@ -324,9 +324,9 @@
 /* Card — Health Score */
 
 /*
-  Positions come from the Figma composition (1571:2613, 1440×790 frame): the
-  section's 49.375rem min-height matches that frame 1:1, so offsets are the
-  Figma px values in rem. Several cards intentionally bleed past the edges.
+  Positions come from the design composition (1440×790 frame): the section's
+  49.375rem min-height matches that frame 1:1, so offsets are the design px
+  values in rem. Several cards intentionally bleed past the edges.
 */
 .hero-v2_card.is-health {
   /* Sits on top of the fund card, as in the composition. */
@@ -406,7 +406,7 @@
 /* Card — Fund "DV 2018" */
 
 .hero-v2_card.is-fund {
-  /* The Figma frame ships at 40% opacity: a depth cue. Exposed as a custom
+  /* The card ships at 40% opacity: a depth cue. Exposed as a custom
      property so hero-cards.js can read it through the reveal guard and use
      it as the entrance-tween target. */
   --card-opacity: 0.4;
