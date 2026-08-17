@@ -1,0 +1,79 @@
+---
+/**
+ * Floating section dock — the one-page's only navigation.
+ *
+ * It shows the current section as a single label with a counter, and swaps that
+ * label as the reader scrolls (see scripts/dock.js). The prev/next links are
+ * real anchors so keyboard and no-JS navigation both work; the script only
+ * upgrades them to smooth scrolling and keeps the label in sync.
+ *
+ * The label is rendered server-side for the first section so the dock is never
+ * empty before the script runs.
+ */
+
+/** Sections listed in the dock, in document order. Hero and footers are out. */
+export const DOCK_SECTIONS = [
+  { id: "How-it-works", label: "How it works" },
+  { id: "Lifecycle", label: "Lifecycle" },
+  { id: "Solutions", label: "Solutions" },
+  { id: "Data-layer", label: "Data layer" },
+  { id: "Investors", label: "Investors" },
+  { id: "Data", label: "Security" },
+];
+
+const total = String(DOCK_SECTIONS.length).padStart(2, "0");
+const first = DOCK_SECTIONS[0];
+---
+
+<nav class="dock" aria-label="Sections" data-dock>
+  <a class="dock_arrow is-prev" href={`#${first.id}`} data-dock-prev>
+    <span class="dock_sr">Previous section</span>
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M10 12.5 5.5 8 10 3.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+
+  <p class="dock_status">
+    <span class="dock_counter" data-dock-counter>
+      <span data-dock-index>01</span><span class="dock_counter-sep">/</span>{
+        total
+      }
+    </span>
+    <span class="dock_label-slot">
+      {/* The script measures this span, so keep it a single text node. */}
+      <span class="dock_label" data-dock-label>{first.label}</span>
+    </span>
+  </p>
+
+  <a class="dock_arrow is-next" href={`#${DOCK_SECTIONS[1].id}`} data-dock-next>
+    <span class="dock_sr">Next section</span>
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M6 3.5 10.5 8 6 12.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+
+  {/* Announces the section change to screen readers without moving focus. */}
+  <span class="dock_sr" aria-live="polite" data-dock-announce></span>
+</nav>

@@ -17,6 +17,7 @@
 /* 3. Components */
 @import "./components/button.css";
 @import "./components/corners.css";
+@import "./components/dock.css";
 @import "./components/eyebrow.css";
 @import "./components/heading.css";
 @import "./components/error404.css";
