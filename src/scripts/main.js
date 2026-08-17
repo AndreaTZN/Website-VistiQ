@@ -1,5 +1,6 @@
 import { initAccordions } from "./accordion";
 import { initAnimations } from "./animations";
+import { initBloc02Pattern } from "./bloc02-pattern";
 import { initBloc04Cards } from "./bloc04-cards";
 import { initChatbox } from "./chatbox";
 import { initGlobeParticles } from "./globe-particles";
@@ -26,6 +27,7 @@ initTestimonials();
 initAnimations();
 initGlobeParticles();
 initGlobeParticles(".sub-footer_section");
+initBloc02Pattern();
 initBloc04Cards();
 initHeroCards();
 initChatbox();
