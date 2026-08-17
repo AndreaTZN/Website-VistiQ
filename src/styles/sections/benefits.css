@@ -57,13 +57,17 @@
   align-items: flex-start;
   width: 100%;
   padding: 1.5rem;
+
   font-family: inherit;
   display: flex;
-  transition: background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition:
+    background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    padding-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .benefits_item.is-open .benefits_item-trigger {
   background-color: #f7f7f7;
+  padding-bottom: 0rem;
 }
 
 .benefits_item-eyebrow {
