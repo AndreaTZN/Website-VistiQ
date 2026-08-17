@@ -39,7 +39,9 @@
   /* Rotation happens around each cross's own centre, not the SVG's. */
   transform-box: fill-box;
   transform-origin: 50% 50%;
-  will-change: transform;
+  /* No will-change here on purpose: it asks for a compositing layer per
+     element, and at ~1300 crosses that alone took scroll frames from 8ms to
+     19ms. The rotation is cheap enough without it. */
 }
 
 /* Corner markers */

@@ -5,6 +5,32 @@
   width: 100%;
   padding-top: 6.25rem;
   padding-bottom: 6.25rem;
+  /* Anchors the decorative texture; overflow keeps it inside the section. */
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.home-bloc04_texture {
+  z-index: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1440 / 418;
+  background-image: url("/images/texture.svg");
+  background-position: top center;
+  background-repeat: no-repeat;
+
+  background-size: cover;
+}
+
+/* The texture is a sibling of the content, so the content needs its own layer
+   to stay above it. */
+.home-bloc04_section > .container-medium {
+  position: relative;
+  z-index: 1;
 }
 
 /* Header */

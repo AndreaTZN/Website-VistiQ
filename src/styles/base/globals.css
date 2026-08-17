@@ -83,7 +83,7 @@ input[type="file"]:focus-visible {
 
 .noise {
   z-index: -1;
-  opacity: 0.5;
+  opacity: 0.2;
   background-image: url("/images/noise_1noise.avif");
   background-position: 0 0;
   background-size: auto;
