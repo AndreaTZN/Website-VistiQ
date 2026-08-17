@@ -20,7 +20,8 @@ initAccordions();
 initTestimonials();
 initAnimations();
 initGlobeParticles();
-initGlobeParticles(".sub-footer_section");
+
+initGlobeParticles(".sub-footer_section", { introOnEnter: true });
 initCoveragePattern();
 initArchitectureCards();
 initHeroCards();

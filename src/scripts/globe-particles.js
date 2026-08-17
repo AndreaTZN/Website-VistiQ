@@ -15,10 +15,16 @@ gsap.registerPlugin(ScrollTrigger);
  * default, but the sub-footer reuses the same markup, so each caller passes
  * its own element and gets an independent instance. `minDiameter` is the
  * desktop floor for the ring: the hero's 800px would overflow a short band.
+ *
+ * `introOnEnter` holds the entrance timeline until the section first scrolls
+ * into view. Off by default: the hero is visible at load, which is when its
+ * intro should run. A section far down the page wants it on, otherwise the
+ * ~6.3s intro is long over by the time the reader gets there and they only
+ * ever see the settled ring.
  */
 export function initGlobeParticles(
   root = ".hero-v2_section",
-  { minDiameter = 800 } = {},
+  { minDiameter = 800, introOnEnter = false } = {},
 ) {
   // Same guard as the other modules: no background animation for users who
   // prefer reduced motion — the section simply keeps its static backdrop.
@@ -322,13 +328,13 @@ export function initGlobeParticles(
   // sits thousands of pixels below the fold yet used to draw every frame from
   // the first paint. Track visibility and skip the draw call while offscreen.
   //
-  // Only the render is skipped — uTime keeps advancing and the entrance
-  // timeline below keeps running, so the ring is already at its final state
-  // when the section scrolls into view instead of replaying its intro.
+  // Only the render is skipped — uTime keeps advancing, so a running intro is
+  // never frozen mid-way. The margin here matches the introOnEnter trigger
+  // below, so the gate is always open before that intro plays its first frame.
   let isVisible = false;
   ScrollTrigger.create({
     trigger: el,
-    start: "top bottom",
+    start: "top bottom-=10%",
     end: "bottom top",
     onToggle: (self) => {
       isVisible = self.isActive;
@@ -403,7 +409,11 @@ export function initGlobeParticles(
   const globeGradient = el.querySelector(".hero-v2_anim-globe-gradient");
   if (globeGradient) gsap.set(globeGradient, { opacity: 0 });
 
-  const ptl = gsap.timeline();
+  // Safe to start paused: every uniform the timeline drives begins at 0, so
+  // nothing is drawn until it plays. uGatherStart is set from a .call() inside
+  // the timeline and the shader reads it as `uTime - uGatherStart`, so the
+  // convergence stays correct whenever the intro actually runs.
+  const ptl = gsap.timeline({ paused: introOnEnter });
   ptl
     .to(uniforms.uOpacity, { value: 1, duration: 1.0, ease: "power2.out" })
     .to(uniforms.uSettle, { value: 1, duration: 1.0, ease: "power2.out" }, 0)
@@ -418,4 +428,15 @@ export function initGlobeParticles(
     )
     .to(uniforms.uGather, { value: 1, duration: 5.0, ease: "power3.out" }, 1.3)
     .to(globeGradient, { opacity: 1, duration: 1.0, ease: "power2.out" }, 1.3);
+
+  // Start slightly before the section clears the fold, so the first frames of
+  // the fade are already behind us when it comes properly into view.
+  if (introOnEnter) {
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top bottom-=10%",
+      once: true,
+      onEnter: () => ptl.play(),
+    });
+  }
 }
