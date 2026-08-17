@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * WebGL particle ring, used as a section background.
@@ -315,9 +318,27 @@ export function initGlobeParticles(
     });
   }
 
+  // Rendering a ring nobody can see is pure GPU waste: the sub-footer instance
+  // sits thousands of pixels below the fold yet used to draw every frame from
+  // the first paint. Track visibility and skip the draw call while offscreen.
+  //
+  // Only the render is skipped — uTime keeps advancing and the entrance
+  // timeline below keeps running, so the ring is already at its final state
+  // when the section scrolls into view instead of replaying its intro.
+  let isVisible = false;
+  ScrollTrigger.create({
+    trigger: el,
+    start: "top bottom",
+    end: "bottom top",
+    onToggle: (self) => {
+      isVisible = self.isActive;
+    },
+  });
+
   gsap.ticker.add(function () {
     uniforms.uTime.value = gsap.ticker.time;
     uniforms.uMouse.value.lerp(targetMouse, 0.07);
+    if (!isVisible) return;
     renderer.render(scene, camera);
   });
 

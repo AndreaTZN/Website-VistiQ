@@ -93,7 +93,11 @@ Home order after `initBaseline()`: `initAccordions()` → `initTestimonials()` �
 | [watermark.js](src/scripts/watermark.js)                   | Footer watermark, emboss light follows the cursor               |
 
 `initGlobeParticles()` is called **twice** — once with no argument, once with
-`".sub-footer_section"` — because the same ring renders behind two sections.
+`".sub-footer_section"` — because the same ring renders behind two sections. Each call builds
+its own WebGL context, so both are gated on visibility: a ScrollTrigger flips a flag and the
+ticker skips `renderer.render()` while its section is offscreen. Only the draw call is skipped
+— `uTime` and the entrance timeline keep running, so the ring is already settled when the
+section scrolls in rather than replaying its intro.
 
 Every `init*` already no-ops when its DOM is absent (early return, or an empty
 `querySelectorAll` loop), so a module landing on a page without its section is harmless. Keep
