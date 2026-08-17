@@ -5,26 +5,19 @@ import gsap from "gsap";
  *
  * The cards are hidden from the first paint by the reveal guard in
  * BaseLayout (`.has-reveals:not(.is-ready)`); the fromTo below writes the
- * hidden state as inline styles immediately, so `.is-ready` can be added
- * right away without any flash. Each card then fades/scales in and drifts
- * on an endless randomized loop. The entrance only touches autoAlpha/scale
- * while the drift owns x/y/rotation, so the two never fight over the same
- * properties.
+ * hidden state as inline styles immediately, so the guard can be lifted right
+ * after this runs without any flash — see revealPage() in reveal.js, which the
+ * page entry calls once every such module has had its turn. Each card then
+ * fades/scales in and drifts on an endless randomized loop. The entrance only
+ * touches autoAlpha/scale while the drift owns x/y/rotation, so the two never
+ * fight over the same properties.
  */
 export function initHeroCards() {
-  const reveal = () => document.documentElement.classList.add("is-ready");
-
   const cards = gsap.utils.toArray(".hero-v2_card");
-  if (!cards.length) {
-    reveal();
-    return;
-  }
+  if (!cards.length) return;
 
   // Same guard as the other modules: the cards show immediately, static.
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    reveal();
-    return;
-  }
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   cards.forEach((card, i) => {
     // Cards with a design-level opacity (e.g. .is-fund at 0.4) expose it as
@@ -57,8 +50,4 @@ export function initHeroCards() {
       delay: gsap.utils.random(0, 1.5),
     });
   });
-
-  // The fromTo above has already inlined the hidden state on every card, so
-  // lifting the CSS guard here cannot flash.
-  reveal();
 }

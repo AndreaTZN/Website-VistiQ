@@ -49,44 +49,55 @@ public/
 
 `index.astro` composes section components inside `BaseLayout`, then loads behaviour with a
 single `<script>import '../scripts/main';</script>`. Astro bundles it — never add inline
-handlers. `404.astro` skips `main` and imports only `initButtonCharacterStagger` from
-`scripts/buttons`.
+handlers. `404.astro` skips both `main` and the baseline (no nav, no menu, no footer year, one
+viewport tall) and imports only `initButtonCharacterStagger` from `scripts/buttons`.
 
 Two image pipelines coexist, on purpose: `src/assets/` goes through `astro:assets`
 (`<Image>` emits WebP variants and a srcset — see [Benefits.astro](src/components/sections/Benefits.astro)),
 while `public/images/` is copied verbatim for SVGs and anything referenced from CSS.
 
-## Scripts — entry order matters
+## Scripts — baseline vs page entry
 
-[main.js](src/scripts/main.js) runs the init functions in a fixed order:
+Behaviour is split in two, so a new page doesn't pay for the home page's WebGL:
 
-1. `initSmoothScroll()` **first** — the other modules register ScrollTriggers that must read
-   positions after Lenis has taken over scrolling
-2. `initMenu()` → `initAccordions()` → `initTestimonials()` → `initAnimations()` →
-   `initGlobeParticles()` → `initCoveragePattern()` → `initArchitectureCards()` →
-   `initHeroCards()` → `initChatbox()` → `initDock()` → `initWatermark()` → `initYear()`
+- **[baseline.js](src/scripts/baseline.js)** — what every page gets: `initSmoothScroll()`
+  (**first**, the section modules register ScrollTriggers that must read positions after Lenis
+  has taken over), `initMenu()`, `initButtonCharacterStagger()`, `initYear()`. It imports no
+  section module and **no three.js**.
+- **[main.js](src/scripts/main.js)** — the home page's entry: `initBaseline()`, then the
+  home-only sections, then `revealPage()` **last**.
+
+A new page imports `baseline` plus only the sections it uses, then calls `revealPage()` if it
+passes `animated`. Transitive JS cost today: home ~683 KB, a baseline-only page ~130 KB.
+
+Home order after `initBaseline()`: `initAccordions()` → `initTestimonials()` →
+`initAnimations()` → `initGlobeParticles()` ×2 → `initCoveragePattern()` →
+`initArchitectureCards()` → `initHeroCards()` → `initChatbox()` → `initDock()` →
+`initWatermark()` → `revealPage()`
 
 | Module                                                     | Responsibility                                                  |
 | ---------------------------------------------------------- | --------------------------------------------------------------- |
+| [baseline.js](src/scripts/baseline.js)                     | Shared chrome: smooth scroll, menu, buttons, year               |
+| [reveal.js](src/scripts/reveal.js)                         | `revealPage()` — lifts the reveal guard, called last            |
 | [smooth-scroll.js](src/scripts/smooth-scroll.js)           | Lenis instance, GSAP ticker integration                         |
 | [menu.js](src/scripts/menu.js)                             | Mobile menu (ported from Webflow IX2)                           |
+| [buttons.js](src/scripts/buttons.js)                       | Per-character split of button labels                            |
 | [accordion.js](src/scripts/accordion.js)                   | Benefits accordion + its visual — desktop widths only           |
 | [testimonials.js](src/scripts/testimonials.js)             | Testimonials auto-playing carousel, word stagger, progress bars |
-| [animations.js](src/scripts/animations.js)                 | Scroll scenes; also calls `initButtonCharacterStagger()`        |
+| [animations.js](src/scripts/animations.js)                 | Scroll scenes — currently a placeholder, nav scene parked       |
 | [globe-particles.js](src/scripts/globe-particles.js)       | three.js particle ring background                               |
 | [coverage-pattern.js](src/scripts/coverage-pattern.js)     | Coverage background pattern — crosses face the cursor           |
 | [architecture-cards.js](src/scripts/architecture-cards.js) | Architecture card visuals (sources, agents, memory)             |
-| [hero-cards.js](src/scripts/hero-cards.js)                 | Hero floating cards — **sets `.is-ready`** (reveal guard)        |
+| [hero-cards.js](src/scripts/hero-cards.js)                 | Hero floating cards                                             |
 | [chatbox.js](src/scripts/chatbox.js)                       | Hero chatbox teaser — wired to nothing, makes no request        |
 | [watermark.js](src/scripts/watermark.js)                   | Footer watermark, emboss light follows the cursor               |
-| [buttons.js](src/scripts/buttons.js)                       | Per-character split of button labels                            |
 
 `initGlobeParticles()` is called **twice** — once with no argument, once with
 `".sub-footer_section"` — because the same ring renders behind two sections.
 
-`initYear()` lives in `main.js` itself. `buttons.js` has no `init*` entry in that list — it is
-called by [animations.js](src/scripts/animations.js), and imported directly by `404.astro`,
-which doesn't load `main`.
+Every `init*` already no-ops when its DOM is absent (early return, or an empty
+`querySelectorAll` loop), so a module landing on a page without its section is harmless. Keep
+that property when adding one.
 
 ## Scroll — Lenis
 
@@ -110,10 +121,15 @@ animation must respect the same guard (or `gsap.matchMedia()`).
 ## Reveal guard (flash prevention)
 
 Pages that animate pass `animated` to `BaseLayout` (today only `index.astro`). That adds
-`.has-reveals` on `<html>` and inlines a style hiding reveal targets until
-[hero-cards.js](src/scripts/hero-cards.js) adds `.is-ready` — it writes the hidden state as
-inline styles first, so the class can be dropped without a flash. If you add a new reveal
-target, add its selector to that inline style in
+`.has-reveals` on `<html>` and inlines a style hiding reveal targets until `.is-ready` lands.
+
+`revealPage()` in [reveal.js](src/scripts/reveal.js) adds that class, and the page entry calls
+it **last** — after every animating module has written its hidden state as inline styles, so
+dropping the CSS guard cannot flash. It lives outside the section modules on purpose: a page
+that has no hero (or no sections at all) still reveals itself. **An `animated` page that never
+calls `revealPage()` stays invisible.**
+
+If you add a new reveal target, add its selector to that inline style in
 [BaseLayout.astro](src/layouts/BaseLayout.astro) — otherwise it flashes in its final state.
 
 ## Styling

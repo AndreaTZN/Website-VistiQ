@@ -1,8 +1,6 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import { initButtonCharacterStagger } from "./buttons";
-
 gsap.registerPlugin(ScrollTrigger);
 
 /* function initNavScroll(mm) {
@@ -19,10 +17,11 @@ gsap.registerPlugin(ScrollTrigger);
   });
 } */
 
+/**
+ * Scroll scenes. Currently a placeholder: the nav-scroll scene above is parked,
+ * and the button stagger it used to trigger now lives in the baseline (every
+ * page needs it, this module is home-only).
+ */
 export function initAnimations() {
-  const mm = gsap.matchMedia();
-
-  /*   initNavScroll(mm); */
-
-  initButtonCharacterStagger();
+  /*   initNavScroll(gsap.matchMedia()); */
 }
