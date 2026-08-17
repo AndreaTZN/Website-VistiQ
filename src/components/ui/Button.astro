@@ -14,7 +14,7 @@ interface Props {
    * - `secondary-white` — outlined on dark backgrounds
    * - `nav` — compact, for the navigation bar
    */
-  variant?: "primary" | "secondary" | "secondary-white" | "nav";
+  variant?: "primary" | "secondary" | "secondary-white" | "nav" | "text";
   /** Opens in a new tab. Defaults to true for external (http) links. */
   newTab?: boolean;
   /** Accessible name. Defaults to the label text. */
@@ -36,6 +36,7 @@ const VARIANT_CLASS = {
   secondary: "button_secondary",
   "secondary-white": "button_secondary is-white",
   nav: "nav-button_primary",
+  text: "text_button",
 };
 
 /**
@@ -44,9 +45,10 @@ const VARIANT_CLASS = {
  */
 const BG_CLASS = {
   primary: "button_primary-bg",
-  secondary: null,
+  secondary: "button_secondary-bg",
   "secondary-white": "button_secondary-bg is-white",
   nav: "nav-button_primary-bg",
+  text: null,
 };
 
 const bgClass = BG_CLASS[variant];

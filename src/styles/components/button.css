@@ -19,6 +19,19 @@
   letter-spacing: -0.00875rem;
 }
 
+.text_button {
+  z-index: 0;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.00875rem;
+}
+
 .button_primary {
   color: var(--base-color--white);
   filter: drop-shadow(0 2px 3px #0c0c0c33);
@@ -27,7 +40,6 @@
 .button_secondary {
   grid-column-gap: 0.25rem;
   color: var(--base-color--light-black);
-  border: 1px solid #1d1e2133;
 }
 
 /* On dark backgrounds the outline is replaced by a solid white fill,
@@ -50,13 +62,10 @@
 
 .button_secondary-bg {
   z-index: -1;
-  border: 1px solid #fff3;
+  border: 1px solid #1d1e2133;
   border-radius: 0.5rem;
   position: absolute;
   inset: 0;
-  box-shadow:
-    0 2px 4px #1d1e211f,
-    0 7px 14px #1d1e210a;
 }
 
 .button_secondary-bg.is-white {

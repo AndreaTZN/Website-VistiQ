@@ -1,0 +1,55 @@
+/*
+  Section seams.
+
+  The page alternates white and beige-dark sections, so every boundary lands as
+  a hard horizontal line. These pseudo-elements fade the white sections into
+  the beige of their neighbours, turning the cut into a transition without
+  touching any section's own background-color.
+
+  Applied to the white sections only — beige neighbours need no counterpart,
+  the gradient already resolves to their exact colour.
+*/
+
+.home-bloc01_section,
+.home-bloc03_section,
+.home-bloc06_section {
+  position: relative;
+}
+
+.home-bloc01_section::before,
+.home-bloc01_section::after,
+.home-bloc03_section::before,
+.home-bloc03_section::after,
+.home-bloc06_section::before,
+.home-bloc06_section::after {
+  content: "";
+  /* Behind the section's own content, above its background. */
+  z-index: 0;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5rem;
+}
+
+.home-bloc01_section::before,
+.home-bloc03_section::before,
+.home-bloc06_section::before {
+  top: 0;
+  background-image: linear-gradient(
+    to bottom,
+    var(--base-color--beige-dark),
+    rgb(255 255 255 / 0)
+  );
+}
+
+.home-bloc01_section::after,
+.home-bloc03_section::after,
+.home-bloc06_section::after {
+  bottom: 0;
+  background-image: linear-gradient(
+    to top,
+    var(--base-color--beige-dark),
+    rgb(255 255 255 / 0)
+  );
+}
