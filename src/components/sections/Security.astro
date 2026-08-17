@@ -30,22 +30,22 @@ const PILLARS = [
 ];
 ---
 
-<section id="Data" class="home-bloc06_section">
+<section id="Data" class="security_section">
   <div class="container-medium">
-    <div class="home-bloc06_header">
+    <div class="security_header">
       <Eyebrow label="Security & compliance" line />
 
-      <div class="home-bloc06_intro">
-        <div class="home-bloc06_intro-text">
+      <div class="security_intro">
+        <div class="security_intro-text">
           <h2 class="heading">
             <span>Built for confidentiality,</span>
             <span>auditability and security</span>
           </h2>
-          <p class="home-bloc06_paragraph">
+          <p class="security_paragraph">
             Designed from day one with the compliance teams of investment funds.
           </p>
         </div>
-        <div class="home-bloc06_buttons">
+        <div class="security_buttons">
           <Button
             variant="primary"
             href="https://foundersfuturecp.typeform.com/to/gTW2mUSp"
@@ -61,17 +61,17 @@ const PILLARS = [
         </div>
       </div>
     </div>
-    <ol class="home-bloc06_pillars">
+    <ol class="security_pillars">
       {
         PILLARS.map((pillar) => (
-          <li class="home-bloc06_pillar">
-            <div class="home-bloc06_pillar-line" />
-            <div class="home-bloc06_pillar-body">
-              <p class="home-bloc06_pillar-number">{pillar.number}</p>
-              <div class="home-bloc06_pillar-text">
-                <h3 class="home-bloc06_pillar-title">{pillar.title}</h3>
+          <li class="security_pillar">
+            <div class="security_pillar-line" />
+            <div class="security_pillar-body">
+              <p class="security_pillar-number">{pillar.number}</p>
+              <div class="security_pillar-text">
+                <h3 class="security_pillar-title">{pillar.title}</h3>
                 {pillar.paragraphs.map((paragraph) => (
-                  <p class="home-bloc06_pillar-paragraph">{paragraph}</p>
+                  <p class="security_pillar-paragraph">{paragraph}</p>
                 ))}
               </div>
             </div>

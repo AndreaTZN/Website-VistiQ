@@ -1,13 +1,13 @@
 /* "How the system works" */
 
-.home-bloc01_section {
+.how-it-works_section {
   background-color: var(--base-color--white);
   width: 100%;
   padding-top: 6.25rem;
   padding-bottom: 6.25rem;
 }
 
-.home-bloc01_text {
+.how-it-works_text {
   margin-top: 1.5rem;
   grid-row-gap: 1rem;
   flex-flow: column;
@@ -17,7 +17,7 @@
 
 /* Eyebrow */
 
-.home-bloc01_paragraph {
+.how-it-works_paragraph {
   color: #1d1e2199;
   max-width: 54.75rem;
   margin: 0;
@@ -27,7 +27,7 @@
 
 /* Visual */
 
-.home-bloc01_visual {
+.how-it-works_visual {
   z-index: 0;
   background-color: var(--base-color--sage);
   width: 100%;
@@ -39,21 +39,21 @@
 }
 
 @media screen and (max-width: 767px) {
-  .home-bloc01_section {
+  .how-it-works_section {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
 
-  .home-bloc01_paragraph {
+  .how-it-works_paragraph {
     font-size: 1.125rem;
   }
 
-  .home-bloc01_visual {
+  .how-it-works_visual {
     aspect-ratio: 4 / 3;
     margin-top: 2rem;
   }
 
-  .home-bloc01_text {
+  .how-it-works_text {
     text-align: center;
   }
 }

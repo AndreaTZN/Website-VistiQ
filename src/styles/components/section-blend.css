@@ -10,18 +10,18 @@
   the gradient already resolves to their exact colour.
 */
 
-.home-bloc01_section,
-.home-bloc03_section,
-.home-bloc06_section {
+.how-it-works_section,
+.benefits_section,
+.security_section {
   position: relative;
 }
 
-.home-bloc01_section::before,
-.home-bloc01_section::after,
-.home-bloc03_section::before,
-.home-bloc03_section::after,
-.home-bloc06_section::before,
-.home-bloc06_section::after {
+.how-it-works_section::before,
+.how-it-works_section::after,
+.benefits_section::before,
+.benefits_section::after,
+.security_section::before,
+.security_section::after {
   content: "";
   /* Behind the section's own content, above its background. */
   z-index: 0;
@@ -32,9 +32,9 @@
   height: 5rem;
 }
 
-.home-bloc01_section::before,
-.home-bloc03_section::before,
-.home-bloc06_section::before {
+.how-it-works_section::before,
+.benefits_section::before,
+.security_section::before {
   top: 0;
   background-image: linear-gradient(
     to bottom,
@@ -43,9 +43,9 @@
   );
 }
 
-.home-bloc01_section::after,
-.home-bloc03_section::after,
-.home-bloc06_section::after {
+.how-it-works_section::after,
+.benefits_section::after,
+.security_section::after {
   bottom: 0;
   background-image: linear-gradient(
     to top,

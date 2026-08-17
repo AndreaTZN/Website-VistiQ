@@ -31,13 +31,13 @@ const STEPS = [
 ];
 ---
 
-<section id="Lifecycle" class="home-bloc02_section">
-  <div class="home-bloc02_pattern" aria-hidden="true"></div>
+<section id="Lifecycle" class="coverage_section">
+  <div class="coverage_pattern" aria-hidden="true"></div>
 
   <Corners />
 
   <div class="container-medium">
-    <div class="home-bloc02_header">
+    <div class="coverage_header">
       <Eyebrow label="End-to-end coverage" align="center" />
       <h2 class="heading is-centered">
         <span>End-to-end solution covering</span>
@@ -45,15 +45,15 @@ const STEPS = [
       </h2>
     </div>
 
-    <ol class="home-bloc02_steps">
+    <ol class="coverage_steps">
       {
         STEPS.map((step) => (
-          <li class="home-bloc02_step">
-            <div class="home-bloc02_step-line" />
-            <p class="home-bloc02_step-number">{step.number}</p>
-            <div class="home-bloc02_step-text">
-              <h3 class="home-bloc02_step-title">{step.title}</h3>
-              <div class="home-bloc02_step-body">
+          <li class="coverage_step">
+            <div class="coverage_step-line" />
+            <p class="coverage_step-number">{step.number}</p>
+            <div class="coverage_step-text">
+              <h3 class="coverage_step-title">{step.title}</h3>
+              <div class="coverage_step-body">
                 {step.paragraphs.map((paragraph) => (
                   <p>{paragraph}</p>
                 ))}

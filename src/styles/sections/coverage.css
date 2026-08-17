@@ -1,4 +1,4 @@
-.home-bloc02_section {
+.coverage_section {
   z-index: 0;
   background-color: var(--base-color--beige-dark);
   width: 100%;
@@ -8,11 +8,11 @@
   overflow: hidden;
 }
 
-.home-bloc02_pattern {
+.coverage_pattern {
   z-index: -1;
   pointer-events: none;
   opacity: 0.1;
-  /* The crosses are SVG nodes built by bloc02-pattern.js — no tiled image. */
+  /* The crosses are SVG nodes built by coverage-pattern.js — no tiled image. */
   position: absolute;
   inset: 0;
   -webkit-mask-image: radial-gradient(
@@ -29,13 +29,13 @@
   );
 }
 
-.home-bloc02_pattern-svg {
+.coverage_pattern-svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-.home-bloc02_pattern-cross {
+.coverage_pattern-cross {
   /* Rotation happens around each cross's own centre, not the SVG's. */
   transform-box: fill-box;
   transform-origin: 50% 50%;
@@ -48,7 +48,7 @@
 
 /* Header */
 
-.home-bloc02_header {
+.coverage_header {
   grid-row-gap: 1.5rem;
   flex-flow: column;
   align-items: center;
@@ -57,7 +57,7 @@
 
 /* Steps */
 
-.home-bloc02_steps {
+.coverage_steps {
   grid-column-gap: 1.5rem;
   grid-row-gap: 2.5rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -69,20 +69,20 @@
   display: grid;
 }
 
-.home-bloc02_step {
+.coverage_step {
   grid-row-gap: 1.5rem;
   flex-flow: column;
   align-items: flex-start;
   display: flex;
 }
 
-.home-bloc02_step-line {
+.coverage_step-line {
   background-color: #1d1e211a;
   width: 100%;
   height: 2px;
 }
 
-.home-bloc02_step-number {
+.coverage_step-number {
   color: var(--base-color--green);
   margin: 0;
   font-family: Facultyglyphic, Georgia, sans-serif;
@@ -91,11 +91,11 @@
   line-height: 1.5;
 }
 
-.home-bloc02_step-text {
+.coverage_step-text {
   margin-top: -0.75rem;
 }
 
-.home-bloc02_step-title {
+.coverage_step-title {
   color: var(--base-color--light-black);
   margin: 0;
   font-family: Inter, sans-serif;
@@ -104,38 +104,38 @@
   line-height: 1.5;
 }
 
-.home-bloc02_step-body {
+.coverage_step-body {
   color: #1d1e2199;
   font-size: 1rem;
   line-height: 1.5;
 }
 
-.home-bloc02_step-body p {
+.coverage_step-body p {
   margin: 0;
   /* The design separates the paragraphs with an empty line — one line-height. */
   white-space: pre-line;
 }
 
-.home-bloc02_step-body p + p {
+.coverage_step-body p + p {
   margin-top: 1.5em;
 }
 
 @media screen and (max-width: 767px) {
-  .home-bloc02_section {
+  .coverage_section {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
 
   /* Single column: the steps are prose now, too dense to split in two here. */
-  .home-bloc02_steps {
+  .coverage_steps {
     grid-template-columns: minmax(0, 1fr);
     margin-top: 2.5rem;
     text-align: center;
   }
-  .home-bloc02_step {
+  .coverage_step {
     align-items: center;
   }
-  .home-bloc02_step-title {
+  .coverage_step-title {
     font-size: 1.75rem;
     line-height: 1.2;
     margin-bottom: 1rem;

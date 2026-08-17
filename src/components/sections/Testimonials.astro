@@ -39,32 +39,32 @@ const TESTIMONIALS = [
 ];
 ---
 
-<section id="Investors" class="home-bloc05_section">
+<section id="Investors" class="testimonials_section">
   <div class="container-medium">
-    <div class="home-bloc05_header">
+    <div class="testimonials_header">
       <Eyebrow label="They trust us" line />
       <h2 class="heading">Trusted by leading private markets investors</h2>
     </div>
 
     <div
-      class="home-bloc05_carousel"
+      class="testimonials_carousel"
       data-testimonials
       aria-roledescription="carousel"
       aria-label="Customer testimonials"
     >
-      <div class="home-bloc05_content">
-        <div class="home-bloc05_texts">
+      <div class="testimonials_content">
+        <div class="testimonials_texts">
           {
             TESTIMONIALS.map((item, index) => (
               <div
-                class="home-bloc05_text"
+                class="testimonials_text"
                 data-testimonial-text
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${TESTIMONIALS.length}`}
                 aria-hidden={index === 0 ? "false" : "true"}
               >
                 <img
-                  class="home-bloc05_logo"
+                  class="testimonials_logo"
                   data-testimonial-logo
                   src={item.logo}
                   alt={item.logoAlt}
@@ -72,43 +72,43 @@ const TESTIMONIALS = [
                   height="48"
                   loading="lazy"
                 />
-                <p class="home-bloc05_quote" data-testimonial-quote>
+                <p class="testimonials_quote" data-testimonial-quote>
                   {item.quote}
                 </p>
-                <div class="home-bloc05_author" data-testimonial-author>
-                  <p class="home-bloc05_author-name">{item.name}</p>
-                  <p class="home-bloc05_author-role">{item.role}</p>
+                <div class="testimonials_author" data-testimonial-author>
+                  <p class="testimonials_author-name">{item.name}</p>
+                  <p class="testimonials_author-role">{item.role}</p>
                 </div>
               </div>
             ))
           }
         </div>
 
-        <div class="home-bloc05_dots">
+        <div class="testimonials_dots">
           {
             TESTIMONIALS.map((_, index) => (
               <button
                 type="button"
-                class="home-bloc05_dot"
+                class="testimonials_dot"
                 data-testimonial-dot
                 aria-label={`Show testimonial ${index + 1}`}
               >
-                <span class="home-bloc05_dot-fill" data-testimonial-dot-fill />
+                <span class="testimonials_dot-fill" data-testimonial-dot-fill />
               </button>
             ))
           }
         </div>
       </div>
 
-      <div class="home-bloc05_pictures">
+      <div class="testimonials_pictures">
         {
           TESTIMONIALS.map((item, index) => (
             <div
-              class="home-bloc05_picture"
+              class="testimonials_picture"
               data-testimonial-picture
               aria-hidden={index === 0 ? "false" : "true"}
             >
-              <div class="home-bloc05_picture-inner">
+              <div class="testimonials_picture-inner">
                 <Image
                   src={item.portrait}
                   alt={item.portraitAlt}

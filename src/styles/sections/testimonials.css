@@ -1,6 +1,6 @@
 /* "They trust us" */
 
-.home-bloc05_section {
+.testimonials_section {
   background-color: var(--base-color--beige-dark);
   width: 100%;
   padding-top: 6.25rem;
@@ -11,7 +11,7 @@
 
 /* Header */
 
-.home-bloc05_header {
+.testimonials_header {
   grid-row-gap: 1.5rem;
   flex-flow: column;
   align-items: flex-start;
@@ -21,7 +21,7 @@
 /* Carousel */
 
 /* The two columns are siblings now, so the split lives on the carousel. */
-.home-bloc05_carousel {
+.testimonials_carousel {
   grid-column-gap: 2rem;
   grid-template-columns: minmax(0, 600fr) minmax(0, 377fr);
   background-color: #4a4441;
@@ -30,7 +30,7 @@
   position: relative;
 }
 
-.home-bloc05_content {
+.testimonials_content {
   grid-row-gap: 2rem;
   flex-flow: column;
   align-items: flex-start;
@@ -44,29 +44,29 @@
   with the tallest one driving the height — that avoids a jump between quotes
   of different lengths.
 */
-.home-bloc05_texts,
-.home-bloc05_pictures {
+.testimonials_texts,
+.testimonials_pictures {
   display: grid;
   position: relative;
 }
 
-.home-bloc05_text,
-.home-bloc05_picture {
+.testimonials_text,
+.testimonials_picture {
   grid-area: 1 / 1;
 }
 
-.home-bloc05_text {
+.testimonials_text {
   flex-flow: column;
   align-items: flex-start;
   display: flex;
 }
 
-.home-bloc05_logo {
+.testimonials_logo {
   width: 7.3rem;
   height: auto;
 }
 
-.home-bloc05_quote {
+.testimonials_quote {
   margin-top: 3.5rem;
   margin-bottom: 2rem;
   color: var(--base-color--white);
@@ -77,20 +77,20 @@
 }
 
 /* SplitText output: lines clip so the words can rise into view. */
-.home-bloc05_quote-line {
+.testimonials_quote-line {
   overflow: hidden;
 }
 
-.home-bloc05_quote-word {
+.testimonials_quote-word {
   display: inline-block;
 }
 
-.home-bloc05_author {
+.testimonials_author {
   flex-flow: column;
   display: flex;
 }
 
-.home-bloc05_author-name {
+.testimonials_author-name {
   color: var(--base-color--white);
   margin: 0;
   font-size: 1.375rem;
@@ -98,7 +98,7 @@
   line-height: 1.5;
 }
 
-.home-bloc05_author-role {
+.testimonials_author-role {
   color: #ffffff99;
   margin: 0;
   font-size: 1rem;
@@ -107,7 +107,7 @@
 
 /* Portrait */
 
-.home-bloc05_picture {
+.testimonials_picture {
   align-self: start;
   width: 100%;
   padding: 1.25rem;
@@ -115,7 +115,7 @@
 }
 
 /* Fills the padded square so the portrait keeps the inset frame. */
-.home-bloc05_picture-inner {
+.testimonials_picture-inner {
   width: 100%;
   height: 100%;
   position: relative;
@@ -123,14 +123,14 @@
 
 /* Progress bars */
 
-.home-bloc05_dots {
+.testimonials_dots {
   grid-column-gap: 0.5rem;
   /* Pinned to the bottom of the content panel, below the stacked quotes. */
   margin-top: auto;
   display: flex;
 }
 
-.home-bloc05_dot {
+.testimonials_dot {
   cursor: pointer;
   background-color: #fff3;
   border: 0;
@@ -143,7 +143,7 @@
 }
 
 /* Scaled from the left by GSAP to show how long the slide has left. */
-.home-bloc05_dot-fill {
+.testimonials_dot-fill {
   transform-origin: 0 50%;
   background-color: var(--base-color--white);
   width: 100%;
@@ -156,36 +156,36 @@
 
 /* Mobile: one column, portrait stacked above the text. */
 @media screen and (max-width: 767px) {
-  .home-bloc05_section {
+  .testimonials_section {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
 
-  .home-bloc05_carousel {
+  .testimonials_carousel {
     grid-template-columns: minmax(0, 1fr);
     margin-top: 2.5rem;
   }
 
   /* Portrait first, then the text panel below it. */
-  .home-bloc05_pictures {
+  .testimonials_pictures {
     order: -1;
   }
 
-  .home-bloc05_content {
+  .testimonials_content {
     grid-row-gap: 2rem;
     padding: 1rem;
   }
 
-  .home-bloc05_text {
+  .testimonials_text {
     grid-row-gap: 2rem;
   }
 
-  .home-bloc05_picture {
+  .testimonials_picture {
     padding: 1rem;
   }
 
   /* The 2rem gaps above replace the desktop margins. */
-  .home-bloc05_quote {
+  .testimonials_quote {
     margin-top: 0;
     margin-bottom: 0;
   }

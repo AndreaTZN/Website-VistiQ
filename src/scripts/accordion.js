@@ -92,7 +92,7 @@ function setupAccordion(accordion) {
  * height, so they collapse to 0 without needing a fixed value in CSS.
  *
  * Below 768px the accordion becomes a scroll-snap slider with every panel
- * open (see bloc03.css), so this behaviour is scoped to desktop through
+ * open (see benefits.css), so this behaviour is scoped to desktop through
  * matchMedia — it would otherwise animate those panels back to height: 0.
  * The revert on exit clears the inline heights GSAP left behind.
  */

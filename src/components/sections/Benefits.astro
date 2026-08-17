@@ -4,12 +4,12 @@ import { Image } from "astro:assets";
 import Corners from "../ui/Corners.astro";
 import Eyebrow from "../ui/Eyebrow.astro";
 
-import askAnything from "../../assets/bloc03/ask-anything.png";
-import automatic from "../../assets/bloc03/automatic.png";
-import collab from "../../assets/bloc03/collab.png";
-import connectors from "../../assets/bloc03/connectors.png";
-import portfolio from "../../assets/bloc03/portfolio.png";
-import reporting from "../../assets/bloc03/reporting.png";
+import askAnything from "../../assets/benefits/ask-anything.png";
+import automatic from "../../assets/benefits/automatic.png";
+import collab from "../../assets/benefits/collab.png";
+import connectors from "../../assets/benefits/connectors.png";
+import portfolio from "../../assets/benefits/portfolio.png";
+import reporting from "../../assets/benefits/reporting.png";
 
 const ITEMS = [
   {
@@ -54,24 +54,24 @@ const ITEMS = [
 ];
 ---
 
-<section id="Solutions" class="home-bloc03_section">
+<section id="Solutions" class="benefits_section">
   <div class="container-medium">
-    <div class="home-bloc03_header">
+    <div class="benefits_header">
       <Eyebrow label="What it does for you" line />
       <h2 class="heading">10x your investment team</h2>
     </div>
 
-    <div class="home-bloc03_layout">
-      <div class="home-bloc03_accordion" data-accordion>
+    <div class="benefits_layout">
+      <div class="benefits_accordion" data-accordion>
         {
           ITEMS.map((item, index) => (
-            <div class="home-bloc03_item" data-accordion-item>
+            <div class="benefits_item" data-accordion-item>
               {/* Per-slide visual, mobile only — the desktop layout uses the
                   single shared one below and hides these. */}
-              <div class="home-bloc03_item-visual" aria-hidden="true">
+              <div class="benefits_item-visual" aria-hidden="true">
                 {item.visual && (
                   <Image
-                    class="home-bloc03_illu"
+                    class="benefits_illu"
                     src={item.visual}
                     alt=""
                     widths={[652, 1304]}
@@ -82,38 +82,38 @@ const ITEMS = [
                 <Corners />
                 <div class="noise" />
               </div>
-              <div class="home-bloc03_item-line" />
-              <h3 class="home-bloc03_item-heading">
+              <div class="benefits_item-line" />
+              <h3 class="benefits_item-heading">
                 <button
                   type="button"
-                  class="home-bloc03_item-trigger"
+                  class="benefits_item-trigger"
                   data-accordion-trigger
                   aria-expanded={index === 0 ? "true" : "false"}
-                  aria-controls={`bloc03-panel-${index}`}
-                  id={`bloc03-trigger-${index}`}
+                  aria-controls={`benefits-panel-${index}`}
+                  id={`benefits-trigger-${index}`}
                 >
-                  <span class="home-bloc03_item-eyebrow">
+                  <span class="benefits_item-eyebrow">
                     <span
-                      class="home-bloc03_item-square"
+                      class="benefits_item-square"
                       data-accordion-square
                       aria-hidden="true"
                     />
-                    <span class="home-bloc03_item-eyebrow-label">
+                    <span class="benefits_item-eyebrow-label">
                       {item.eyebrow}
                     </span>
                   </span>
-                  <span class="home-bloc03_item-title">{item.title}</span>
+                  <span class="benefits_item-title">{item.title}</span>
                 </button>
               </h3>
               {item.body && (
                 <div
-                  class="home-bloc03_item-panel"
+                  class="benefits_item-panel"
                   data-accordion-panel
-                  id={`bloc03-panel-${index}`}
+                  id={`benefits-panel-${index}`}
                   role="region"
-                  aria-labelledby={`bloc03-trigger-${index}`}
+                  aria-labelledby={`benefits-trigger-${index}`}
                 >
-                  <p class="home-bloc03_item-body">{item.body}</p>
+                  <p class="benefits_item-body">{item.body}</p>
                 </div>
               )}
             </div>
@@ -121,7 +121,7 @@ const ITEMS = [
         }
       </div>
 
-      <div class="home-bloc03_visual" data-accordion-visual>
+      <div class="benefits_visual" data-accordion-visual>
         {
           /* One illustration per item, stacked; accordion.js cross-fades to
             the one matching the open panel. */
@@ -130,7 +130,7 @@ const ITEMS = [
           ITEMS.map((item, index) =>
             item.visual ? (
               <Image
-                class="home-bloc03_illu"
+                class="benefits_illu"
                 data-accordion-illu={index}
                 src={item.visual}
                 alt=""

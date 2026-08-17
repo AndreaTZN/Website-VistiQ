@@ -1,7 +1,7 @@
 import gsap from "gsap";
 
 /**
- * Bloc02 background pattern — the crosses turn to face the cursor.
+ * Coverage background pattern — the crosses turn to face the cursor.
  *
  * The pattern is one <svg> holding a real cross per grid cell, built on init so
  * the crosses are the pattern itself, not an enhancement layered over a tiled
@@ -27,7 +27,7 @@ const MAX_ANGLE = 45;
 function buildGrid(pattern, width, height) {
   const svgNS = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(svgNS, "svg");
-  svg.setAttribute("class", "home-bloc02_pattern-svg");
+  svg.setAttribute("class", "coverage_pattern-svg");
   svg.setAttribute("width", String(width));
   svg.setAttribute("height", String(height));
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
@@ -51,7 +51,7 @@ function buildGrid(pattern, width, height) {
       const cy = offsetY + row * STEP;
 
       const path = document.createElementNS(svgNS, "path");
-      path.setAttribute("class", "home-bloc02_pattern-cross");
+      path.setAttribute("class", "coverage_pattern-cross");
       path.setAttribute(
         "d",
         `M${cx} ${cy - arm}V${cy + arm}M${cx - arm} ${cy}H${cx + arm}`,
@@ -70,9 +70,9 @@ function buildGrid(pattern, width, height) {
   return crosses;
 }
 
-export function initBloc02Pattern() {
-  const section = document.querySelector(".home-bloc02_section");
-  const pattern = section?.querySelector(".home-bloc02_pattern");
+export function initCoveragePattern() {
+  const section = document.querySelector(".coverage_section");
+  const pattern = section?.querySelector(".coverage_pattern");
   if (!section || !pattern) return;
 
   let crosses = [];

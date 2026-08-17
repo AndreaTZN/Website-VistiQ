@@ -40,7 +40,7 @@ const AGENT_NOTIFICATIONS = [
     ],
   },
   {
-    icon: "/images/bloc04/warning-triangle.svg",
+    icon: "/images/architecture/warning-triangle.svg",
     iconClass: "is-warning",
     title: "Monitoring agent",
     time: "9m ago",
@@ -73,7 +73,7 @@ const SIGNAL_NOTIFICATIONS = [
 
 /**
  * Fan lines of the "Memory" visual, drawn bottom → top (each path starts at a
- * tag and ends under the chip). The droplets in bloc04-cards.js follow them
+ * tag and ends under the chip). The droplets in architecture-cards.js follow them
  * with motionPath from start:1 to end:0, i.e. pouring chip → tags.
  */
 const TENTACLE_PATHS = [
@@ -119,9 +119,9 @@ const CARDS = [
 ];
 ---
 
-<section id="Data-layer" class="home-bloc04_section">
+<section id="Data-layer" class="architecture_section">
   <div class="container-medium">
-    <div class="home-bloc04_header">
+    <div class="architecture_header">
       <Eyebrow label="How it runs" line />
       <h2 class="heading">
         <span>One governed data layer.</span>
@@ -129,16 +129,16 @@ const CARDS = [
       </h2>
     </div>
 
-    <div class="home-bloc04_cards">
+    <div class="architecture_cards">
       {
         CARDS.map((card) => (
-          <div class={`home-bloc04_card ${card.modifier}`}>
-            <div class="home-bloc04_card-visual">
+          <div class={`architecture_card ${card.modifier}`}>
+            <div class="architecture_card-visual">
               {card.modifier === "is-sources" && (
-                <div class="home-bloc04_sources">
+                <div class="architecture_sources">
                   {DATA_SOURCES.map((source) => (
-                    <span class="home-bloc04_source">
-                      <span class="home-bloc04_source-logo">
+                    <span class="architecture_source">
+                      <span class="architecture_source-logo">
                         <img
                           src={`/images/integrations/${source.logo}.png`}
                           alt=""
@@ -147,13 +147,13 @@ const CARDS = [
                           height="20"
                         />
                       </span>
-                      <span class="home-bloc04_source-name">{source.name}</span>
+                      <span class="architecture_source-name">{source.name}</span>
                       <span
-                        class="home-bloc04_source-line"
+                        class="architecture_source-line"
                         aria-hidden="true"
                       />
                       <svg
-                        class="home-bloc04_source-check"
+                        class="architecture_source-check"
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="16"
@@ -174,17 +174,17 @@ const CARDS = [
                 </div>
               )}
               {card.modifier === "is-memory" && (
-                <div class="home-bloc04_memory">
-                  <div class="home-bloc04_memory-chip">
-                    <span class="home-bloc04_memory-chip-inner">
+                <div class="architecture_memory">
+                  <div class="architecture_memory-chip">
+                    <span class="architecture_memory-chip-inner">
                       <img
-                        src="/images/bloc04/iq-logo.svg"
+                        src="/images/architecture/iq-logo.svg"
                         alt=""
                         loading="lazy"
                       />
                     </span>
                   </div>
-                  <span class="home-bloc04_memory-tentacle" aria-hidden="true">
+                  <span class="architecture_memory-tentacle" aria-hidden="true">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 340 80"
@@ -192,21 +192,21 @@ const CARDS = [
                     >
                       <g stroke="#fff" stroke-linecap="round" opacity=".8">
                         {TENTACLE_PATHS.map((d) => (
-                          <path class="home-bloc04_memory-line" d={d} />
+                          <path class="architecture_memory-line" d={d} />
                         ))}
                       </g>
                       <g fill="#2aa555">
                         {TENTACLE_PATHS.map((_, i) => (
                           <>
                             <circle
-                              class="home-bloc04_memory-drop"
+                              class="architecture_memory-drop"
                               data-line={i}
                               r="2.2"
                               cx="-10"
                               cy="-10"
                             />
                             <circle
-                              class="home-bloc04_memory-drop"
+                              class="architecture_memory-drop"
                               data-line={i}
                               r="1.5"
                               cx="-10"
@@ -217,22 +217,22 @@ const CARDS = [
                       </g>
                     </svg>
                   </span>
-                  <div class="home-bloc04_memory-tags">
+                  <div class="architecture_memory-tags">
                     {MEMORY_TAGS.map((tag) => (
-                      <span class="home-bloc04_memory-tag">
+                      <span class="architecture_memory-tag">
                         <img
-                          class="home-bloc04_memory-tag-logo"
-                          src={`/images/bloc04/${tag.logo}.svg`}
+                          class="architecture_memory-tag-logo"
+                          src={`/images/architecture/${tag.logo}.svg`}
                           alt=""
                           loading="lazy"
                         />
                         {tag.label}
                         <span
-                          class="home-bloc04_memory-spinner"
+                          class="architecture_memory-spinner"
                           aria-hidden="true"
                         >
                           <img
-                            src="/images/bloc04/spinner.svg"
+                            src="/images/architecture/spinner.svg"
                             alt=""
                             loading="lazy"
                           />
@@ -243,36 +243,36 @@ const CARDS = [
                 </div>
               )}
               {card.modifier === "is-informations" && (
-                <div class="home-bloc04_agents is-signals">
-                  <div class="home-bloc04_agents-stack">
-                    <span class="home-bloc04_agents-ghost" aria-hidden="true" />
+                <div class="architecture_agents is-signals">
+                  <div class="architecture_agents-stack">
+                    <span class="architecture_agents-ghost" aria-hidden="true" />
                     {SIGNAL_NOTIFICATIONS.map((n) => (
-                      <div class="home-bloc04_agents-card">
-                        <span class="home-bloc04_agents-icon">
+                      <div class="architecture_agents-card">
+                        <span class="architecture_agents-icon">
                           <img
-                            src="/images/bloc04/bell.svg"
+                            src="/images/architecture/bell.svg"
                             alt=""
                             loading="lazy"
                           />
                         </span>
-                        <div class="home-bloc04_agents-text">
-                          <div class="home-bloc04_agents-h1">
-                            <span class="home-bloc04_agents-h1-lines">
+                        <div class="architecture_agents-text">
+                          <div class="architecture_agents-h1">
+                            <span class="architecture_agents-h1-lines">
                               {n.title.map((line) => (
                                 <span>{line}</span>
                               ))}
                             </span>
                             <span
-                              class="home-bloc04_agents-unread"
+                              class="architecture_agents-unread"
                               aria-hidden="true"
                             />
                           </div>
-                          <p class="home-bloc04_agents-meta">
+                          <p class="architecture_agents-meta">
                             {n.meta.map((part, i) => (
                               <>
                                 {i > 0 && (
                                   <span
-                                    class="home-bloc04_agents-sep"
+                                    class="architecture_agents-sep"
                                     aria-hidden="true"
                                   />
                                 )}
@@ -287,16 +287,16 @@ const CARDS = [
                 </div>
               )}
               {card.modifier === "is-agents" && (
-                <div class="home-bloc04_agents">
-                  <div class="home-bloc04_agents-head">
-                    <p class="home-bloc04_agents-title">Agents running (8)</p>
-                    <span class="home-bloc04_agents-live">
+                <div class="architecture_agents">
+                  <div class="architecture_agents-head">
+                    <p class="architecture_agents-title">Agents running (8)</p>
+                    <span class="architecture_agents-live">
                       <span
-                        class="home-bloc04_agents-live-dot"
+                        class="architecture_agents-live-dot"
                         aria-hidden="true"
                       >
                         <img
-                          src="/images/bloc04/live-dot.svg"
+                          src="/images/architecture/live-dot.svg"
                           alt=""
                           loading="lazy"
                         />
@@ -304,32 +304,32 @@ const CARDS = [
                       Running 24/7
                     </span>
                   </div>
-                  <div class="home-bloc04_agents-stack">
-                    <span class="home-bloc04_agents-ghost" aria-hidden="true" />
+                  <div class="architecture_agents-stack">
+                    <span class="architecture_agents-ghost" aria-hidden="true" />
                     {AGENT_NOTIFICATIONS.map((n) => (
-                      <div class="home-bloc04_agents-card">
-                        <span class={`home-bloc04_agents-icon ${n.iconClass}`}>
+                      <div class="architecture_agents-card">
+                        <span class={`architecture_agents-icon ${n.iconClass}`}>
                           <img src={n.icon} alt="" loading="lazy" />
                         </span>
-                        <div class="home-bloc04_agents-text">
-                          <div class="home-bloc04_agents-h1">
+                        <div class="architecture_agents-text">
+                          <div class="architecture_agents-h1">
                             <span>{n.title}</span>
                             <span
-                              class="home-bloc04_agents-unread"
+                              class="architecture_agents-unread"
                               aria-hidden="true"
                             />
                           </div>
-                          <p class="home-bloc04_agents-meta">
+                          <p class="architecture_agents-meta">
                             {n.time}
                             <span
-                              class="home-bloc04_agents-sep"
+                              class="architecture_agents-sep"
                               aria-hidden="true"
                             />
                             {n.tag}
                           </p>
-                          <p class="home-bloc04_agents-lead">{n.lead}</p>
+                          <p class="architecture_agents-lead">{n.lead}</p>
                           {n.lines.map((line) => (
-                            <p class="home-bloc04_agents-line">{line}</p>
+                            <p class="architecture_agents-line">{line}</p>
                           ))}
                         </div>
                       </div>
@@ -338,15 +338,15 @@ const CARDS = [
                 </div>
               )}
             </div>
-            <div class="home-bloc04_card-text">
-              <h3 class="home-bloc04_card-title">{card.title}</h3>
-              <p class="home-bloc04_card-body">{card.body}</p>
+            <div class="architecture_card-text">
+              <h3 class="architecture_card-title">{card.title}</h3>
+              <p class="architecture_card-body">{card.body}</p>
             </div>
           </div>
         ))
       }
     </div>
   </div>
-  <div class="home-bloc04_texture" aria-hidden="true"></div>
+  <div class="architecture_texture" aria-hidden="true"></div>
   <div class="noise"></div>
 </section>

@@ -43,8 +43,8 @@ export function initTestimonials() {
       return quote
         ? SplitText.create(quote, {
             type: "lines,words",
-            linesClass: "home-bloc05_quote-line",
-            wordsClass: "home-bloc05_quote-word",
+            linesClass: "testimonials_quote-line",
+            wordsClass: "testimonials_quote-word",
           })
         : null;
     });

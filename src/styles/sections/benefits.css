@@ -1,6 +1,6 @@
 /* "What it does for you" */
 
-.home-bloc03_section {
+.benefits_section {
   background-color: var(--base-color--white);
   width: 100%;
   padding-top: 6.25rem;
@@ -9,7 +9,7 @@
 
 /* Header */
 
-.home-bloc03_header {
+.benefits_header {
   grid-row-gap: 1.5rem;
   flex-flow: column;
   align-items: flex-start;
@@ -18,7 +18,7 @@
 
 /* Layout */
 
-.home-bloc03_layout {
+.benefits_layout {
   grid-column-gap: 2.125rem;
   grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
   align-items: start;
@@ -28,25 +28,25 @@
 
 /* Accordion */
 
-.home-bloc03_item-line {
+.benefits_item-line {
   background-color: #1d1e211a;
   width: 100%;
   height: 1px;
   transition: background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.home-bloc03_item.is-open .home-bloc03_item-line {
+.benefits_item.is-open .benefits_item-line {
   background-color: var(--base-color--green);
 }
 
-.home-bloc03_item-heading {
+.benefits_item-heading {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   font-weight: 400;
 }
 
-.home-bloc03_item-trigger {
+.benefits_item-trigger {
   grid-row-gap: 0.75rem;
   cursor: pointer;
   text-align: left;
@@ -62,17 +62,17 @@
   transition: background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.home-bloc03_item.is-open .home-bloc03_item-trigger {
+.benefits_item.is-open .benefits_item-trigger {
   background-color: #f7f7f7;
 }
 
-.home-bloc03_item-eyebrow {
+.benefits_item-eyebrow {
   grid-column-gap: 0.75rem;
   align-items: center;
   display: flex;
 }
 
-.home-bloc03_item-square {
+.benefits_item-square {
   background-color: #1d1e2133;
   flex: none;
   width: 0.75rem;
@@ -80,11 +80,11 @@
   transition: background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
-.home-bloc03_item.is-open .home-bloc03_item-square {
+.benefits_item.is-open .benefits_item-square {
   background-color: var(--base-color--green);
 }
 
-.home-bloc03_item-eyebrow-label {
+.benefits_item-eyebrow-label {
   color: #1d1e2199;
   letter-spacing: 0.0175rem;
   text-transform: uppercase;
@@ -93,7 +93,7 @@
   line-height: 1.5;
 }
 
-.home-bloc03_item-title {
+.benefits_item-title {
   color: var(--base-color--light-black);
   font-size: 1.375rem;
   font-weight: 500;
@@ -104,13 +104,13 @@
   The panel is collapsed by default so it stays hidden before the script runs;
   GSAP animates its height and the .is-open class holds the open state.
 */
-.home-bloc03_item-panel {
+.benefits_item-panel {
   background-color: #f7f7f7;
   height: 0;
   overflow: hidden;
 }
 
-.home-bloc03_item-body {
+.benefits_item-body {
   color: #1d1e2199;
   margin: 0;
   padding: 0 1.5rem 1.5rem;
@@ -121,7 +121,7 @@
 /* Visual */
 
 /* One per slide, only shown in the mobile slider (see the media query). */
-.home-bloc03_item-visual {
+.benefits_item-visual {
   display: none;
 }
 
@@ -130,7 +130,7 @@
   spot and cross-faded by accordion.js, hence the absolute positioning; the
   mobile per-slide copy is the only child of its square so it just fills it.
 */
-.home-bloc03_illu {
+.benefits_illu {
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -141,12 +141,12 @@
 
 /* Hidden until accordion.js fades the active one in, so the stack does not
    flash all mockups at once on first paint. */
-.home-bloc03_visual .home-bloc03_illu {
+.benefits_visual .benefits_illu {
   opacity: 0;
   visibility: hidden;
 }
 
-.home-bloc03_visual {
+.benefits_visual {
   /* --corners-z lifts the markers above this visual's noise overlay. */
   --corners-size: 0.75rem;
   --corners-offset: 0.75rem;
@@ -164,30 +164,30 @@
 }
 
 @media screen and (max-width: 767px) {
-  .home-bloc03_section {
+  .benefits_section {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
 
-  .home-bloc03_item-trigger {
+  .benefits_item-trigger {
     padding: 1.25rem;
   }
 
-  .home-bloc03_item-body {
+  .benefits_item-body {
     padding: 0 1.25rem 1.25rem;
   }
-  .home-bloc03_layout {
+  .benefits_layout {
     grid-row-gap: 2.5rem;
     grid-template-columns: minmax(0, 1fr);
     margin-left: -1rem;
     margin-right: -1rem;
   }
 
-  .home-bloc03_visual {
+  .benefits_visual {
     order: -1;
   }
 
-  .home-bloc03_accordion {
+  .benefits_accordion {
     grid-column-gap: 1rem;
     grid-auto-columns: 92%;
     grid-auto-flow: column;
@@ -201,21 +201,21 @@
     scroll-padding-right: 1rem;
   }
 
-  .home-bloc03_accordion::-webkit-scrollbar {
+  .benefits_accordion::-webkit-scrollbar {
     display: none;
   }
 
-  .home-bloc03_item {
+  .benefits_item {
     background-color: #f7f7f7;
     scroll-snap-align: start;
   }
 
   /* Each card carries its own visual; the shared one is desktop-only. */
-  .home-bloc03_visual {
+  .benefits_visual {
     display: none;
   }
 
-  .home-bloc03_item-visual {
+  .benefits_item-visual {
     --corners-size: 0.5rem;
     --corners-offset: 0.75rem;
     --corners-z: 2;
@@ -228,37 +228,37 @@
   }
 
   /* Mirrors VISUAL_COLORS in accordion.js, which does not run at this width. */
-  .home-bloc03_item:nth-child(1) .home-bloc03_item-visual {
+  .benefits_item:nth-child(1) .benefits_item-visual {
     background-color: var(--base-color--sage);
   }
 
-  .home-bloc03_item:nth-child(2) .home-bloc03_item-visual {
+  .benefits_item:nth-child(2) .benefits_item-visual {
     background-color: #eef1f8;
   }
 
-  .home-bloc03_item:nth-child(3) .home-bloc03_item-visual {
+  .benefits_item:nth-child(3) .benefits_item-visual {
     background-color: #e6e3dd;
   }
 
-  .home-bloc03_item:nth-child(4) .home-bloc03_item-visual {
+  .benefits_item:nth-child(4) .benefits_item-visual {
     background-color: #e9e4ef;
   }
 
-  .home-bloc03_item:nth-child(5) .home-bloc03_item-visual {
+  .benefits_item:nth-child(5) .benefits_item-visual {
     background-color: #e3ebe6;
   }
 
   /* Every card shows its text: there is no open/closed state in this mode. */
-  .home-bloc03_item-panel {
+  .benefits_item-panel {
     height: auto;
   }
 
-  .home-bloc03_item-line,
-  .home-bloc03_item.is-open .home-bloc03_item-trigger {
+  .benefits_item-line,
+  .benefits_item.is-open .benefits_item-trigger {
     background-color: #0000;
   }
 
-  .home-bloc03_item-square {
+  .benefits_item-square {
     background-color: var(--base-color--green);
   }
 }

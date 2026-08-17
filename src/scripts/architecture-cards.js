@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(DrawSVGPlugin, MotionPathPlugin, ScrollTrigger);
 
 /**
- * Bloc04 — every card visual in the section lives here.
+ * Architecture — every card visual in the section lives here.
  *
  *   1. "Data sources"   → rows pop from the middle out, each check draws itself
  *   2. "Agents"         → notification cards stack in, live dot keeps pulsing
@@ -35,11 +35,11 @@ function onEnter(card, build, { delay = 0 } = {}) {
  * ------------------------------------------------------------------ */
 
 function initSourcesCard(card) {
-  const rows = gsap.utils.toArray(card.querySelectorAll(".home-bloc04_source"));
+  const rows = gsap.utils.toArray(card.querySelectorAll(".architecture_source"));
   if (!rows.length) return;
 
   const checks = gsap.utils.toArray(
-    card.querySelectorAll(".home-bloc04_source-check path"),
+    card.querySelectorAll(".architecture_source-check path"),
   );
 
   gsap.set(rows, { autoAlpha: 0, scale: 0.8 });
@@ -74,24 +74,24 @@ function initSourcesCard(card) {
  * ------------------------------------------------------------------ */
 
 /**
- * Both cards use the same `.home-bloc04_agents-card` stack, so they share one
+ * Both cards use the same `.architecture_agents-card` stack, so they share one
  * builder. `delay` offsets the signals card so the two columns don't animate
  * in lockstep when they enter the viewport together.
  */
 function initStackCard(card, { delay = 0 } = {}) {
   const notifications = gsap.utils.toArray(
-    card.querySelectorAll(".home-bloc04_agents-card"),
+    card.querySelectorAll(".architecture_agents-card"),
   );
   if (!notifications.length) return;
 
-  const head = card.querySelector(".home-bloc04_agents-head");
-  const ghost = card.querySelector(".home-bloc04_agents-ghost");
+  const head = card.querySelector(".architecture_agents-head");
+  const ghost = card.querySelector(".architecture_agents-ghost");
 
   if (head) gsap.set(head, { autoAlpha: 0, y: -8 });
   if (ghost) gsap.set(ghost, { autoAlpha: 0, y: 10, scale: 0.95 });
   gsap.set(notifications, { autoAlpha: 0, y: 18 });
   // Unread dots pop in after their card has settled.
-  gsap.set(card.querySelectorAll(".home-bloc04_agents-unread"), { scale: 0 });
+  gsap.set(card.querySelectorAll(".architecture_agents-unread"), { scale: 0 });
 
   onEnter(
     card,
@@ -108,7 +108,7 @@ function initStackCard(card, { delay = 0 } = {}) {
         tl.to(ghost, { autoAlpha: 1, y: 0, scale: 1, duration: 0.4 }, "-=0.3");
 
       tl.to(
-        card.querySelectorAll(".home-bloc04_agents-unread"),
+        card.querySelectorAll(".architecture_agents-unread"),
         { scale: 1, duration: 0.4, ease: "back.out(2)", stagger: 0.12 },
         "-=0.5",
       );
@@ -118,7 +118,7 @@ function initStackCard(card, { delay = 0 } = {}) {
 
   // The "Running 24/7" dot keeps breathing once the card is in — it signals
   // live activity, so it is not part of the entrance timeline.
-  const liveDot = card.querySelector(".home-bloc04_agents-live-dot");
+  const liveDot = card.querySelector(".architecture_agents-live-dot");
   if (liveDot) {
     gsap.to(liveDot, {
       scale: 1.18,
@@ -145,12 +145,12 @@ function initStackCard(card, { delay = 0 } = {}) {
  *   downwards from it, then the tags rise in with a stagger.
  */
 function initMemoryCard(root) {
-  const chip = root.querySelector(".home-bloc04_memory-chip");
-  const tentacle = root.querySelector(".home-bloc04_memory-tentacle");
+  const chip = root.querySelector(".architecture_memory-chip");
+  const tentacle = root.querySelector(".architecture_memory-tentacle");
   const tags = gsap.utils.toArray(
-    root.querySelectorAll(".home-bloc04_memory-tag"),
+    root.querySelectorAll(".architecture_memory-tag"),
   );
-  const spinners = root.querySelectorAll(".home-bloc04_memory-spinner img");
+  const spinners = root.querySelectorAll(".architecture_memory-spinner img");
 
   spinners.forEach((spinner) => {
     gsap.to(spinner, {
@@ -167,14 +167,14 @@ function initMemoryCard(root) {
   // and the fades keep them from popping in/out at the extremities. Two
   // drops per line with random phase/speed keep the streams out of sync.
   const lines = gsap.utils.toArray(
-    root.querySelectorAll(".home-bloc04_memory-line"),
+    root.querySelectorAll(".architecture_memory-line"),
   );
 
   // Paused here, played from the entrance's onComplete — the drops only make
   // sense once the lines they ride are fully drawn.
   const dropLoops = [];
 
-  root.querySelectorAll(".home-bloc04_memory-drop").forEach((drop) => {
+  root.querySelectorAll(".architecture_memory-drop").forEach((drop) => {
     const line = lines[Number(drop.dataset.line)];
     if (!line) return;
 
@@ -220,7 +220,7 @@ function initMemoryCard(root) {
   gsap.set(tags, { autoAlpha: 0, y: 14 });
   // The loops fade each drop in themselves; keep them hidden until then so
   // they don't sit parked at cx/cy once the reveal guard lifts.
-  gsap.set(root.querySelectorAll(".home-bloc04_memory-drop"), { autoAlpha: 0 });
+  gsap.set(root.querySelectorAll(".architecture_memory-drop"), { autoAlpha: 0 });
 
   onEnter(root, (tl) => {
     tl.to(chip, {
@@ -250,19 +250,19 @@ function initMemoryCard(root) {
  * Entry point
  * ------------------------------------------------------------------ */
 
-export function initBloc04Cards() {
-  const section = document.querySelector(".home-bloc04_section");
+export function initArchitectureCards() {
+  const section = document.querySelector(".architecture_section");
   if (!section) return;
 
   // Same guard as the other modules: the cards simply stay static.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const sources = section.querySelector(".home-bloc04_card.is-sources");
-  const agents = section.querySelector(".home-bloc04_card.is-agents");
-  const signals = section.querySelector(".home-bloc04_card.is-informations");
+  const sources = section.querySelector(".architecture_card.is-sources");
+  const agents = section.querySelector(".architecture_card.is-agents");
+  const signals = section.querySelector(".architecture_card.is-informations");
   // Triggered on the visual itself, not the card — it sits lower in the card,
   // so using the card would start the fan before it is actually on screen.
-  const memory = section.querySelector(".home-bloc04_memory");
+  const memory = section.querySelector(".architecture_memory");
 
   if (sources) initSourcesCard(sources);
   if (agents) initStackCard(agents);

@@ -36,11 +36,11 @@ pnpm check     # astro check (TypeScript + template diagnostics)
 src/
   pages/                 # index, 404
   layouts/BaseLayout.astro   # <head>, meta/OG, font preloads, reveal guard
-  components/sections/   # Nav, HeroV2 (+HeroV2Cards), Bloc01…Bloc06, SubFooter, FooterV2
+  components/sections/   # Nav, HeroV2 (+HeroV2Cards), HowItWorks, Coverage, Benefits, Architecture, Testimonials, Security, SubFooter, FooterV2
   components/ui/         # Button, Corners, Eyebrow — shared across sections
   scripts/               # main.js entry + one module per behaviour
   styles/                # base/ · components/ · sections/, via main.css
-  assets/                # images imported through astro:assets (bloc03, testimonials)
+  assets/                # images imported through astro:assets (benefits, testimonials)
 public/
   images/                # AVIF/PNG/SVG exports from Webflow (+ per-section subfolders)
   fonts/                 # Inter (400/500/600) + FacultyGlyphic, woff2
@@ -53,7 +53,7 @@ handlers. `404.astro` skips `main` and imports only `initButtonCharacterStagger`
 `scripts/buttons`.
 
 Two image pipelines coexist, on purpose: `src/assets/` goes through `astro:assets`
-(`<Image>` emits WebP variants and a srcset — see [Bloc03.astro](src/components/sections/Bloc03.astro)),
+(`<Image>` emits WebP variants and a srcset — see [Benefits.astro](src/components/sections/Benefits.astro)),
 while `public/images/` is copied verbatim for SVGs and anything referenced from CSS.
 
 ## Scripts — entry order matters
@@ -63,22 +63,23 @@ while `public/images/` is copied verbatim for SVGs and anything referenced from 
 1. `initSmoothScroll()` **first** — the other modules register ScrollTriggers that must read
    positions after Lenis has taken over scrolling
 2. `initMenu()` → `initAccordions()` → `initTestimonials()` → `initAnimations()` →
-   `initGlobeParticles()` → `initBloc04Cards()` → `initHeroCards()` → `initChatbox()` →
-   `initWatermark()` → `initYear()`
+   `initGlobeParticles()` → `initCoveragePattern()` → `initArchitectureCards()` →
+   `initHeroCards()` → `initChatbox()` → `initDock()` → `initWatermark()` → `initYear()`
 
-| Module                                               | Responsibility                                            |
-| ---------------------------------------------------- | --------------------------------------------------------- |
-| [smooth-scroll.js](src/scripts/smooth-scroll.js)     | Lenis instance, GSAP ticker integration                   |
-| [menu.js](src/scripts/menu.js)                       | Mobile menu (ported from Webflow IX2)                     |
-| [accordion.js](src/scripts/accordion.js)             | Bloc03 accordion + its visual — desktop widths only       |
-| [testimonials.js](src/scripts/testimonials.js)       | Bloc05 auto-playing carousel, word stagger, progress bars |
-| [animations.js](src/scripts/animations.js)           | Scroll scenes; also calls `initButtonCharacterStagger()`  |
-| [globe-particles.js](src/scripts/globe-particles.js) | three.js particle ring background                         |
-| [bloc04-cards.js](src/scripts/bloc04-cards.js)       | Bloc04 card visuals (sources, agents, memory)             |
-| [hero-cards.js](src/scripts/hero-cards.js)           | Hero floating cards — **sets `.is-ready`** (reveal guard) |
-| [chatbox.js](src/scripts/chatbox.js)                 | Hero chatbox teaser — wired to nothing, makes no request  |
-| [watermark.js](src/scripts/watermark.js)             | Footer watermark, emboss light follows the cursor         |
-| [buttons.js](src/scripts/buttons.js)                 | Per-character split of button labels                      |
+| Module                                                     | Responsibility                                                  |
+| ---------------------------------------------------------- | --------------------------------------------------------------- |
+| [smooth-scroll.js](src/scripts/smooth-scroll.js)           | Lenis instance, GSAP ticker integration                         |
+| [menu.js](src/scripts/menu.js)                             | Mobile menu (ported from Webflow IX2)                           |
+| [accordion.js](src/scripts/accordion.js)                   | Benefits accordion + its visual — desktop widths only           |
+| [testimonials.js](src/scripts/testimonials.js)             | Testimonials auto-playing carousel, word stagger, progress bars |
+| [animations.js](src/scripts/animations.js)                 | Scroll scenes; also calls `initButtonCharacterStagger()`        |
+| [globe-particles.js](src/scripts/globe-particles.js)       | three.js particle ring background                               |
+| [coverage-pattern.js](src/scripts/coverage-pattern.js)     | Coverage background pattern — crosses face the cursor           |
+| [architecture-cards.js](src/scripts/architecture-cards.js) | Architecture card visuals (sources, agents, memory)             |
+| [hero-cards.js](src/scripts/hero-cards.js)                 | Hero floating cards — **sets `.is-ready`** (reveal guard)        |
+| [chatbox.js](src/scripts/chatbox.js)                       | Hero chatbox teaser — wired to nothing, makes no request        |
+| [watermark.js](src/scripts/watermark.js)                   | Footer watermark, emboss light follows the cursor               |
+| [buttons.js](src/scripts/buttons.js)                       | Per-character split of button labels                            |
 
 `initGlobeParticles()` is called **twice** — once with no argument, once with
 `".sub-footer_section"` — because the same ring renders behind two sections.
@@ -102,7 +103,7 @@ which doesn't load `main`.
 ## Reduced motion
 
 Every animated module guards on `(prefers-reduced-motion: reduce)` — `smooth-scroll`,
-`accordion`, `testimonials`, `globe-particles`, `bloc04-cards`, `hero-cards`, `chatbox`,
+`accordion`, `testimonials`, `globe-particles`, `architecture-cards`, `hero-cards`, `chatbox`,
 `watermark`. Native scrolling stays intact and reveal targets are shown immediately. Any new
 animation must respect the same guard (or `gsap.matchMedia()`).
 
@@ -126,7 +127,7 @@ target, add its selector to that inline style in
 - Design tokens live in [tokens.css](src/styles/base/tokens.css) as Webflow-style custom
   properties (`--base-color--*`, `--size--*`, `--text-color--*`). Use them; don't hardcode.
 - Class names follow the Webflow export convention: `section_element` /
-  `bloc01_card-bar` / `is-*` variants. Match it — do not introduce BEM or utility classes.
+  `how-it-works_card-bar` / `is-*` variants. Match it — do not introduce BEM or utility classes.
 - **Always size and space in `rem`, never `px`.** The root font-size is fluid
   ([fluid-type.css](src/styles/base/fluid-type.css)), so every rem value scales with the
   viewport instead of stepping at breakpoints.
@@ -143,8 +144,8 @@ Scripts target elements through classes and `data-*` attributes, never `id`:
 | `data-menu-open` / `data-menu-close`                                                    | menu triggers              |
 | `data-lenis-stop` / `data-lenis-start`                                                  | scroll lock (Lenis' own)   |
 | `data-button-animate`, `data-button-animate-chars`, `data-button-animate-bg`            | button hover               |
-| `data-accordion*` (`-item`, `-trigger`, `-panel`, `-visual`, `-illu`, `-square`)        | Bloc03 accordion           |
-| `data-testimonials`, `data-testimonial-*` (`quote`, `author`, `logo`, `picture`, `dot`) | Bloc05 carousel            |
+| `data-accordion*` (`-item`, `-trigger`, `-panel`, `-visual`, `-illu`, `-square`)        | Benefits accordion         |
+| `data-testimonials`, `data-testimonial-*` (`quote`, `author`, `logo`, `picture`, `dot`) | Testimonials carousel      |
 | `data-chatbox`, `data-chatbox-input`, `data-chatbox-send`                               | hero chatbox               |
 | `data-line`                                                                             | line-drawing scroll scenes |
 
@@ -171,7 +172,7 @@ add duplicate tags in a page. JSON-LD goes in the `head` slot as an `is:inline` 
   purpose (VistIQ wants to be citable); the file documents how to opt out of training while
   staying citable. `Disallow: /_astro/`.
 - **[llms.txt](public/llms.txt)**: product summary for AI assistants. It restates section
-  copy, so update it when Bloc02/Bloc03/Bloc06 wording changes.
+  copy, so update it when Coverage/Benefits/Security wording changes.
 - Both live in `public/` and are served verbatim at the domain root.
 
 ## Conventions

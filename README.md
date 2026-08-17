@@ -45,7 +45,7 @@ src/
   pages/                     # index, 404, style-guide
   layouts/BaseLayout.astro   # <head>, meta/OG/Twitter, canonical, font preloads
   components/
-    sections/                # Nav, HeroV2, Bloc01…Bloc06, FooterV2 (+ legacy Hero/Footer)
+    sections/                # Nav, HeroV2, HowItWorks, Coverage, Benefits, Architecture, Testimonials, Security, FooterV2
     ui/Button.astro
   scripts/                   # main.js entry + one module per behaviour
   styles/                    # base/ · components/ · pages/ · sections/, via main.css
@@ -111,7 +111,7 @@ scrolling intact; the accordion and testimonial modules keep working but drop to
   Webflow export and must override everything above it.
 - Design tokens live in [`tokens.css`](src/styles/base/tokens.css) as Webflow-style custom
   properties (`--base-color--*`, `--size--*`, `--text-color--*`). Use them; don't hardcode.
-- Class names follow the Webflow export convention: `section_element`, `bloc01_card-bar`,
+- Class names follow the Webflow export convention: `section_element`, `how-it-works_card-bar`,
   `is-*` variants. Match it — no BEM, no utility classes.
 - **Always size and space in `rem`, never `px`.** The root font-size is fluid
   ([`fluid-type.css`](src/styles/base/fluid-type.css)), so every rem value scales with the
