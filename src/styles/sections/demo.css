@@ -1,0 +1,179 @@
+/*
+  "Test the solution" page — a single two-panel card on the beige-dark hero
+  background. The form fields themselves reuse the `contact_*` rules from
+  contact.css, so only the shell lives here.
+*/
+
+.demo_section {
+  z-index: 0;
+  background-color: var(--base-color--beige-dark);
+  width: 100%;
+  min-height: 100svh;
+  padding: 12rem 0 6.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo_card {
+  grid-column-gap: 5rem;
+  grid-row-gap: 3.5rem;
+  background-color: var(--base-color--white);
+  border: 1px solid #1d1e211a;
+  border-radius: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  padding: 3.5rem;
+  display: grid;
+  box-shadow:
+    0 2px 4px 0 rgb(29 30 33 / 0.04),
+    0 7px 14px 0 rgb(29 30 33 / 0.03);
+}
+
+/* Left panel — pitch */
+
+.demo_pitch {
+  grid-row-gap: 1.5rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.demo_heading {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.2;
+  background-image: linear-gradient(
+    135deg,
+    var(--base-color--light-black) 14%,
+    rgb(117 117 117 / 0) 141%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.demo_heading span {
+  display: block;
+}
+
+.demo_paragraph {
+  color: var(--base-color--light-black);
+  opacity: 0.6;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.demo_bullets {
+  grid-row-gap: 0.875rem;
+  flex-flow: column;
+  width: 100%;
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.demo_bullet {
+  grid-column-gap: 0.75rem;
+  color: var(--base-color--light-black);
+  align-items: flex-start;
+  margin-bottom: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  display: flex;
+}
+
+.demo_bullet-icon {
+  color: var(--base-color--green);
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  /* Nudge the tick onto the first line's cap height. */
+  margin-top: 0.125rem;
+}
+
+.demo_bullet-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Right panel — form */
+
+.demo_form-wrap {
+  grid-row-gap: 1.5rem;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+.demo_form-title {
+  color: var(--base-color--light-black);
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.demo_consent {
+  grid-column-gap: 0.625rem;
+  align-items: flex-start;
+  display: flex;
+}
+
+.demo_consent-check {
+  accent-color: var(--base-color--light-black);
+  cursor: pointer;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  /* Align the box with the first line of the label. */
+  margin-top: 0.1875rem;
+}
+
+.demo_consent-check.is-invalid {
+  outline: 1px solid #c0392b;
+  outline-offset: 2px;
+}
+
+.demo_consent-label {
+  color: #1d1e2199;
+  cursor: pointer;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Full-width submit, unlike the contact form's inline one. */
+.demo_submit {
+  width: 100%;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 991px) {
+  .demo_card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .demo_section {
+    padding-top: 9rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .demo_card {
+    padding: 1.5rem;
+  }
+
+  .demo_heading {
+    font-size: 2.375rem;
+  }
+}

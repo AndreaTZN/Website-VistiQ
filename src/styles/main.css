@@ -36,6 +36,8 @@
 @import "./sections/sub-footer.css";
 @import "./sections/footer-v2.css";
 @import "./sections/contact.css";
+/* After contact.css: the demo page reuses its `contact_*` field rules. */
+@import "./sections/demo.css";
 
 /* 5. Global overrides (were inline <style> embeds in the Webflow export) */
 @import "./base/globals.css";

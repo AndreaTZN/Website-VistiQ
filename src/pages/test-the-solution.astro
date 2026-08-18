@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/sections/Nav.astro";
+import DemoHero from "../components/sections/DemoHero.astro";
+import FooterV2 from "../components/sections/FooterV2.astro";
+
+const title = "Test the solution — See VistIQ in action";
+const description =
+  "Book a 30-minute walkthrough of VistIQ built around your workflow. See how investment teams centralize AI workflows and institutional memory, from sourcing and diligence to analytics and reporting.";
+
+const demoSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Test the solution",
+  url: "https://www.vistiq.ai/test-the-solution",
+  description,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "Vistiq",
+    url: "https://www.vistiq.ai/",
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/test-the-solution"
+>
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(demoSchema)}
+      is:inline
+    />
+  </Fragment>
+
+  <main class="main-wrapper">
+    <Nav />
+    <DemoHero />
+    <FooterV2 />
+  </main>
+</BaseLayout>
+
+<script>
+  // Baseline only — no hero WebGL, no accordion, no carousel. The page passes
+  // no `animated` flag, so there is no reveal guard to lift either.
+  import { initBaseline } from "../scripts/baseline";
+  import { initContactForm } from "../scripts/contact-form";
+
+  initBaseline();
+  initContactForm();
+</script>

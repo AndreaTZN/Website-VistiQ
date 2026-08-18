@@ -1,0 +1,206 @@
+---
+/**
+ * "Test the solution" page — pitch on the left, demo request form on the right.
+ *
+ * The fields reuse the `contact_*` classes from styles/sections/contact.css so
+ * both forms stay visually identical; only the two-panel shell, the bullet list
+ * and the consent row are specific to this page.
+ *
+ * Like the contact form there is no backend here: `scripts/contact-form.js`
+ * posts to PUBLIC_CONTACT_ENDPOINT when set, and otherwise hands the visitor
+ * over to the Typeform.
+ */
+import Eyebrow from "../ui/Eyebrow.astro";
+
+const TYPEFORM_URL = "https://foundersfuturecp.typeform.com/to/gTW2mUSp";
+
+/** Empty unless the deploy sets it — the script then uses the Typeform. */
+const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? "";
+
+const BULLETS = [
+  "A tailored walkthrough built around your workflow",
+  "Live Q&A with a product specialist",
+  "No commitment, no pressure",
+];
+
+const COMPANY_TYPES = [
+  "Venture & Private Equity",
+  "Asset Manager",
+  "Family Office",
+  "Hedge Fund",
+  "Other",
+];
+---
+
+<section class="demo_section">
+  <div class="container-medium">
+    <div class="demo_card">
+      <div class="demo_pitch">
+        <Eyebrow label="Test the solution" line />
+
+        <h1 class="demo_heading">
+          <span>See VistIQ</span>
+          <span class="demo_heading-gradient">in action</span>
+        </h1>
+
+        <p class="demo_paragraph">
+          In 30 minutes, we'll show you how VistIQ helps investment teams
+          centralize their AI workflows and institutional memory in one unified
+          platform, from sourcing and diligence to real time analytics and
+          reporting.
+        </p>
+
+        <ul class="demo_bullets">
+          {
+            BULLETS.map((bullet) => (
+              <li class="demo_bullet">
+                <span class="demo_bullet-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M20 6 9 17l-5-5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+                {bullet}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="demo_form-wrap">
+        <h2 class="demo_form-title">Test the solution</h2>
+
+        <form
+          class="contact_form"
+          data-contact-form
+          data-required="name,email,title,company,companyType,consent"
+          data-fallback={TYPEFORM_URL}
+          action={endpoint}
+          method="post"
+          novalidate
+        >
+          <div class="contact_field">
+            <label class="contact_label" for="demo-name">Full name</label>
+            <input
+              class="contact_input"
+              id="demo-name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Your full name"
+              required
+            />
+          </div>
+
+          <div class="contact_field">
+            <label class="contact_label" for="demo-email">Business email</label>
+            <input
+              class="contact_input"
+              id="demo-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="you@company.com"
+              required
+            />
+          </div>
+
+          <div class="contact_field">
+            <label class="contact_label" for="demo-title">Job title</label>
+            <input
+              class="contact_input"
+              id="demo-title"
+              name="title"
+              type="text"
+              autocomplete="organization-title"
+              placeholder="Your role"
+              required
+            />
+          </div>
+
+          <div class="contact_field">
+            <label class="contact_label" for="demo-company">Company</label>
+            <input
+              class="contact_input"
+              id="demo-company"
+              name="company"
+              type="text"
+              autocomplete="organization"
+              placeholder="Company name"
+              required
+            />
+          </div>
+
+          <div class="contact_field">
+            <label class="contact_label" for="demo-type">Company type</label>
+            <select
+              class="contact_select"
+              id="demo-type"
+              name="companyType"
+              required
+            >
+              <option value="" selected disabled>Select company type</option>
+              {
+                COMPANY_TYPES.map((type) => (
+                  <option value={type}>{type}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          {/* Honeypot: bots fill it, humans never see it. */}
+          <div class="contact_honeypot" aria-hidden="true">
+            <label for="demo-company-website">Leave this field empty</label>
+            <input
+              id="demo-company-website"
+              name="companyWebsite"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="demo_consent">
+            <input
+              class="demo_consent-check"
+              id="demo-consent"
+              name="consent"
+              type="checkbox"
+              required
+            />
+            <label class="demo_consent-label" for="demo-consent">
+              You agree to our friendly <a
+                href="/privacy-policy"
+                class="contact_consent-link">privacy policy</a
+              >.
+            </label>
+          </div>
+
+          <button
+            class="contact_submit demo_submit"
+            type="submit"
+            data-contact-submit
+          >
+            <span data-contact-submit-label>Test the solution</span>
+          </button>
+
+          {/* Filled by scripts/contact-form.js; polite so it never interrupts. */}
+          <p
+            class="contact_status"
+            data-contact-status
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="noise"></div>
+</section>
