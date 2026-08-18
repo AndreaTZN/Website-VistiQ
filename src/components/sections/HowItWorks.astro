@@ -22,7 +22,18 @@ import Eyebrow from "../ui/Eyebrow.astro";
     </div>
 
     <div class="how-it-works_visual">
-      <div class="noise"></div>
+      <video
+        class="how-it-works_video"
+        data-how-it-works-video
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/images/videos/system.webm" type="video/webm" />
+        <source src="/images/videos/system.mp4" type="video/mp4" />
+      </video>
     </div>
   </div>
 </section>

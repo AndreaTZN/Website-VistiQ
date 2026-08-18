@@ -7,6 +7,7 @@ import { initCoveragePattern } from "./coverage-pattern";
 import { initDock } from "./dock";
 import { initGlobeParticles } from "./globe-particles";
 import { initHeroCards } from "./hero-cards";
+import { initHowItWorksVideo } from "./how-it-works-video";
 import { revealPage } from "./reveal";
 import { initTestimonials } from "./testimonials";
 import { initWatermark } from "./watermark";
@@ -16,6 +17,7 @@ import { initWatermark } from "./watermark";
 initBaseline();
 
 // Home-page sections, in the order their scenes appear down the page.
+initHowItWorksVideo();
 initAccordions();
 initTestimonials();
 initAnimations();
