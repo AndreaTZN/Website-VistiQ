@@ -1,17 +1,4 @@
 ---
-/**
- * "Request a demo" page — pitch on the left, demo request form on the right.
- *
- * The fields reuse the `contact_*` classes from styles/sections/contact.css so
- * both forms stay visually identical; only the two-panel shell, the bullet list
- * and the consent row are specific to this page.
- *
- * Like the contact form there is no backend here: `scripts/contact-form.js`
- * posts to PUBLIC_CONTACT_ENDPOINT when set, and otherwise hands the visitor
- * over to the Typeform.
- */
-import Eyebrow from "../ui/Eyebrow.astro";
-
 const TYPEFORM_URL = "https://foundersfuturecp.typeform.com/to/gTW2mUSp";
 
 /** Empty unless the deploy sets it — the script then uses the Typeform. */
@@ -30,18 +17,171 @@ const COMPANY_TYPES = [
   "Hedge Fund",
   "Other",
 ];
+
+/**
+ * Client logos. They ship as alpha masks, not as ink: the PNG carries the
+ * shape and CSS paints it with the text colour, so one file serves any theme.
+ */
+const LOGOS = [
+  { name: "Luko", src: "/images/demo/logo-luko.png", width: 3.27 },
+  { name: "Pulp", src: "/images/demo/logo-pulp.png", width: 3.27 },
+  { name: "Yuka", src: "/images/demo/logo-yuka.png", width: 4.21 },
+  { name: "Happn", src: "/images/demo/logo-happn.png", width: 3.72 },
+  { name: "Liberkeys", src: "/images/demo/logo-liberkeys.png", width: 4.73 },
+];
 ---
 
 <section class="demo_section">
-  <div class="container-medium">
-    <div class="demo_card">
-      <div class="demo_pitch">
-        <Eyebrow label="Request a demo" line />
+  <!-- Leaves the page rather than navigating: the script resolves the target. -->
+  <a class="demo_close" href="/" data-demo-close aria-label="Close and go back">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M12 4 4 12M4 4l8 8"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
 
-        <h1 class="demo_heading">
-          <span>See VistIQ</span>
-          <span class="demo_heading-gradient">in action</span>
-        </h1>
+  <div class="demo_panel is-form">
+    <div class="demo_form-inner">
+      <h1 class="demo_form-title">Request a demo</h1>
+
+      <form
+        class="contact_form demo_form"
+        data-contact-form
+        data-required="name,email,title,company,companyType,consent"
+        data-fallback={TYPEFORM_URL}
+        action={endpoint}
+        method="post"
+        novalidate
+      >
+        <div class="contact_field">
+          <label class="contact_label" for="demo-name">Full name</label>
+          <input
+            class="contact_input"
+            id="demo-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            placeholder="Your full name"
+            required
+          />
+        </div>
+
+        <div class="contact_field">
+          <label class="contact_label" for="demo-email">Business email</label>
+          <input
+            class="contact_input"
+            id="demo-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@company.com"
+            required
+          />
+        </div>
+
+        <div class="contact_field">
+          <label class="contact_label" for="demo-title">Job title</label>
+          <input
+            class="contact_input"
+            id="demo-title"
+            name="title"
+            type="text"
+            autocomplete="organization-title"
+            placeholder="Your role"
+            required
+          />
+        </div>
+
+        <div class="contact_field">
+          <label class="contact_label" for="demo-company">Company</label>
+          <input
+            class="contact_input"
+            id="demo-company"
+            name="company"
+            type="text"
+            autocomplete="organization"
+            placeholder="Company name"
+            required
+          />
+        </div>
+
+        <div class="contact_field">
+          <label class="contact_label" for="demo-type">Company type</label>
+          <select
+            class="contact_select"
+            id="demo-type"
+            name="companyType"
+            required
+          >
+            <option value="" selected disabled>Select company type</option>
+            {COMPANY_TYPES.map((type) => <option value={type}>{type}</option>)}
+          </select>
+        </div>
+
+        {/* Honeypot: bots fill it, humans never see it. */}
+        <div class="contact_honeypot" aria-hidden="true">
+          <label for="demo-company-website">Leave this field empty</label>
+          <input
+            id="demo-company-website"
+            name="companyWebsite"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="demo_consent">
+          <input
+            class="demo_consent-check"
+            id="demo-consent"
+            name="consent"
+            type="checkbox"
+            required
+          />
+          <label class="demo_consent-label" for="demo-consent">
+            You agree to our friendly <a
+              href="/privacy-policy"
+              class="contact_consent-link">privacy policy</a
+            >.
+          </label>
+        </div>
+
+        <button
+          class="contact_submit demo_submit"
+          type="submit"
+          data-contact-submit
+        >
+          <span data-contact-submit-label>Request a demo</span>
+        </button>
+
+        {
+          /* Filled by scripts/contact-form.js; polite so it never interrupts. */
+        }
+        <p
+          class="contact_status"
+          data-contact-status
+          role="status"
+          aria-live="polite"
+        >
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div class="demo_panel is-pitch">
+    <div class="demo_pitch-inner">
+      <div class="demo_pitch-text">
+        <h2 class="demo_heading">See VistIQ in action</h2>
 
         <p class="demo_paragraph">
           In 30 minutes, we'll show you how VistIQ helps investment teams
@@ -49,158 +189,45 @@ const COMPANY_TYPES = [
           platform, from sourcing and diligence to real time analytics and
           reporting.
         </p>
-
-        <ul class="demo_bullets">
-          {
-            BULLETS.map((bullet) => (
-              <li class="demo_bullet">
-                <span class="demo_bullet-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M20 6 9 17l-5-5"
-                      stroke="currentColor"
-                      stroke-width="1.8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                {bullet}
-              </li>
-            ))
-          }
-        </ul>
       </div>
 
-      <div class="demo_form-wrap">
-        <h2 class="demo_form-title">Request a demo</h2>
+      <ul class="demo_bullets">
+        {
+          BULLETS.map((bullet) => (
+            <li class="demo_bullet">
+              <span class="demo_bullet-icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.79167 10.7221L6.94996 13.6782C7.62642 14.6047 9.01492 14.5867 9.66717 13.6429L15.2083 5.625"
+                    stroke="currentColor"
+                    stroke-width="1.42857"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              {bullet}
+            </li>
+          ))
+        }
+      </ul>
 
-        <form
-          class="contact_form"
-          data-contact-form
-          data-required="name,email,title,company,companyType,consent"
-          data-fallback={TYPEFORM_URL}
-          action={endpoint}
-          method="post"
-          novalidate
-        >
-          <div class="contact_field">
-            <label class="contact_label" for="demo-name">Full name</label>
-            <input
-              class="contact_input"
-              id="demo-name"
-              name="name"
-              type="text"
-              autocomplete="name"
-              placeholder="Your full name"
-              required
-            />
-          </div>
-
-          <div class="contact_field">
-            <label class="contact_label" for="demo-email">Business email</label>
-            <input
-              class="contact_input"
-              id="demo-email"
-              name="email"
-              type="email"
-              autocomplete="email"
-              placeholder="you@company.com"
-              required
-            />
-          </div>
-
-          <div class="contact_field">
-            <label class="contact_label" for="demo-title">Job title</label>
-            <input
-              class="contact_input"
-              id="demo-title"
-              name="title"
-              type="text"
-              autocomplete="organization-title"
-              placeholder="Your role"
-              required
-            />
-          </div>
-
-          <div class="contact_field">
-            <label class="contact_label" for="demo-company">Company</label>
-            <input
-              class="contact_input"
-              id="demo-company"
-              name="company"
-              type="text"
-              autocomplete="organization"
-              placeholder="Company name"
-              required
-            />
-          </div>
-
-          <div class="contact_field">
-            <label class="contact_label" for="demo-type">Company type</label>
-            <select
-              class="contact_select"
-              id="demo-type"
-              name="companyType"
-              required
+      <ul class="demo_logos">
+        {
+          LOGOS.map((logo) => (
+            <li
+              class="demo_logo"
+              style={`--demo-logo-mask: url("${logo.src}"); --demo-logo-width: ${logo.width}rem;`}
             >
-              <option value="" selected disabled>Select company type</option>
-              {
-                COMPANY_TYPES.map((type) => (
-                  <option value={type}>{type}</option>
-                ))
-              }
-            </select>
-          </div>
-
-          {/* Honeypot: bots fill it, humans never see it. */}
-          <div class="contact_honeypot" aria-hidden="true">
-            <label for="demo-company-website">Leave this field empty</label>
-            <input
-              id="demo-company-website"
-              name="companyWebsite"
-              type="text"
-              tabindex="-1"
-              autocomplete="off"
-            />
-          </div>
-
-          <div class="demo_consent">
-            <input
-              class="demo_consent-check"
-              id="demo-consent"
-              name="consent"
-              type="checkbox"
-              required
-            />
-            <label class="demo_consent-label" for="demo-consent">
-              You agree to our friendly <a
-                href="/privacy-policy"
-                class="contact_consent-link">privacy policy</a
-              >.
-            </label>
-          </div>
-
-          <button
-            class="contact_submit demo_submit"
-            type="submit"
-            data-contact-submit
-          >
-            <span data-contact-submit-label>Request a demo</span>
-          </button>
-
-          {/* Filled by scripts/contact-form.js; polite so it never interrupts. */}
-          <p
-            class="contact_status"
-            data-contact-status
-            role="status"
-            aria-live="polite"
-          >
-          </p>
-        </form>
-      </div>
+              <span class="demo_logo-sr">{logo.name}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
-
-  <div class="noise"></div>
 </section>

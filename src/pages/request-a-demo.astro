@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Nav from "../components/global/Nav.astro";
 import DemoHero from "../components/demo/DemoHero.astro";
-import FooterV2 from "../components/global/FooterV2.astro";
 
 const title = "Request a demo — See VistIQ in action";
 const description =
@@ -22,11 +20,7 @@ const demoSchema = {
 };
 ---
 
-<BaseLayout
-  title={title}
-  description={description}
-  canonical="/request-a-demo"
->
+<BaseLayout title={title} description={description} canonical="/request-a-demo">
   <Fragment slot="head">
     <script
       type="application/ld+json"
@@ -36,18 +30,16 @@ const demoSchema = {
   </Fragment>
 
   <main class="main-wrapper">
-    <Nav />
     <DemoHero />
-    <FooterV2 />
   </main>
 </BaseLayout>
 
 <script>
-  // Baseline only — no hero WebGL, no accordion, no carousel. The page passes
-  // no `animated` flag, so there is no reveal guard to lift either.
-  import { initBaseline } from "../scripts/baseline";
+  import { initButtonCharacterStagger } from "../scripts/buttons";
   import { initContactForm } from "../scripts/contact-form";
+  import { initDemoClose } from "../scripts/demo-close";
 
-  initBaseline();
+  initButtonCharacterStagger();
   initContactForm();
+  initDemoClose();
 </script>
