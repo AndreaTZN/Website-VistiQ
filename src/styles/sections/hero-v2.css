@@ -4,7 +4,9 @@
   z-index: 0;
   background-color: var(--base-color--beige-dark);
   width: 100%;
-  min-height: 100svh;
+  /* --announcement-height is set by the announcement bar when it renders
+     above the hero, so the first viewport still fits exactly. */
+  min-height: calc(100svh - var(--announcement-height, 0rem));
   padding: 10rem 0rem;
   display: flex;
   align-items: center;

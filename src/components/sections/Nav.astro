@@ -1,8 +1,17 @@
 ---
 import Button from "../ui/Button.astro";
+
+interface Props {
+  /** Set when an AnnouncementBar renders above — shifts the absolute nav down. */
+  belowAnnouncement?: boolean;
+}
+
+const { belowAnnouncement = false } = Astro.props;
 ---
 
-<header class="nav_component">
+<header
+  class:list={["nav_component", { "is-below-announcement": belowAnnouncement }]}
+>
   <div class="nav_container">
     <div class="nav_left-wrapper">
       <a href="/" aria-label="VistIQ" aria-current="page" class="nav_logo-link"

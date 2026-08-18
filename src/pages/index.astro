@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import AnnouncementBar from "../components/sections/AnnouncementBar.astro";
 import Nav from "../components/sections/Nav.astro";
 import HeroV2 from "../components/sections/HeroV2.astro";
 import HowItWorks from "../components/sections/HowItWorks.astro";
@@ -53,7 +54,8 @@ const websiteSchema = {
   </Fragment>
 
   <main class="main-wrapper">
-    <Nav />
+    <AnnouncementBar />
+    <Nav belowAnnouncement />
     <HeroV2 />
     <HowItWorks />
     <Coverage />

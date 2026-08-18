@@ -1,0 +1,53 @@
+/* Announcement bar — sits above the nav, home page only.
+   It is in normal flow (not fixed): the nav is absolutely positioned at the
+   top of .main-wrapper, so the bar scrolls away with the hero. */
+
+.announcement_component {
+  z-index: 10001;
+  background-color: var(--base-color--white);
+  width: 100%;
+  min-height: var(--announcement-height, 2.625rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  position: relative;
+}
+
+.announcement_inner {
+  grid-column-gap: 0.25rem;
+  color: var(--base-color--light-black);
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+}
+
+.announcement_text {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.announcement_arrow {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+a.announcement_inner:hover .announcement_arrow {
+  transform: translateX(0.25rem);
+}
+
+/* Single source of truth for the bar height, scoped to wrappers that actually
+   render the bar: the nav offset and the hero's 100svh calc both read it, and a
+   page without the bar keeps the variable's 0 fallback. */
+.main-wrapper:has(> .announcement_component) {
+  --announcement-height: 2.625rem;
+}
+
+/* The nav is `position: absolute; top: 0` inside .main-wrapper, so it would sit
+   under the in-flow bar — push it down by the bar's height. */
+.nav_component.is-below-announcement {
+  top: var(--announcement-height, 0rem);
+}
