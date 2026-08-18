@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+gsap.registerPlugin(ScrollTrigger);
 
 /** @type {import('lenis').default | null} */
 export let lenis = null;
@@ -11,10 +12,6 @@ export let lenis = null;
  * `scroll-behavior` remain untouched.
  */
 export function initSmoothScroll() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  gsap.registerPlugin(ScrollTrigger);
-
   lenis = new Lenis({ anchors: true });
 
   lenis.on("scroll", ScrollTrigger.update);
