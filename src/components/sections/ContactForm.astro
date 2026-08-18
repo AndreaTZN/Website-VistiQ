@@ -1,0 +1,237 @@
+---
+/**
+ * Contact form + the direct channels beside it.
+ *
+ * There is no backend in this repo: the form posts JSON to whatever endpoint
+ * `action` resolves to, and `scripts/contact-form.js` falls back to the
+ * Typeform used by every other CTA when no endpoint is configured or the
+ * request fails. Set PUBLIC_CONTACT_ENDPOINT to wire it to a real inbox.
+ */
+import Button from "../ui/Button.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
+
+const TYPEFORM_URL = "https://foundersfuturecp.typeform.com/to/gTW2mUSp";
+
+/** Empty unless the deploy sets it — the script then uses the Typeform. */
+const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? "";
+
+const CATEGORIES = [
+  "Request a demo",
+  "Sales & pricing",
+  "Partnership",
+  "Press & media",
+  "Careers",
+  "Support",
+  "Other",
+];
+
+const OFFICES = [
+  {
+    title: "Headquarters",
+    lines: ["29 Rue de Choiseul", "75002, Paris, France"],
+  },
+  {
+    title: "US Office",
+    lines: ["929 Alton Rd Ste 500", "Miami, FL 33139"],
+  },
+];
+
+const CHANNELS = [
+  {
+    number: "01",
+    title: "Sales",
+    paragraph:
+      "See VistIQ on your own deal flow. A 30-minute walkthrough, no slides.",
+    linkLabel: "Book a demo",
+    href: TYPEFORM_URL,
+  },
+  {
+    number: "02",
+    title: "Security review",
+    paragraph:
+      "Compliance questionnaires, data residency and audit logs — we answer them in writing.",
+    linkLabel: "security@vistiq.ai",
+    href: "mailto:security@vistiq.ai",
+  },
+  {
+    number: "03",
+    title: "Everything else",
+    paragraph:
+      "Press, partnerships and careers. The fastest route is a direct message.",
+    linkLabel: "LinkedIn",
+    href: "https://www.linkedin.com/company/vistiq-ai/",
+  },
+];
+---
+
+<section class="contact_section">
+  <div class="container-medium">
+    <div class="contact_layout">
+      <div class="contact_form-wrap">
+        <Eyebrow label="Send a message" line />
+
+        <form
+          class="contact_form"
+          data-contact-form
+          data-fallback={TYPEFORM_URL}
+          action={endpoint}
+          method="post"
+          novalidate
+        >
+          <div class="contact_field-row">
+            <div class="contact_field">
+              <label class="contact_label" for="contact-name">Name</label>
+              <input
+                class="contact_input"
+                id="contact-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Your name"
+                required
+              />
+            </div>
+
+            <div class="contact_field">
+              <label class="contact_label" for="contact-email">Email</label>
+              <input
+                class="contact_input"
+                id="contact-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="your@email.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="contact_field">
+            <label class="contact_label" for="contact-category">Category</label>
+            <select
+              class="contact_select"
+              id="contact-category"
+              name="category"
+              required
+            >
+              <option value="" selected disabled>Select a category</option>
+              {
+                CATEGORIES.map((category) => (
+                  <option value={category}>{category}</option>
+                ))
+              }
+            </select>
+          </div>
+
+          <div class="contact_field">
+            <label class="contact_label" for="contact-message">Message</label>
+            <textarea
+              class="contact_textarea"
+              id="contact-message"
+              name="message"
+              rows="5"
+              placeholder="How can we help?"
+              required></textarea>
+          </div>
+
+          {/* Honeypot: bots fill it, humans never see it. */}
+          <div class="contact_honeypot" aria-hidden="true">
+            <label for="contact-company-website">Leave this field empty</label>
+            <input
+              id="contact-company-website"
+              name="companyWebsite"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="contact_actions">
+            <button class="contact_submit" type="submit" data-contact-submit>
+              <span data-contact-submit-label>Send Message</span>
+            </button>
+            <p class="contact_consent">
+              By sending this form you agree to our <a
+                href="/privacy-policy"
+                class="contact_consent-link">Privacy Policy</a
+              >.
+            </p>
+          </div>
+
+          {/* Filled by scripts/contact-form.js; polite so it never interrupts. */}
+          <p
+            class="contact_status"
+            data-contact-status
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+        </form>
+      </div>
+
+      <aside class="contact_aside">
+        <Eyebrow label="Direct channels" line />
+
+        <ol class="contact_channels">
+          {
+            CHANNELS.map((channel) => (
+              <li class="contact_channel">
+                <p class="contact_channel-number">{channel.number}</p>
+                <div class="contact_channel-text">
+                  <h2 class="contact_channel-title">{channel.title}</h2>
+                  <p class="contact_channel-paragraph">{channel.paragraph}</p>
+                  <a
+                    class="contact_channel-link"
+                    href={channel.href}
+                    target={channel.href.startsWith("http") ? "_blank" : undefined}
+                    rel={channel.href.startsWith("http") ? "noopener" : undefined}
+                  >
+                    {channel.linkLabel}
+                  </a>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="contact_aside-cta">
+          <p class="contact_aside-note">
+            Prefer a guided form? The demo questionnaire takes two minutes.
+          </p>
+          <Button variant="secondary" href={TYPEFORM_URL}>Request a demo</Button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="contact_offices">
+      {
+        OFFICES.map((office) => (
+          <div class="contact_office">
+            <span class="contact_office-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 21s-7-5.686-7-11a7 7 0 1 1 14 0c0 5.314-7 11-7 11z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+                <circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5" />
+              </svg>
+            </span>
+            <div class="contact_office-text">
+              <h2 class="contact_office-title">{office.title}</h2>
+              <p class="contact_office-address">
+                {office.lines.map((line, i) => (
+                  <>
+                    {i > 0 && <br />}
+                    {line}
+                  </>
+                ))}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

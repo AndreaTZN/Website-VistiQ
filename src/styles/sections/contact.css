@@ -1,0 +1,439 @@
+/*
+  Contact page — hero + form.
+  Mirrors the home page shell: a beige-dark hero over the white body, then a
+  white section holding the form and the direct channels.
+*/
+
+/* Hero */
+
+.contact-hero_section {
+  z-index: 0;
+  background-color: var(--base-color--beige-dark);
+  width: 100%;
+  padding: 12rem 0 10rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top markers clear the fixed nav, like the home hero. */
+.contact-hero_corner {
+  --corners-size: 0.5rem;
+  --corners-offset: 1.5rem;
+  --corners-offset-top: 8.625rem;
+  --corners-offset-bottom: 2rem;
+}
+
+.contact-hero_content {
+  grid-row-gap: 1.5rem;
+  flex-flow: column;
+  align-items: center;
+  max-width: 48.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.contact-hero_text {
+  grid-row-gap: 0.75rem;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+
+.contact-hero_heading {
+  margin: 0;
+  font-size: 3rem;
+  letter-spacing: -0.03rem;
+  line-height: 1.2;
+  text-align: center;
+  background-image: linear-gradient(
+    135deg,
+    var(--base-color--light-black) 14%,
+    rgb(117 117 117 / 0) 141%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contact-hero_heading span {
+  display: block;
+}
+
+.contact-hero_paragraph {
+  color: var(--base-color--light-black);
+  opacity: 0.6;
+  max-width: 36rem;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Form section */
+
+.contact_section {
+  background-color: var(--base-color--white);
+  width: 100%;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+}
+
+.contact_layout {
+  grid-column-gap: 4.5rem;
+  grid-row-gap: 4rem;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+  display: grid;
+}
+
+.contact_form-wrap,
+.contact_aside {
+  grid-row-gap: 2rem;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+
+/* Fields */
+
+.contact_form {
+  grid-row-gap: 1.5rem;
+  flex-flow: column;
+  width: 100%;
+  display: flex;
+}
+
+.contact_field-row {
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: grid;
+}
+
+.contact_field {
+  grid-row-gap: 0.5rem;
+  flex-flow: column;
+  display: flex;
+}
+
+.contact_label {
+  color: var(--base-color--light-black);
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.contact_input,
+.contact_select,
+.contact_textarea {
+  color: var(--base-color--light-black);
+  background-color: var(--base-color--beige);
+  border: 1px solid #1d1e211a;
+  border-radius: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition:
+    border-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    background-color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.contact_textarea {
+  min-height: 8.5rem;
+  resize: vertical;
+}
+
+.contact_input::placeholder,
+.contact_textarea::placeholder {
+  color: #1d1e2166;
+}
+
+.contact_input:focus,
+.contact_select:focus,
+.contact_textarea:focus {
+  border-color: var(--base-color--light-black);
+  background-color: var(--base-color--white);
+  outline: none;
+}
+
+/* Native arrow removed for a chevron that matches the beige field. */
+.contact_select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath stroke='%231d1e21' stroke-opacity='.6' stroke-width='1.5' d='m1 1.5 5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+/* Invalid state is script-driven (`novalidate`), so it never fires on load. */
+.contact_input.is-invalid,
+.contact_textarea.is-invalid {
+  border-color: #c0392b;
+}
+
+.contact_honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Actions */
+
+.contact_actions {
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1rem;
+  flex-flow: wrap;
+  align-items: center;
+  display: flex;
+}
+
+/* Same metrics as .button_primary, but a real <button> the form can submit. */
+.contact_submit {
+  color: var(--base-color--white);
+  cursor: pointer;
+  background-image: linear-gradient(to top, #0c0c0c 50%, #aca094 217%);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.00875rem;
+  filter: drop-shadow(0 2px 3px #0c0c0c33);
+  box-shadow:
+    inset 0 -2px 1px #ffffff0d,
+    inset 0 1px 0.6px #00000080;
+  transition: opacity 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.contact_submit:hover {
+  opacity: 0.85;
+}
+
+.contact_submit[disabled] {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.contact_consent {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.contact_consent-link {
+  color: var(--base-color--light-black);
+  text-decoration: underline;
+}
+
+/* Empty until the script writes a result, so it takes no space on load. */
+.contact_status {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.contact_status:empty {
+  display: none;
+}
+
+.contact_status.is-error {
+  color: #c0392b;
+}
+
+.contact_status.is-success {
+  color: var(--base-color--green);
+}
+
+/* Channels — same numbered rhythm as the security pillars */
+
+.contact_channels {
+  grid-row-gap: 2rem;
+  flex-flow: column;
+  width: 100%;
+  margin: 0;
+  padding-left: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.contact_channel {
+  grid-column-gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 0;
+  display: flex;
+}
+
+.contact_channel-number {
+  color: var(--base-color--green);
+  text-align: center;
+  flex: none;
+  width: 3.5rem;
+  margin: 0;
+  font-family: Facultyglyphic, Georgia, sans-serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.contact_channel-text {
+  grid-row-gap: 0.25rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.contact_channel-title {
+  color: var(--base-color--light-black);
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.contact_channel-paragraph {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.contact_channel-link {
+  color: var(--base-color--light-black);
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: underline;
+  transition: opacity 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.contact_channel-link:hover {
+  opacity: 0.6;
+}
+
+.contact_aside-cta {
+  grid-row-gap: 1rem;
+  border-top: 1px solid #1d1e211a;
+  flex-flow: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 2rem;
+  display: flex;
+}
+
+.contact_aside-note {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Offices — sits under the two-column layout, one row of locations */
+
+.contact_offices {
+  grid-column-gap: 4.5rem;
+  grid-row-gap: 2rem;
+  border-top: 1px solid #1d1e211a;
+  border-bottom: 1px solid #1d1e211a;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 4.5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  display: grid;
+}
+
+.contact_office {
+  grid-column-gap: 1rem;
+  align-items: flex-start;
+  display: flex;
+}
+
+.contact_office-icon {
+  color: var(--base-color--green);
+  flex: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  /* Nudge the pin onto the title's cap height. */
+  margin-top: 0.125rem;
+}
+
+.contact_office-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.contact_office-text {
+  grid-row-gap: 0.25rem;
+  flex-flow: column;
+  align-items: flex-start;
+  display: flex;
+}
+
+.contact_office-title {
+  color: var(--base-color--light-black);
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.contact_office-address {
+  color: #1d1e2199;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 991px) {
+  .contact_layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .contact-hero_section {
+    padding-top: 9rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .contact-hero_heading {
+    font-size: 2.375rem;
+  }
+
+  .contact_section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .contact_field-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .contact_channel-number {
+    width: 2.75rem;
+    font-size: 1.75rem;
+  }
+
+  .contact_offices {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+}

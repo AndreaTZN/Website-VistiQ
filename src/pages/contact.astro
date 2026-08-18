@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/sections/Nav.astro";
+import ContactHero from "../components/sections/ContactHero.astro";
+import ContactForm from "../components/sections/ContactForm.astro";
+import FooterV2 from "../components/sections/FooterV2.astro";
+
+const title = "Contact VistIQ — Talk to the team";
+const description =
+  "Reach the VistIQ team about demos, pricing, security reviews or partnerships. Tell us about your fund and what you want to automate first — we reply within one business day.";
+
+const contactSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact VistIQ",
+  url: "https://www.vistiq.ai/contact",
+  description,
+  mainEntity: {
+    "@type": "Organization",
+    name: "Vistiq",
+    url: "https://www.vistiq.ai/",
+    sameAs: ["https://www.linkedin.com/company/vistiq-ai"],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        url: "https://foundersfuturecp.typeform.com/to/gTW2mUSp",
+        availableLanguage: ["English", "French"],
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "security",
+        email: "security@vistiq.ai",
+        availableLanguage: ["English", "French"],
+      },
+    ],
+  },
+};
+---
+
+<BaseLayout title={title} description={description} canonical="/contact">
+  <Fragment slot="head">
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(contactSchema)}
+      is:inline
+    />
+  </Fragment>
+
+  <main class="main-wrapper">
+    <Nav />
+    <ContactHero />
+    <ContactForm />
+    <FooterV2 />
+  </main>
+</BaseLayout>
+
+<script>
+  // Baseline only — no hero WebGL, no accordion, no carousel. The page passes
+  // no `animated` flag, so there is no reveal guard to lift either.
+  import { initBaseline } from "../scripts/baseline";
+  import { initContactForm } from "../scripts/contact-form";
+  import { initWatermark } from "../scripts/watermark";
+  initBaseline();
+  initContactForm();
+  initWatermark();
+</script>
