@@ -126,6 +126,12 @@
   .security_pillars {
     grid-template-columns: minmax(0, 1fr);
   }
+  .security_pillar-body {
+    flex-direction: row;
+  }
+  .security_pillar-number {
+    width: 3.5rem;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -143,7 +149,6 @@
   }
 
   .security_pillar-number {
-    width: 3.5rem;
     font-size: 2rem;
   }
 

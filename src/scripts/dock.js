@@ -17,8 +17,8 @@ import { lenis } from "./smooth-scroll";
 const SECTIONS = [
   { id: "How-it-works", label: "How it works" },
   { id: "Lifecycle", label: "Lifecycle" },
-  { id: "Solutions", label: "Solutions" },
   { id: "Data-layer", label: "Data layer" },
+  { id: "Solutions", label: "Solutions" },
   { id: "Investors", label: "Investors" },
   { id: "Data", label: "Security" },
 ];
