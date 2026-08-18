@@ -4,6 +4,7 @@ import { initArchitectureCards } from "./architecture-cards";
 import { initBaseline } from "./baseline";
 import { initChatbox } from "./chatbox";
 import { initCoveragePattern } from "./coverage-pattern";
+import { initCoverageSlider } from "./coverage-slider";
 import { initDock } from "./dock";
 import { initGlobeParticles } from "./globe-particles";
 import { initHeroCards } from "./hero-cards";
@@ -25,6 +26,7 @@ initGlobeParticles();
 
 initGlobeParticles(".sub-footer_section", { introOnEnter: true });
 initCoveragePattern();
+initCoverageSlider();
 initArchitectureCards();
 initHeroCards();
 initChatbox();

@@ -6,26 +6,55 @@ import Eyebrow from "../ui/Eyebrow.astro";
 const STEPS = [
   {
     number: "01",
-    title: "Deal assessment",
-    paragraphs: [
-      "Centralized pipeline with AI scoring, pitch deck analysis, automated risk assessment and auto-generated IC memos.",
-      "Go from sourcing to signature without friction.\nA collaborative workspace where specialized AI agents work alongside your investment team from opportunity scoring and pitch deck analysis to IC memo drafting, due diligence orchestration, and closing.",
+    title: "Deal Assessment",
+    bullets: [
+      "Screen opportunities",
+      "Analyze decks",
+      "Assess risks",
+      "Benchmark companies and prepare investment cases",
     ],
   },
   {
     number: "02",
-    title: "Portfolio monitoring",
-    paragraphs: [
-      "AI-powered dashboards, quantitative & qualitative KPIs, proactive alerts and exit scenario modeling.",
-      "Stay ahead of every portfolio company, in real time.",
-      "Your AI portfolio team, continuously monitoring real time every company, coordinating reporting, identifying risks and opportunities, and preparing the path to liquidity.",
+    title: "Deal Execution",
+    bullets: [
+      "Coordinate diligence",
+      "Track open questions",
+      "Centralize findings and move the entire deal team toward a decision",
     ],
   },
   {
     number: "03",
-    title: "Fund operations and reporting",
-    paragraphs: [
-      "AI agents orchestrating every investment vehicles, from funds and co-investment SPVs and holdings, with automated governance, reporting, and investor communications.",
+    title: "Portfolio Management",
+    bullets: [
+      "Continuously monitor financial and operating performance reporting",
+      "Boards",
+      "Risks",
+      "Opportunities and market signals",
+    ],
+  },
+  {
+    number: "04",
+    title: "Valuation",
+    bullets: [
+      "Maintain valuation context",
+      "Comparable companies financing history and scenarios from continuously updated information",
+    ],
+  },
+  {
+    number: "05",
+    title: "Governance & Compliance",
+    bullets: [
+      "Maintain investment records",
+      "Approvals",
+      "Documentation and audit trails across funds and vehicles",
+    ],
+  },
+  {
+    number: "06",
+    title: "Reporting & Investor Relations",
+    bullets: [
+      "Turn portfolio and fund data into continuously updated internal and LP reporting",
     ],
   },
 ];
@@ -40,28 +69,74 @@ const STEPS = [
     <div class="coverage_header">
       <Eyebrow label="End-to-end coverage" align="center" />
       <h2 class="heading is-centered">
-        <span>End-to-end solution covering</span>
-        <span>the full investment lifecycle</span>
+        <span>AI agents across the entire </span>
+        <span>investment lifecycle</span>
       </h2>
+      <p class="coverage_paragraph">
+        From first look to final exit, VistIQ brings intelligence, memory and
+        autonomous execution into every investment workflow.
+      </p>
     </div>
 
-    <ol class="coverage_steps">
-      {
-        STEPS.map((step) => (
-          <li class="coverage_step">
-            <div class="coverage_step-line" />
-            <p class="coverage_step-number">{step.number}</p>
-            <div class="coverage_step-text">
-              <h3 class="coverage_step-title">{step.title}</h3>
-              <div class="coverage_step-body">
-                {step.paragraphs.map((paragraph) => (
-                  <p>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
+    <div class="coverage_slider" data-coverage-slider>
+      <div class="coverage_viewport" data-coverage-viewport>
+        <ol class="coverage_steps" data-coverage-track>
+          {
+            STEPS.map((step) => (
+              <li class="coverage_step" data-coverage-step>
+                <div class="coverage_step-line" />
+                <p class="coverage_step-number">{step.number}</p>
+                <div class="coverage_step-text">
+                  <h3 class="coverage_step-title">{step.title}</h3>
+                  <ul class="coverage_step-body">
+                    {step.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div class="coverage_controls" data-coverage-controls hidden>
+        <button
+          type="button"
+          class="coverage_arrow is-prev"
+          data-coverage-prev
+          aria-label="Previous steps"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M15 5 8 12l7 7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+
+        <div class="coverage_dots" data-coverage-dots></div>
+
+        <button
+          type="button"
+          class="coverage_arrow is-next"
+          data-coverage-next
+          aria-label="Next steps"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="m9 5 7 7-7 7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>

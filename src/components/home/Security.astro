@@ -6,25 +6,30 @@ import Eyebrow from "../ui/Eyebrow.astro";
 const PILLARS = [
   {
     number: "01",
-    title: "Confidentiality",
+    title: "Data Governance",
     paragraphs: [
-      "Your organization data are fully isolated by design, ensuring strict separation between clients.",
-      "Your data is not used to train LLM models.",
+      "Your firm controls how proprietary information is connected, structured and accessed.",
     ],
   },
   {
     number: "02",
-    title: "Auditability",
+    title: "Permissions & Confidentiality",
     paragraphs: [
-      "Every AI-generated output is backed by a traceable source. Click any reference number to access the source document.",
-      "Comprehensive audit logs provide full visibility into AI and user modifications.",
+      "Organizational data is isolated by design and access follows the firm’s permission model. Your proprietary data is not used to train underlying LLMs..",
     ],
   },
   {
     number: "03",
-    title: "Confidentiality",
+    title: "Auditability & Source Traceability",
     paragraphs: [
-      "Your proprietary data are hosted within the EU, following strict enterprise-grade security standards.",
+      "Every AI-generated output can be traced back to its underlying source, with comprehensive logs across user and AI activity.",
+    ],
+  },
+  {
+    number: "04",
+    title: "Agent Governance",
+    paragraphs: [
+      "Define what agents can access, what they can do autonomously and where human approval is required.",
     ],
   },
 ];
@@ -38,25 +43,18 @@ const PILLARS = [
       <div class="security_intro">
         <div class="security_intro-text">
           <h2 class="heading">
-            <span>Built for confidentiality,</span>
-            <span>auditability and security</span>
+            <span>Autonomy requires governance</span>
           </h2>
           <p class="security_paragraph">
-            Designed from day one with the compliance teams of investment funds.
+            VistIQ is designed from the ground up for the confidentiality and
+            governance requirements of private markets. Every user, data source,
+            AI output and agent action operates within a controlled and
+            auditable environment.
           </p>
         </div>
         <div class="security_buttons">
-          <Button
-            variant="primary"
-            href="/request-a-demo"
-          >
+          <Button variant="primary" href="/request-a-demo">
             Request a demo
-          </Button>
-          <Button
-            variant="secondary"
-            href="/contact"
-          >
-            Contact us
           </Button>
         </div>
       </div>

@@ -97,23 +97,23 @@ const MEMORY_TAGS = [
 
 const CARDS = [
   {
-    title: "Data sources",
-    body: "Connected to all your data sources",
+    title: "Connectors One governed data layer. Always up to date.",
+    body: "Connect once. VistIQ keeps your firm’s intelligence continuously synchronized. Connect your CRM, email, cloud storage, data rooms, portfolio systems and external data sources. VistIQ continuously ingests, structures and contextualizes new information while preserving permissions, ownership and source traceability.",
     modifier: "is-sources",
   },
   {
-    title: "Agents",
-    body: "An agent harness, running 24/7",
+    title: "Agents our autonomous investment team",
+    body: "Specialized AI agents that work continuously across your firm, monitoring, analyzing, preparing and executing. They understand context, coordinate work and act.",
     modifier: "is-agents",
   },
   {
     title: "Signal & event",
-    body: "Press, funding rounds, M&A, product launches and regulatory changes, tracked daily on your portfolio companies, their competitors and their markets.",
+    body: "Daily monitoring of your portfolio companies, their competitors and their markets",
     modifier: "is-informations",
   },
   {
     title: "Memory",
-    body: "The context of each company and the collective memory of your teams stay in the firm, and keep working",
+    body: "Every deal, company, interaction and decision becomes part of your firm’s collective intelligence. VistIQ continuously builds and maintains the context behind every investment — documents, conversations, analyses, decisions and historical data.",
     modifier: "is-memory",
   },
 ];
@@ -147,7 +147,9 @@ const CARDS = [
                           height="20"
                         />
                       </span>
-                      <span class="architecture_source-name">{source.name}</span>
+                      <span class="architecture_source-name">
+                        {source.name}
+                      </span>
                       <span
                         class="architecture_source-line"
                         aria-hidden="true"
@@ -245,7 +247,10 @@ const CARDS = [
               {card.modifier === "is-informations" && (
                 <div class="architecture_agents is-signals">
                   <div class="architecture_agents-stack">
-                    <span class="architecture_agents-ghost" aria-hidden="true" />
+                    <span
+                      class="architecture_agents-ghost"
+                      aria-hidden="true"
+                    />
                     {SIGNAL_NOTIFICATIONS.map((n) => (
                       <div class="architecture_agents-card">
                         <span class="architecture_agents-icon">
@@ -305,7 +310,10 @@ const CARDS = [
                     </span>
                   </div>
                   <div class="architecture_agents-stack">
-                    <span class="architecture_agents-ghost" aria-hidden="true" />
+                    <span
+                      class="architecture_agents-ghost"
+                      aria-hidden="true"
+                    />
                     {AGENT_NOTIFICATIONS.map((n) => (
                       <div class="architecture_agents-card">
                         <span class={`architecture_agents-icon ${n.iconClass}`}>
