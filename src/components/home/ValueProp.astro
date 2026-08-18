@@ -1,0 +1,35 @@
+---
+/**
+ * "What it does for you" — the centred pitch that sits between the hero and
+ * How it works. Eyebrow, heading, paragraph and a single CTA, over the same
+ * beige-dark shell (corner markers + noise) as the hero.
+ */
+import Button from "../ui/Button.astro";
+import Corners from "../ui/Corners.astro";
+import Eyebrow from "../ui/Eyebrow.astro";
+---
+
+<section class="value-prop_section">
+  <Corners class="value-prop_corner" />
+
+  <div class="container-medium">
+    <div class="value-prop_content">
+      <Eyebrow label="What it does for you" align="center" />
+
+      <div class="value-prop_text">
+        <h2 class="heading is-centered">10x your investment team</h2>
+        <p class="value-prop_paragraph">
+          Give every investment professional the intelligence and execution
+          capacity of an always-on AI team. VistIQ eliminates repetitive work,
+          surfaces the right information at the right time, and continuously
+          prepares the analysis your team needs, so investors can focus on
+          conviction, judgment and decisions.
+        </p>
+      </div>
+
+      <Button href="https://foundersfuturecp.typeform.com/to/gTW2mUSp">
+        Request a demo
+      </Button>
+    </div>
+  </div>
+</section>

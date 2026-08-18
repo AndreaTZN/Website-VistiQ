@@ -1,0 +1,27 @@
+---
+import Eyebrow from "../ui/Eyebrow.astro";
+---
+
+<section id="How-it-works" class="how-it-works_section">
+  <div class="container-medium">
+    <Eyebrow label="VistIQ in action" line alignMobile="center" />
+    <div class="how-it-works_text">
+      <h2 class="heading">Your firm's knowledge, working for you</h2>
+    </div>
+
+    <div class="how-it-works_visual">
+      <video
+        class="how-it-works_video"
+        data-how-it-works-video
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/images/videos/system.webm" type="video/webm" />
+        <source src="/images/videos/system.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>

@@ -1,7 +1,7 @@
 /* "How the system works" */
 
 .how-it-works_section {
-  background-color: var(--base-color--white);
+  background-color: var(--base-color--beige-dark);
   width: 100%;
   padding-top: 6.25rem;
   padding-bottom: 6.25rem;
@@ -16,14 +16,6 @@
 }
 
 /* Eyebrow */
-
-.how-it-works_paragraph {
-  color: #1d1e2199;
-  max-width: 54.75rem;
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
 
 /* Visual */
 

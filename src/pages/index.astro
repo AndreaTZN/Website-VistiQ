@@ -1,16 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import AnnouncementBar from "../components/sections/AnnouncementBar.astro";
-import Nav from "../components/sections/Nav.astro";
-import HeroV2 from "../components/sections/HeroV2.astro";
-import HowItWorks from "../components/sections/HowItWorks.astro";
-import Coverage from "../components/sections/Coverage.astro";
-import Benefits from "../components/sections/Benefits.astro";
-import Architecture from "../components/sections/Architecture.astro";
-import Testimonials from "../components/sections/Testimonials.astro";
-import Security from "../components/sections/Security.astro";
-import SubFooter from "../components/sections/SubFooter.astro";
-import FooterV2 from "../components/sections/FooterV2.astro";
+import AnnouncementBar from "../components/global/AnnouncementBar.astro";
+import Nav from "../components/global/Nav.astro";
+import HeroV2 from "../components/home/HeroV2.astro";
+import ValueProp from "../components/home/ValueProp.astro";
+import HowItWorks from "../components/home/HowItWorks.astro";
+import Coverage from "../components/home/Coverage.astro";
+import Benefits from "../components/home/Benefits.astro";
+import Architecture from "../components/home/Architecture.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import Security from "../components/home/Security.astro";
+import SubFooter from "../components/global/SubFooter.astro";
+import FooterV2 from "../components/global/FooterV2.astro";
 import Dock from "../components/ui/Dock.astro";
 
 const title = "VistIQ: AI Investment Operating System for Private Markets";
@@ -57,6 +58,7 @@ const websiteSchema = {
     <AnnouncementBar />
     <Nav belowAnnouncement />
     <HeroV2 />
+    <ValueProp />
     <HowItWorks />
     <Coverage />
     <Benefits />

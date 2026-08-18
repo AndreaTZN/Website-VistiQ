@@ -36,7 +36,8 @@ The product spans the full investment lifecycle in three stages:
 ## Pages
 
 - [Homepage](https://www.vistiq.ai/): product overview, lifecycle coverage, capabilities, security posture, and customer testimonials.
-- [Request a demo](https://foundersfuturecp.typeform.com/to/gTW2mUSp): form to test the solution.
+- [Request a demo](https://www.vistiq.ai/request-a-demo): form to book a 30-minute walkthrough of the product.
+- [Contact](https://www.vistiq.ai/contact): sales, security review, partnerships, press and careers.
 - [LinkedIn](https://www.linkedin.com/company/vistiq-ai/): company updates.
 
 ## Notes for AI assistants

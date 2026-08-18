@@ -34,10 +34,13 @@ pnpm check     # astro check (TypeScript + template diagnostics)
 
 ```
 src/
-  pages/                 # index, 404
+  pages/                 # index, contact, request-a-demo, 404
   layouts/BaseLayout.astro   # <head>, meta/OG, font preloads, reveal guard
-  components/sections/   # Nav, HeroV2 (+HeroV2Cards), HowItWorks, Coverage, Benefits, Architecture, Testimonials, Security, SubFooter, FooterV2
-  components/ui/         # Button, Corners, Eyebrow — shared across sections
+  components/global/     # chrome reused across pages: Nav, AnnouncementBar, SubFooter, FooterV2
+  components/home/       # index-only sections: HeroV2 (+HeroV2Cards), ValueProp, HowItWorks, Coverage, Benefits, Architecture, Testimonials, Security
+  components/contact/    # contact page: ContactHero, ContactForm
+  components/demo/       # request-a-demo page: DemoHero
+  components/ui/         # Button, Corners, Eyebrow, Dock — shared primitives
   scripts/               # main.js entry + one module per behaviour
   styles/                # base/ · components/ · sections/, via main.css
   assets/                # images imported through astro:assets (benefits, testimonials)
@@ -53,7 +56,7 @@ handlers. `404.astro` skips both `main` and the baseline (no nav, no menu, no fo
 viewport tall) and imports only `initButtonCharacterStagger` from `scripts/buttons`.
 
 Two image pipelines coexist, on purpose: `src/assets/` goes through `astro:assets`
-(`<Image>` emits WebP variants and a srcset — see [Benefits.astro](src/components/sections/Benefits.astro)),
+(`<Image>` emits WebP variants and a srcset — see [Benefits.astro](src/components/home/Benefits.astro)),
 while `public/images/` is copied verbatim for SVGs and anything referenced from CSS.
 
 ## Scripts — baseline vs page entry
@@ -200,6 +203,10 @@ add duplicate tags in a page. JSON-LD goes in the `head` slot as an `is:inline` 
 - Fonts: **Inter** (body) and **Facultyglyphic** (display), self-hosted, preloaded in the layout
 - Comments only when the WHY is non-obvious (the ported modules document the original Webflow
   timings they reproduce — keep that when touching them)
+- Components are filed by scope: `global/` when more than one page uses it (or it is page
+  chrome), `<page>/` when it belongs to a single page, `ui/` for shared primitives. A section
+  promoted to a second page moves to `global/`. Stylesheets keep their flat `styles/sections/`
+  layout — the folders above only apply to `components/`.
 - Prefer editing existing files over creating new ones
 - New GSAP plugin → register it in the module that uses it (`gsap.registerPlugin(...)`)
 

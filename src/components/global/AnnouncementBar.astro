@@ -1,19 +1,13 @@
----
-interface Props {
-  /** Optional destination — the bar renders as a plain <div> when omitted. */
-  href?: string;
-}
-
-const { href } = Astro.props;
-const Tag = href ? "a" : "div";
----
-
 <div class="announcement_component">
-  <Tag
+  <a
     class="announcement_inner"
-    {...href ? { href, rel: "noopener" } : {}}
+    href="https://www.ipem-market.com/ipem-global/"
+    rel="noopener"
+    target="_blank"
   >
-    <span class="announcement_text">Exhibiting at IPEM Paris (8–10 Sept. 2026)</span>
+    <span class="announcement_text"
+      >Exhibiting at IPEM Paris (8–10 Sept. 2026)</span
+    >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="16"
@@ -29,5 +23,5 @@ const Tag = href ? "a" : "div";
         stroke-linecap="round"
         stroke-linejoin="round"></path>
     </svg>
-  </Tag>
+  </a>
 </div>

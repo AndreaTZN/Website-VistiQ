@@ -1,18 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Nav from "../components/sections/Nav.astro";
-import DemoHero from "../components/sections/DemoHero.astro";
-import FooterV2 from "../components/sections/FooterV2.astro";
+import Nav from "../components/global/Nav.astro";
+import DemoHero from "../components/demo/DemoHero.astro";
+import FooterV2 from "../components/global/FooterV2.astro";
 
-const title = "Test the solution — See VistIQ in action";
+const title = "Request a demo — See VistIQ in action";
 const description =
   "Book a 30-minute walkthrough of VistIQ built around your workflow. See how investment teams centralize AI workflows and institutional memory, from sourcing and diligence to analytics and reporting.";
 
 const demoSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  name: "Test the solution",
-  url: "https://www.vistiq.ai/test-the-solution",
+  name: "Request a demo",
+  url: "https://www.vistiq.ai/request-a-demo",
   description,
   isPartOf: {
     "@type": "WebSite",
@@ -25,7 +25,7 @@ const demoSchema = {
 <BaseLayout
   title={title}
   description={description}
-  canonical="/test-the-solution"
+  canonical="/request-a-demo"
 >
   <Fragment slot="head">
     <script

@@ -34,9 +34,6 @@
 .footer-v2_logo-link {
   color: var(--base-color--light-black);
   display: flex;
-}
-
-.footer-v2_logo {
   width: 5.875rem;
 }
 
