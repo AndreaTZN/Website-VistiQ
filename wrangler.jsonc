@@ -1,10 +1,15 @@
 {
-  // Static Astro build: no `main` entrypoint on purpose. Without this file wrangler
-  // auto-detects, assumes SSR, and runs `astro add cloudflare` on its own.
+  // Static Astro build fronted by a Worker. `main` exists only for the
+  // /api/contact route in worker/index.js — everything else is served from
+  // dist/ by the assets binding, so the site stays effectively static.
+  // The ASSETS binding is REQUIRED as soon as `main` is set: without it
+  // env.ASSETS is undefined and every page 500s, not just the form.
   "name": "vistiq",
   "compatibility_date": "2026-08-11",
+  "main": "worker/index.js",
   "assets": {
     "directory": "dist",
+    "binding": "ASSETS",
 
     "not_found_handling": "404-page",
   },

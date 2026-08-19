@@ -1,6 +1,4 @@
 ---
-const TYPEFORM_URL = "https://foundersfuturecp.typeform.com/to/gTW2mUSp";
-
 /** Empty unless the deploy sets it — the script then uses the Typeform. */
 const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? "";
 
@@ -70,7 +68,6 @@ const LOGOS = [
         class="contact_form flex flex-col gap-5"
         data-contact-form
         data-required="name,email,title,company,companyType,consent"
-        data-fallback={TYPEFORM_URL}
         action={endpoint}
         method="post"
         novalidate

@@ -10,8 +10,6 @@
  */
 import Eyebrow from "../ui/Eyebrow.astro";
 
-const TYPEFORM_URL = "https://foundersfuturecp.typeform.com/to/gTW2mUSp";
-
 /** Empty unless the deploy sets it — the script then uses the Typeform. */
 const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? "";
 
@@ -161,7 +159,6 @@ const labelClass = "m-0 text-sm leading-normal text-light-black";
           <form
             class="flex w-full flex-col"
             data-contact-form
-            data-fallback={TYPEFORM_URL}
             action={endpoint}
             method="post"
             novalidate
