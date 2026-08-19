@@ -4,38 +4,51 @@
  * How it works. Eyebrow, heading, paragraph and a single CTA, over the same
  * beige-dark shell (corner markers + noise) as the hero.
  */
+
+import { Image } from "astro:assets";
+
 import Button from "../ui/Button.astro";
 import Corners from "../ui/Corners.astro";
 import Eyebrow from "../ui/Eyebrow.astro";
+import Globe from "../../assets/globe.png";
 ---
 
 <section
   class="relative z-0 w-full overflow-hidden py-25 max-mobile-landscape:py-14"
 >
   <Corners class="value-prop_corner" />
-
+  <div class="absolute bottom-0 z-0 w-full">
+    <Image
+      class="z-1 object-cover"
+      src={Globe}
+      alt=""
+      widths={[652, 1304]}
+      loading="lazy"
+    />
+  </div>
   <div class="container-medium">
-    <div class="flex flex-col items-center gap-6 *:last:mt-2">
+    <div class="flex flex-col items-center gap-6">
       <Eyebrow label="What it does for you" align="center" />
+      <div class="flex flex-col items-center gap-8">
+        <div class="flex w-full flex-col items-center gap-4">
+          <h2 class="heading is-centered font-facultyglyphic">
+            10x your investment team
+          </h2>
+          <p
+            class="m-0 max-w-205 text-center text-xl leading-normal text-light-black opacity-60 max-mobile-landscape:text-lg"
+          >
+            Give every investment professional the intelligence and execution
+            capacity of an always-on AI team. VistIQ eliminates repetitive work,
+            surfaces the right information at the right time, and continuously
+            prepares the analysis your team needs, so investors can focus on
+            conviction, judgment and decisions.
+          </p>
+        </div>
 
-      <div class="flex w-full flex-col items-center gap-4">
-        <h2 class="heading is-centered font-facultyglyphic">
-          10x your investment team
-        </h2>
-        <p
-          class="m-0 max-w-205 text-center text-xl leading-normal text-light-black opacity-60 max-mobile-landscape:text-lg"
-        >
-          Give every investment professional the intelligence and execution
-          capacity of an always-on AI team. VistIQ eliminates repetitive work,
-          surfaces the right information at the right time, and continuously
-          prepares the analysis your team needs, so investors can focus on
-          conviction, judgment and decisions.
-        </p>
+        <Button href="https://foundersfuturecp.typeform.com/to/gTW2mUSp">
+          Request a demo
+        </Button>
       </div>
-
-      <Button href="https://foundersfuturecp.typeform.com/to/gTW2mUSp">
-        Request a demo
-      </Button>
     </div>
   </div>
 </section>
