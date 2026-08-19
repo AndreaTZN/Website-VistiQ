@@ -2,7 +2,7 @@
   Contact — JS-toggled state classes only (see scripts/contact-form.js, which
   toggles .is-invalid on fields and writes .is-error/.is-success on the status
   line via `is-${state}`). Presentational markup lives as Tailwind utilities
-  in contact/ContactHero.astro and contact/ContactForm.astro.
+  in contact/ContactCard.astro.
 
   .contact_input/.contact_select/.contact_submit/.contact_status keep their
   class names (in addition to inline utilities) because demo.css targets them

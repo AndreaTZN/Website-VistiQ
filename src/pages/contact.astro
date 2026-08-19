@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/global/Nav.astro";
-import ContactHero from "../components/contact/ContactHero.astro";
-import ContactForm from "../components/contact/ContactForm.astro";
+import AnnouncementBar from "../components/global/AnnouncementBar.astro";
+
+import ContactCard from "../components/contact/ContactCard.astro";
 import FooterV2 from "../components/global/FooterV2.astro";
 
 const title = "Contact VistIQ — Talk to the team";
@@ -48,9 +49,9 @@ const contactSchema = {
   </Fragment>
 
   <main class="main-wrapper">
-    <Nav />
-    <ContactHero />
-    <ContactForm />
+    <AnnouncementBar />
+    <Nav belowAnnouncement />
+    <ContactCard />
     <FooterV2 />
   </main>
 </BaseLayout>
