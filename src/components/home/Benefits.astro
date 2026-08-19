@@ -78,16 +78,16 @@ const ITEMS = [
     </div>
 
     <div
-      class="mt-12 grid grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] items-start gap-8.5 max-mobile-landscape:mx-[-1rem] max-mobile-landscape:mt-10 max-mobile-landscape:grid-cols-[minmax(0,1fr)] max-mobile-landscape:gap-10"
+      class="mt-12 grid grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] items-start gap-8.5 max-mobile-landscape:-mx-4 max-mobile-landscape:mt-10 max-mobile-landscape:grid-cols-[minmax(0,1fr)] max-mobile-landscape:gap-10"
     >
       <div
-        class="benefits_accordion flex flex-col max-mobile-landscape:grid max-mobile-landscape:auto-cols-[92%] max-mobile-landscape:grid-flow-col max-mobile-landscape:gap-4 max-mobile-landscape:overflow-x-auto max-mobile-landscape:px-4 max-mobile-landscape:[scroll-padding-inline:1rem] max-mobile-landscape:[scroll-snap-type:x_mandatory] max-mobile-landscape:[scrollbar-width:none] max-mobile-landscape:[&::-webkit-scrollbar]:hidden"
+        class="benefits_accordion flex flex-col max-mobile-landscape:grid max-mobile-landscape:auto-cols-[92%] max-mobile-landscape:grid-flow-col max-mobile-landscape:gap-4 max-mobile-landscape:overflow-x-auto max-mobile-landscape:px-4 max-mobile-landscape:scroll-px-4 max-mobile-landscape:[scroll-snap-type:x_mandatory] max-mobile-landscape:[scrollbar-width:none] max-mobile-landscape:[&::-webkit-scrollbar]:hidden"
         data-accordion
       >
         {
           ITEMS.map((item, index) => (
             <div
-              class="benefits_item max-mobile-landscape:bg-[#f7f7f7] max-mobile-landscape:[scroll-snap-align:start]"
+              class="benefits_item max-mobile-landscape:bg-[#f7f7f7] max-mobile-landscape:snap-start"
               data-accordion-item
             >
               {/* Per-slide visual, mobile only — the desktop layout uses the
@@ -117,7 +117,7 @@ const ITEMS = [
               <h3 class="m-0 font-[inherit] text-[length:inherit] font-normal">
                 <button
                   type="button"
-                  class="benefits_item-trigger flex w-full flex-col items-start gap-3 border-0 bg-transparent p-6 text-left font-[inherit] transition-[background-color_0.4s_cubic-bezier(0.455,0.03,0.515,0.955),padding-bottom_0.4s_cubic-bezier(0.455,0.03,0.515,0.955)] max-mobile-landscape:p-5"
+                  class="benefits_item-trigger cursor-pointer flex w-full flex-col items-start gap-3 border-0 bg-transparent p-6 text-left font-[inherit] transition-[background-color_0.4s_cubic-bezier(0.455,0.03,0.515,0.955),padding-bottom_0.4s_cubic-bezier(0.455,0.03,0.515,0.955)] max-mobile-landscape:p-5"
                   data-accordion-trigger
                   aria-expanded={index === 0 ? "true" : "false"}
                   aria-controls={`benefits-panel-${index}`}
