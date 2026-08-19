@@ -96,7 +96,7 @@ const canonicalURL = new URL(canonical, Astro.site);
             stroke-opacity: 0;
           }
           /* The dock slides up once the first listed section is reached. */
-          .has-reveals:not(.is-ready) .dock {
+          .has-reveals:not(.is-ready) [data-dock] {
             opacity: 0;
             visibility: hidden;
           }

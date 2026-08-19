@@ -39,12 +39,15 @@ const TESTIMONIALS = [
 ];
 ---
 
-<section id="Investors" class="testimonials_section">
+<section
+  id="Investors"
+  class="relative z-0 w-full bg-beige-dark py-25 max-mobile-landscape:py-14"
+>
   <div class="container-medium">
-    <div class="testimonials_header">
+    <div class="flex flex-col items-start gap-6">
       <Eyebrow label="They trust us" line />
       <div>
-        <h2 class="heading">Adopted by industry leaders</h2>
+        <h2 class="heading font-facultyglyphic">Adopted by industry leaders</h2>
         <p>
           Built with investment teams. Designed for the standards of
           institutional private markets.
@@ -53,24 +56,26 @@ const TESTIMONIALS = [
     </div>
 
     <div
-      class="testimonials_carousel"
+      class="relative mt-12 grid grid-cols-[minmax(0,600fr)_minmax(0,377fr)] gap-8 bg-[#4a4441] max-mobile-landscape:mt-10 max-mobile-landscape:grid-cols-[minmax(0,1fr)]"
       data-testimonials
       aria-roledescription="carousel"
       aria-label="Customer testimonials"
     >
-      <div class="testimonials_content">
-        <div class="testimonials_texts">
+      <div
+        class="flex flex-col items-start gap-8 p-12 max-mobile-landscape:gap-8 max-mobile-landscape:p-4"
+      >
+        <div class="relative grid">
           {
             TESTIMONIALS.map((item, index) => (
               <div
-                class="testimonials_text"
+                class="testimonials_text [grid-area:1/1] flex flex-col items-start max-mobile-landscape:gap-8"
                 data-testimonial-text
                 aria-roledescription="slide"
                 aria-label={`${index + 1} of ${TESTIMONIALS.length}`}
                 aria-hidden={index === 0 ? "false" : "true"}
               >
                 <img
-                  class="testimonials_logo"
+                  class="h-auto w-[7.3rem]"
                   data-testimonial-logo
                   src={item.logo}
                   alt={item.logoAlt}
@@ -78,43 +83,53 @@ const TESTIMONIALS = [
                   height="48"
                   loading="lazy"
                 />
-                <p class="testimonials_quote" data-testimonial-quote>
+                <p
+                  class="mt-14 mb-8 max-w-150 text-xl leading-normal text-white max-mobile-landscape:mt-0 max-mobile-landscape:mb-0"
+                  data-testimonial-quote
+                >
                   {item.quote}
                 </p>
-                <div class="testimonials_author" data-testimonial-author>
-                  <p class="testimonials_author-name">{item.name}</p>
-                  <p class="testimonials_author-role">{item.role}</p>
+                <div class="flex flex-col" data-testimonial-author>
+                  <p class="m-0 text-[1.375rem] leading-normal font-medium text-white">
+                    {item.name}
+                  </p>
+                  <p class="m-0 text-base leading-normal text-white/60">
+                    {item.role}
+                  </p>
                 </div>
               </div>
             ))
           }
         </div>
 
-        <div class="testimonials_dots">
+        <div class="mt-auto flex gap-2">
           {
             TESTIMONIALS.map((_, index) => (
               <button
                 type="button"
-                class="testimonials_dot"
+                class="relative h-[2px] w-8 overflow-hidden border-0 bg-white/20 p-0"
                 data-testimonial-dot
                 aria-label={`Show testimonial ${index + 1}`}
               >
-                <span class="testimonials_dot-fill" data-testimonial-dot-fill />
+                <span
+                  class="absolute inset-0 block h-full w-full origin-left scale-x-0 bg-white"
+                  data-testimonial-dot-fill
+                />
               </button>
             ))
           }
         </div>
       </div>
 
-      <div class="testimonials_pictures">
+      <div class="relative grid max-mobile-landscape:order-[-1]">
         {
           TESTIMONIALS.map((item, index) => (
             <div
-              class="testimonials_picture"
+              class="testimonials_picture [grid-area:1/1] aspect-square w-full self-start p-5 max-mobile-landscape:p-4"
               data-testimonial-picture
               aria-hidden={index === 0 ? "false" : "true"}
             >
-              <div class="testimonials_picture-inner">
+              <div class="relative h-full w-full">
                 <Image
                   src={item.portrait}
                   alt={item.portraitAlt}

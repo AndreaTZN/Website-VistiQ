@@ -1,5 +1,6 @@
 ---
 /** Steps of the investment lifecycle. */
+import Button from "../ui/Button.astro";
 import Corners from "../ui/Corners.astro";
 import Eyebrow from "../ui/Eyebrow.astro";
 
@@ -60,83 +61,65 @@ const STEPS = [
 ];
 ---
 
-<section id="Lifecycle" class="coverage_section">
-  <div class="coverage_pattern" aria-hidden="true"></div>
+<section
+  id="Lifecycle"
+  class="coverage_section relative z-0 w-full overflow-hidden py-25 max-mobile-landscape:py-14"
+>
+  <div
+    class="coverage_pattern pointer-events-none absolute inset-0 -z-10 opacity-10 mask-[radial-gradient(ellipse_60%_55%_at_50%_50%,#0000_0%,#0000_40%,#000_100%)]"
+    aria-hidden="true"
+  >
+  </div>
 
   <Corners />
 
   <div class="container-medium">
-    <div class="coverage_header">
+    <div class="flex flex-col items-center gap-6 text-center">
       <Eyebrow label="End-to-end coverage" align="center" />
-      <h2 class="heading is-centered">
+      <h2 class="heading is-centered font-facultyglyphic">
         <span>AI agents across the entire </span>
         <span>investment lifecycle</span>
       </h2>
-      <p class="coverage_paragraph">
+      <p class="m-0 max-w-194 text-xl leading-normal text-[#1d1e2199]">
         From first look to final exit, VistIQ brings intelligence, memory and
         autonomous execution into every investment workflow.
       </p>
     </div>
 
-    <div class="coverage_slider" data-coverage-slider>
-      <div class="coverage_viewport" data-coverage-viewport>
-        <ol class="coverage_steps" data-coverage-track>
-          {
-            STEPS.map((step) => (
-              <li class="coverage_step" data-coverage-step>
-                <div class="coverage_step-line" />
-                <p class="coverage_step-number">{step.number}</p>
-                <div class="coverage_step-text">
-                  <h3 class="coverage_step-title">{step.title}</h3>
-                  <ul class="coverage_step-body">
-                    {step.bullets.map((bullet) => (
-                      <li>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-
-      <div class="coverage_controls" data-coverage-controls hidden>
-        <button
-          type="button"
-          class="coverage_arrow is-prev"
-          data-coverage-prev
-          aria-label="Previous steps"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path
-              d="M15 5 8 12l7 7"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </button>
-
-        <div class="coverage_dots" data-coverage-dots></div>
-
-        <button
-          type="button"
-          class="coverage_arrow is-next"
-          data-coverage-next
-          aria-label="Next steps"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path
-              d="m9 5 7 7-7 7"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
+    <ol
+      class="m-0 mt-12 grid list-none grid-cols-3 gap-px border border-[#e8e8e9] bg-[#e8e8e9] pl-0 max-tablet:grid-cols-2 max-mobile-landscape:mt-10 max-mobile-landscape:grid-cols-1"
+    >
+      {
+        STEPS.map((step) => (
+          <li class="group/step relative flex min-h-90 flex-col items-start gap-3 bg-white p-8 pt-20 transition-shadow duration-600 ease-[cubic-bezier(0.625,0.05,0,1)] motion-reduce:duration-0 hover:z-10 hover:shadow-[0_1.25rem_2.5rem_#1d1e211c] focus-within:z-10 focus-within:shadow-[0_1.25rem_2.5rem_#1d1e211c] max-mobile-landscape:min-h-0 max-mobile-landscape:pt-8">
+            {/* Scales from the left edge so the bar draws in rather than fading. */}
+            <div
+              class="absolute inset-x-8 top-0 h-1 origin-left scale-x-0 bg-[#2aa555] transition-transform duration-600 ease-[cubic-bezier(0.625,0.05,0,1)] motion-reduce:duration-0 group-hover/step:scale-x-100 group-focus-within/step:scale-x-100"
+              aria-hidden="true"
+            />
+            <p class="m-0 font-facultyglyphic text-4xl leading-normal font-normal text-[#2aa555]">
+              {step.number}
+            </p>
+            <div>
+              <h3 class="m-0 text-[1.375rem] leading-normal font-medium text-light-black">
+                {step.title}
+              </h3>
+              <ul class="m-0 list-disc pl-6 text-base leading-normal text-[#1d1e2199] [&_li]:m-0">
+                {step.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            </div>
+            {/* Reserves its own height at rest (mt-auto pins it to the bottom), so
+                revealing it on hover cannot shift the text above it. */}
+            <div class="mt-auto pt-5 opacity-0 transition-opacity duration-600 ease-[cubic-bezier(0.625,0.05,0,1)] motion-reduce:duration-0 group-hover/step:opacity-100 focus-within:opacity-100 max-mobile-landscape:opacity-100">
+              <Button href="/request-a-demo" newTab={false}>
+                Request a demo
+              </Button>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
   </div>
 </section>

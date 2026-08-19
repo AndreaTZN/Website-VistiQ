@@ -11,18 +11,24 @@ import connectors from "../../assets/benefits/connectors.png";
 import portfolio from "../../assets/benefits/portfolio.png";
 import reporting from "../../assets/benefits/reporting.png";
 
+/**
+ * Mirrors VISUAL_COLORS in scripts/accordion.js, which does not run below
+ * 768px — the mobile per-card visual needs a static equivalent.
+ */
 const ITEMS = [
   {
     eyebrow: "Ask anything",
     title: "Ask anything",
     body: "Get instant, sourced answers across every deal, company, fund, document and conversation.",
     visual: askAnything,
+    mobileColor: "#ccd9d0",
   },
   {
     eyebrow: "AUTOMATIC DATA ENTRY",
     title: "Eliminate manual data entry",
     body: "New documents and reporting are automatically read, structured and integrated into the relevant investment context.",
     visual: automatic,
+    mobileColor: "#eef1f8",
   },
   /*  {
     eyebrow: "CONNECTORS",
@@ -30,52 +36,71 @@ const ITEMS = [
 
     body: "Gmail, Outlook, Google Drive, Excel and your dataroom. Documents reach VistiQ where they already land no new habit to adopt, no folder to maintain.",
     visual: connectors,
+    mobileColor: "#e6e3dd",
   }, */
   {
     eyebrow: "Portfolio monitoring",
     title: "Monitor continuously",
     body: "Every portfolio company, competitor and market can be monitored continuously for changes, risks and opportunities.",
     visual: portfolio,
+    mobileColor: "#e6e3dd",
   },
   {
     eyebrow: "COLLABORATIVE DEALFLOW",
     title: "Scale your investment capacity",
     body: "Analyze more opportunities and monitor portfolios more deeply without increasing headcount proportionally.",
     visual: collab,
+    mobileColor: "#e9e4ef",
   },
   {
     eyebrow: "Fund operations and reporting",
     title: "Prepare automatically",
     body: "Investment materials, portfolio reviews and reporting are continuously prepared from the latest available information.",
     visual: reporting,
+    mobileColor: "#e3ebe6",
   },
 ];
 ---
 
-<section id="Solutions" class="benefits_section">
+<section
+  id="Solutions"
+  class="w-full bg-white py-25 max-mobile-landscape:py-14"
+>
   <div class="container-medium">
-    <div class="benefits_header">
+    <div class="flex flex-col items-start gap-6">
       <Eyebrow label="What it does for you" line />
-      <h2 class="heading">
+      <h2 class="heading font-facultyglyphic">
         <span>10x your investment team. </span><span>Not your headcount.</span>
       </h2>
-      <p class="benefits_paragraph">
+      <p class="text-base leading-normal text-[#1d1e2199]">
         From first look to final exit, VistIQ brings intelligence, memory and
         autonomous execution into every investment workflow.
       </p>
     </div>
 
-    <div class="benefits_layout">
-      <div class="benefits_accordion" data-accordion>
+    <div
+      class="mt-12 grid grid-cols-[minmax(0,0.75fr)_minmax(0,1fr)] items-start gap-8.5 max-mobile-landscape:mx-[-1rem] max-mobile-landscape:mt-10 max-mobile-landscape:grid-cols-[minmax(0,1fr)] max-mobile-landscape:gap-10"
+    >
+      <div
+        class="benefits_accordion flex flex-col max-mobile-landscape:grid max-mobile-landscape:auto-cols-[92%] max-mobile-landscape:grid-flow-col max-mobile-landscape:gap-4 max-mobile-landscape:overflow-x-auto max-mobile-landscape:px-4 max-mobile-landscape:[scroll-padding-inline:1rem] max-mobile-landscape:[scroll-snap-type:x_mandatory] max-mobile-landscape:[scrollbar-width:none] max-mobile-landscape:[&::-webkit-scrollbar]:hidden"
+        data-accordion
+      >
         {
           ITEMS.map((item, index) => (
-            <div class="benefits_item" data-accordion-item>
+            <div
+              class="benefits_item max-mobile-landscape:bg-[#f7f7f7] max-mobile-landscape:[scroll-snap-align:start]"
+              data-accordion-item
+            >
               {/* Per-slide visual, mobile only — the desktop layout uses the
                   single shared one below and hides these. */}
-              <div class="benefits_item-visual" aria-hidden="true">
+              <div
+                class="hidden max-mobile-landscape:relative max-mobile-landscape:z-0 max-mobile-landscape:block max-mobile-landscape:aspect-square max-mobile-landscape:overflow-hidden"
+                style={`background-color:${item.mobileColor}`}
+                aria-hidden="true"
+              >
                 {item.visual && (
                   <Image
-                    class="benefits_illu"
+                    class="absolute inset-0 z-1 h-full w-full object-cover"
                     src={item.visual}
                     alt=""
                     widths={[652, 1304]}
@@ -83,41 +108,48 @@ const ITEMS = [
                     loading="lazy"
                   />
                 )}
-                <Corners />
+                <Corners
+                  class="benefits_item-visual-corners"
+                  style="--corners-size:0.5rem;--corners-offset:0.75rem;--corners-z:2"
+                />
                 <div class="noise" />
               </div>
               <div class="benefits_item-line" />
-              <h3 class="benefits_item-heading">
+              <h3 class="m-0 font-[inherit] text-[length:inherit] font-normal">
                 <button
                   type="button"
-                  class="benefits_item-trigger"
+                  class="benefits_item-trigger flex w-full flex-col items-start gap-3 border-0 bg-transparent p-6 text-left font-[inherit] transition-[background-color_0.4s_cubic-bezier(0.455,0.03,0.515,0.955),padding-bottom_0.4s_cubic-bezier(0.455,0.03,0.515,0.955)] max-mobile-landscape:p-5"
                   data-accordion-trigger
                   aria-expanded={index === 0 ? "true" : "false"}
                   aria-controls={`benefits-panel-${index}`}
                   id={`benefits-trigger-${index}`}
                 >
-                  <span class="benefits_item-eyebrow">
+                  <span class="flex items-center gap-3">
                     <span
-                      class="benefits_item-square"
+                      class="benefits_item-square h-3 w-3 flex-none transition-colors duration-400 [transition-timing-function:cubic-bezier(0.455,0.03,0.515,0.955)]"
                       data-accordion-square
                       aria-hidden="true"
                     />
-                    <span class="benefits_item-eyebrow-label">
+                    <span class="text-sm leading-normal font-semibold tracking-[0.0175rem] text-[#1d1e2199] uppercase">
                       {item.eyebrow}
                     </span>
                   </span>
-                  <span class="benefits_item-title">{item.title}</span>
+                  <span class="text-[1.375rem] leading-normal font-medium text-light-black">
+                    {item.title}
+                  </span>
                 </button>
               </h3>
               {item.body && (
                 <div
-                  class="benefits_item-panel"
+                  class="benefits_item-panel h-0 overflow-hidden bg-[#f7f7f7] max-mobile-landscape:h-auto"
                   data-accordion-panel
                   id={`benefits-panel-${index}`}
                   role="region"
                   aria-labelledby={`benefits-trigger-${index}`}
                 >
-                  <p class="benefits_item-body">{item.body}</p>
+                  <p class="m-0 px-6 pb-6 text-base leading-normal text-[#1d1e2199] max-mobile-landscape:px-5 max-mobile-landscape:pb-5">
+                    {item.body}
+                  </p>
                 </div>
               )}
             </div>
@@ -125,7 +157,11 @@ const ITEMS = [
         }
       </div>
 
-      <div class="benefits_visual" data-accordion-visual>
+      <div
+        class="benefits_visual sticky top-24 z-0 aspect-square overflow-hidden border border-[#1d1e211a] bg-sage transition-colors duration-600 [transition-timing-function:cubic-bezier(0.455,0.03,0.515,0.955)] max-mobile-landscape:order-[-1] max-mobile-landscape:hidden"
+        data-accordion-visual
+        style="--corners-size:0.75rem;--corners-offset:0.75rem;--corners-z:2"
+      >
         {
           /* One illustration per item, stacked; accordion.js cross-fades to
             the one matching the open panel. */
@@ -134,7 +170,7 @@ const ITEMS = [
           ITEMS.map((item, index) =>
             item.visual ? (
               <Image
-                class="benefits_illu"
+                class="absolute inset-0 z-1 h-full w-full object-cover opacity-0 invisible"
                 data-accordion-illu={index}
                 src={item.visual}
                 alt=""

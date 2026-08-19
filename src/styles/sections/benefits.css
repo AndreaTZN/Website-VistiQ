@@ -1,72 +1,15 @@
-/* "What it does for you" */
-
-.benefits_section {
-  background-color: var(--base-color--white);
-  width: 100%;
-  padding-top: 6.25rem;
-  padding-bottom: 6.25rem;
-}
-
-/* Header */
-
-.benefits_header {
-  grid-row-gap: 1.5rem;
-  flex-flow: column;
-  align-items: flex-start;
-  display: flex;
-}
-.benefits_paragraph {
-  color: #1d1e2199;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-/* Layout */
-
-.benefits_layout {
-  grid-column-gap: 2.125rem;
-  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
-  align-items: start;
-  margin-top: 3rem;
-  display: grid;
-}
-
-/* Accordion */
+/*
+  Benefits — JS-toggled state classes only (see scripts/accordion.js, which
+  toggles .is-open via classList). Presentational markup lives as Tailwind
+  utilities in home/Benefits.astro.
+*/
 
 .benefits_item-line {
-  background-color: #1d1e211a;
-  width: 100%;
-  height: 1px;
-  transition: background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  @apply h-px w-full bg-[#1d1e211a];
 }
 
 .benefits_item.is-open .benefits_item-line {
-  background-color: var(--base-color--green);
-}
-
-.benefits_item-heading {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: 400;
-}
-
-.benefits_item-trigger {
-  grid-row-gap: 0.75rem;
-  cursor: pointer;
-  text-align: left;
-  background-color: #0000;
-  border: 0;
-  border-radius: 0;
-  flex-flow: column;
-  align-items: flex-start;
-  width: 100%;
-  padding: 1.5rem;
-
-  font-family: inherit;
-  display: flex;
-  transition:
-    background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955),
-    padding-bottom 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  background-color: var(--color-green);
 }
 
 .benefits_item.is-open .benefits_item-trigger {
@@ -74,199 +17,24 @@
   padding-bottom: 0rem;
 }
 
-.benefits_item-eyebrow {
-  grid-column-gap: 0.75rem;
-  align-items: center;
-  display: flex;
-}
-
 .benefits_item-square {
   background-color: #1d1e2133;
-  flex: none;
-  width: 0.75rem;
-  height: 0.75rem;
-  transition: background-color 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 .benefits_item.is-open .benefits_item-square {
-  background-color: var(--base-color--green);
+  background-color: var(--color-green);
 }
 
-.benefits_item-eyebrow-label {
-  color: #1d1e2199;
-  letter-spacing: 0.0175rem;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.benefits_item-title {
-  color: var(--base-color--light-black);
-  font-size: 1.375rem;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-/*
-  The panel is collapsed by default so it stays hidden before the script runs;
-  GSAP animates its height and the .is-open class holds the open state.
-*/
-.benefits_item-panel {
-  background-color: #f7f7f7;
-  height: 0;
-  overflow: hidden;
-}
-
-.benefits_item-body {
-  color: #1d1e2199;
-  margin: 0;
-  padding: 0 1.5rem 1.5rem;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-/* Visual */
-
-/* One per slide, only shown in the mobile slider (see the media query). */
-.benefits_item-visual {
-  display: none;
-}
-
-/*
-  Interface mockups. In the shared desktop visual they are stacked in the same
-  spot and cross-faded by accordion.js, hence the absolute positioning; the
-  mobile per-slide copy is the only child of its square so it just fills it.
-*/
-.benefits_illu {
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  inset: 0;
-}
-
-/* Hidden until accordion.js fades the active one in, so the stack does not
-   flash all mockups at once on first paint. */
-.benefits_visual .benefits_illu {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.benefits_visual {
-  /* --corners-z lifts the markers above this visual's noise overlay. */
-  --corners-size: 0.75rem;
-  --corners-offset: 0.75rem;
-  --corners-z: 2;
-
-  z-index: 0;
-  background-color: var(--base-color--sage);
-  aspect-ratio: 1 / 1;
-  border: 1px solid rgba(29, 30, 33, 0.1);
-
-  position: sticky;
-  top: 6rem;
-  overflow: hidden;
-  transition: background-color 0.6s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-}
-
+/* Below 768px the accordion becomes a scroll-snap slider with every panel
+   open (accordion.js is scoped to desktop via matchMedia, see its comment) —
+   the open-state highlight has no meaning here, so it is neutralized. */
 @media screen and (max-width: 767px) {
-  .benefits_section {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
-  }
-
-  .benefits_item-trigger {
-    padding: 1.25rem;
-  }
-
-  .benefits_item-body {
-    padding: 0 1.25rem 1.25rem;
-  }
-  .benefits_layout {
-    grid-row-gap: 2.5rem;
-    grid-template-columns: minmax(0, 1fr);
-    margin-left: -1rem;
-    margin-right: -1rem;
-  }
-
-  .benefits_visual {
-    order: -1;
-  }
-
-  .benefits_accordion {
-    grid-column-gap: 1rem;
-    grid-auto-columns: 92%;
-    grid-auto-flow: column;
-    display: grid;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    scroll-padding-left: 1rem;
-    scroll-padding-right: 1rem;
-  }
-
-  .benefits_accordion::-webkit-scrollbar {
-    display: none;
-  }
-
-  .benefits_item {
-    background-color: #f7f7f7;
-    scroll-snap-align: start;
-  }
-
-  /* Each card carries its own visual; the shared one is desktop-only. */
-  .benefits_visual {
-    display: none;
-  }
-
-  .benefits_item-visual {
-    --corners-size: 0.5rem;
-    --corners-offset: 0.75rem;
-    --corners-z: 2;
-
-    z-index: 0;
-    aspect-ratio: 1 / 1;
-    display: block;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Mirrors VISUAL_COLORS in accordion.js, which does not run at this width. */
-  .benefits_item:nth-child(1) .benefits_item-visual {
-    background-color: var(--base-color--sage);
-  }
-
-  .benefits_item:nth-child(2) .benefits_item-visual {
-    background-color: #eef1f8;
-  }
-
-  .benefits_item:nth-child(3) .benefits_item-visual {
-    background-color: #e6e3dd;
-  }
-
-  .benefits_item:nth-child(4) .benefits_item-visual {
-    background-color: #e9e4ef;
-  }
-
-  .benefits_item:nth-child(5) .benefits_item-visual {
-    background-color: #e3ebe6;
-  }
-
-  /* Every card shows its text: there is no open/closed state in this mode. */
-  .benefits_item-panel {
-    height: auto;
-  }
-
   .benefits_item-line,
   .benefits_item.is-open .benefits_item-trigger {
     background-color: #0000;
   }
 
   .benefits_item-square {
-    background-color: var(--base-color--green);
+    background-color: var(--color-green);
   }
 }

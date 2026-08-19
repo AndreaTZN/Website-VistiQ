@@ -10,11 +10,20 @@ const { belowAnnouncement = false } = Astro.props;
 ---
 
 <header
-  class:list={["nav_component", { "is-below-announcement": belowAnnouncement }]}
+  class:list={[
+    "nav_component absolute inset-x-0 bottom-auto z-10000 w-full py-2 max-tablet:bg-white",
+    belowAnnouncement ? "top-10.5" : "top-0",
+  ]}
 >
-  <div class="nav_container">
-    <div class="nav_left-wrapper">
-      <a href="/" aria-label="VistIQ" aria-current="page" class="nav_logo-link"
+  <div
+    class="nav_container relative z-0 mx-auto flex w-[calc(min(100%,79.5rem)-2rem)] items-center justify-between gap-4 rounded-lg p-2 text-light-black transition-[all_0.6s_cubic-bezier(0.625,0.05,0,1),color_0.1s_ease-in] max-tablet:text-light-black"
+  >
+    <div class="z-100000 flex items-center gap-6">
+      <a
+        href="/"
+        aria-label="VistIQ"
+        aria-current="page"
+        class="nav_logo-link flex w-full max-w-20 transition-[max-width_0.6s_cubic-bezier(0.625,0.05,0,1),color_0.2s_cubic-bezier(0.455,0.03,0.515,0.955)] max-tablet:mr-0"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
@@ -168,8 +177,8 @@ const { belowAnnouncement = false } = Astro.props;
         </li>
       </ul>
     </nav> -->
-    <div class="nav_right-wrap">
-      <div class="nav_button-wrapper">
+    <div class="flex items-center gap-6">
+      <div class="flex items-center justify-between gap-3">
         <Button variant="text" href="https://app.vistiq.ai/sign-in">
           Sign in
         </Button>
@@ -195,41 +204,63 @@ const { belowAnnouncement = false } = Astro.props;
     </div>
   </div>
   <div class="menu">
-    <div data-lenis-start="" data-menu-close class="menu_shadow"></div>
-    <div class="menu_container">
-      <div class="menu-header_wrapper">
-        <button data-menu-close data-lenis-start="" class="menu_close"
+    <div
+      data-lenis-start=""
+      data-menu-close
+      class="menu_shadow absolute inset-0 h-full w-full backdrop-blur-[5px] bg-[#20202080]"
+    >
+    </div>
+    <div
+      class="menu_container relative z-9999 min-h-svh w-full max-w-120 bg-white shadow-[6px_0_12px_#1a1b1f1f]"
+    >
+      <div class="flex">
+        <button
+          data-menu-close
+          data-lenis-start=""
+          class="h-6 w-6 bg-transparent p-0"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             width="100%"
             fill="none"
             viewBox="0 0 24 24"
           >
-            <g id="menu" class="menu">
+            <g id="menu">
               <path
                 id="Vector"
                 stroke="#1D1E21"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M6.871 17.127 17.124 6.874"
-                class="Vector"></path>
+                d="M6.871 17.127 17.124 6.874"></path>
               <path
                 id="Vector_2"
                 stroke="#1D1E21"
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="m6.871 6.873 10.253 10.253"
-                class="Vector"></path>
+                d="m6.871 6.873 10.253 10.253"></path>
             </g>
           </svg></button
         >
       </div>
-      <div class="menu_wrapper no-scrollbar">
-        <nav class="menu_link_list">
-          <div class="menu_link_item">
-            <a href="#How-it-works" class="menu_link_title">How it works</a>
-            <a href="#Solutions" class="menu_link_title">Solutions</a>
-            <a href="#Investors" class="menu_link_title">About us</a>
+      <div
+        class="menu_wrapper no-scrollbar flex h-full w-full flex-col gap-6 overflow-scroll px-6 pt-8 pb-18 max-tablet:px-10 max-mobile-landscape:px-4"
+      >
+        <nav class="flex flex-col gap-6">
+          <div class="flex flex-col text-xl">
+            <a
+              href="#How-it-works"
+              class="menu_link_title block px-1 py-4 text-[#1c1c1e] no-underline"
+              >How it works</a
+            >
+            <a
+              href="#Solutions"
+              class="menu_link_title block px-1 py-4 text-[#1c1c1e] no-underline"
+              >Solutions</a
+            >
+            <a
+              href="#Investors"
+              class="menu_link_title block px-1 py-4 text-[#1c1c1e] no-underline"
+              >About us</a
+            >
           </div>
         </nav>
       </div>

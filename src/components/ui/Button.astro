@@ -30,13 +30,17 @@ const {
   class: extraClass,
 } = Astro.props;
 
-/** Base class per variant. */
+/** Shared metrics for every variant except `nav` (kept in sections/nav.css — see Nav.astro) and `text`. */
+const BUTTON_BASE =
+  "group/btn relative z-0 flex cursor-pointer items-center justify-center rounded-lg text-sm font-medium leading-normal tracking-[-0.00875rem] px-4 py-2.5";
+
+/** Base class per variant. `nav` keeps its Webflow class — styled in sections/nav.css, migrated alongside Nav.astro. */
 const VARIANT_CLASS = {
-  primary: "button_primary",
-  secondary: "button_secondary",
-  "secondary-white": "button_secondary is-white",
-  nav: "nav-button_primary",
-  text: "text_button",
+  primary: `${BUTTON_BASE} text-white [filter:drop-shadow(0_0.125rem_0.1875rem_#0c0c0c33)]`,
+  secondary: `${BUTTON_BASE} gap-1 text-light-black`,
+  "secondary-white": `${BUTTON_BASE} gap-1 text-light-black`,
+  nav: "group/btn nav-button_primary",
+  text: "group/btn relative z-0 flex cursor-pointer items-center justify-center text-sm font-medium leading-normal tracking-[-0.00875rem]",
 };
 
 /**
@@ -44,9 +48,12 @@ const VARIANT_CLASS = {
  * instead, so it has no background element.
  */
 const BG_CLASS = {
-  primary: "button_primary-bg",
-  secondary: "button_secondary-bg",
-  "secondary-white": "button_secondary-bg is-white",
+  primary:
+    "absolute inset-0 -z-10 rounded-lg bg-[linear-gradient(to_top,#0c0c0c_50%,#aca094_217%)] shadow-[inset_0_-0.125rem_0.0625rem_#ffffff0d,inset_0_0.0625rem_0.0375rem_#00000080] transition-[inset] duration-600 [transition-timing-function:cubic-bezier(0.625,0.05,0,1)] group-hover/btn:inset-[0.125em]",
+  secondary:
+    "absolute inset-0 -z-10 rounded-lg border border-[#1d1e2133] transition-[inset] duration-600 [transition-timing-function:cubic-bezier(0.625,0.05,0,1)] group-hover/btn:inset-[0.125em]",
+  "secondary-white":
+    "absolute inset-0 -z-10 rounded-lg border-none bg-white transition-[inset] duration-600 [transition-timing-function:cubic-bezier(0.625,0.05,0,1)] group-hover/btn:inset-[0.125em]",
   nav: "nav-button_primary-bg",
   text: null,
 };
@@ -66,6 +73,11 @@ const classes = [VARIANT_CLASS[variant], extraClass].filter(Boolean).join(" ");
   rel={opensNewTab ? "noopener" : undefined}
   class={classes}
 >
-  <div data-button-animate-chars=""><slot /></div>
+  <div
+    data-button-animate-chars=""
+    class="relative overflow-hidden [&_span]:relative [&_span]:inline-block [&_span]:[text-shadow:0px_1.5rem_currentColor] [&_span]:[transform:translateY(0em)_rotate(0.001deg)] [&_span]:transition-transform [&_span]:duration-600 [&_span]:[transition-timing-function:cubic-bezier(0.625,0.05,0,1)] group-hover/btn:[&_span]:[transform:translateY(-1.5rem)_rotate(0.001deg)]"
+  >
+    <slot />
+  </div>
   {bgClass && <div data-button-animate-bg="" class={bgClass} />}
 </a>

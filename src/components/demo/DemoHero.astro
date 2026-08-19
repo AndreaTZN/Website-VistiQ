@@ -31,9 +31,15 @@ const LOGOS = [
 ];
 ---
 
-<section class="demo_section">
-  <!-- Leaves the page rather than navigating: the script resolves the target. -->
-  <a class="demo_close" href="/" data-demo-close aria-label="Close and go back">
+<section
+  class="demo_section relative grid min-h-svh grid-cols-2 items-stretch bg-white max-tablet:min-h-0 max-tablet:grid-cols-1"
+>
+  <a
+    class="absolute top-6 right-6 z-2 grid h-10 w-10 place-items-center rounded-full border border-[#1d1e211a] bg-white text-light-black transition-[background-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955),border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] hover:border-[#1d1e2133] hover:bg-beige-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-black"
+    href="/"
+    data-demo-close
+    aria-label="Close and go back"
+  >
     <svg
       width="16"
       height="16"
@@ -50,12 +56,18 @@ const LOGOS = [
     </svg>
   </a>
 
-  <div class="demo_panel is-form">
-    <div class="demo_form-inner">
-      <h1 class="demo_form-title">Request a demo</h1>
+  <div
+    class="grid place-items-center-safe overflow-y-auto px-8 py-16 max-tablet:order-2 max-tablet:px-6"
+  >
+    <div class="flex w-full max-w-105 flex-col gap-6">
+      <h1
+        class="m-0 text-center text-2xl leading-normal font-normal text-light-black"
+      >
+        Request a demo
+      </h1>
 
       <form
-        class="contact_form demo_form"
+        class="contact_form flex flex-col gap-5"
         data-contact-form
         data-required="name,email,title,company,companyType,consent"
         data-fallback={TYPEFORM_URL}
@@ -63,10 +75,13 @@ const LOGOS = [
         method="post"
         novalidate
       >
-        <div class="contact_field">
-          <label class="contact_label" for="demo-name">Full name</label>
+        <div class="flex flex-col gap-2">
+          <label
+            class="m-0 text-sm leading-normal font-medium text-light-black"
+            for="demo-name">Full name</label
+          >
           <input
-            class="contact_input"
+            class="contact_input w-full rounded-lg border border-[#e9eaf0] bg-white px-3 py-3 font-inter text-sm leading-normal text-light-black shadow-[0_1.455px_2.91px_#00000014] transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] focus:border-light-black focus:outline-none"
             id="demo-name"
             name="name"
             type="text"
@@ -76,10 +91,13 @@ const LOGOS = [
           />
         </div>
 
-        <div class="contact_field">
-          <label class="contact_label" for="demo-email">Business email</label>
+        <div class="flex flex-col gap-2">
+          <label
+            class="m-0 text-sm leading-normal font-medium text-light-black"
+            for="demo-email">Business email</label
+          >
           <input
-            class="contact_input"
+            class="contact_input w-full rounded-lg border border-[#e9eaf0] bg-white px-3 py-3 font-inter text-sm leading-normal text-light-black shadow-[0_1.455px_2.91px_#00000014] transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] focus:border-light-black focus:outline-none"
             id="demo-email"
             name="email"
             type="email"
@@ -89,10 +107,13 @@ const LOGOS = [
           />
         </div>
 
-        <div class="contact_field">
-          <label class="contact_label" for="demo-title">Job title</label>
+        <div class="flex flex-col gap-2">
+          <label
+            class="m-0 text-sm leading-normal font-medium text-light-black"
+            for="demo-title">Job title</label
+          >
           <input
-            class="contact_input"
+            class="contact_input w-full rounded-lg border border-[#e9eaf0] bg-white px-3 py-3 font-inter text-sm leading-normal text-light-black shadow-[0_1.455px_2.91px_#00000014] transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] focus:border-light-black focus:outline-none"
             id="demo-title"
             name="title"
             type="text"
@@ -102,10 +123,13 @@ const LOGOS = [
           />
         </div>
 
-        <div class="contact_field">
-          <label class="contact_label" for="demo-company">Company</label>
+        <div class="flex flex-col gap-2">
+          <label
+            class="m-0 text-sm leading-normal font-medium text-light-black"
+            for="demo-company">Company</label
+          >
           <input
-            class="contact_input"
+            class="contact_input w-full rounded-lg border border-[#e9eaf0] bg-white px-3 py-3 font-inter text-sm leading-normal text-light-black shadow-[0_1.455px_2.91px_#00000014] transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] focus:border-light-black focus:outline-none"
             id="demo-company"
             name="company"
             type="text"
@@ -115,10 +139,13 @@ const LOGOS = [
           />
         </div>
 
-        <div class="contact_field">
-          <label class="contact_label" for="demo-type">Company type</label>
+        <div class="flex flex-col gap-2">
+          <label
+            class="m-0 text-sm leading-normal font-medium text-light-black"
+            for="demo-type">Company type</label
+          >
           <select
-            class="contact_select"
+            class="contact_select w-full cursor-pointer appearance-none rounded-lg border border-[#e9eaf0] bg-white bg-[url('data:image/svg+xml,%3Csvg_xmlns=%27http://www.w3.org/2000/svg%27_width=%2712%27_height=%278%27_fill=%27none%27%3E%3Cpath_stroke=%27%231d1e21%27_stroke-opacity=%27.6%27_stroke-width=%271.5%27_d=%27m1_1.5_5_5_5-5%27/%3E%3C/svg%3E')] bg-position-[right_1rem_center] bg-no-repeat px-3 py-3 pr-10 font-inter text-sm leading-normal text-light-black shadow-[0_1.455px_2.91px_#00000014] transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] focus:border-light-black focus:outline-none"
             id="demo-type"
             name="companyType"
             required
@@ -129,7 +156,10 @@ const LOGOS = [
         </div>
 
         {/* Honeypot: bots fill it, humans never see it. */}
-        <div class="contact_honeypot" aria-hidden="true">
+        <div
+          class="absolute h-px w-px overflow-hidden [clip-path:inset(50%)] whitespace-nowrap"
+          aria-hidden="true"
+        >
           <label for="demo-company-website">Leave this field empty</label>
           <input
             id="demo-company-website"
@@ -140,24 +170,27 @@ const LOGOS = [
           />
         </div>
 
-        <div class="demo_consent">
+        <div class="flex items-center gap-2">
           <input
-            class="demo_consent-check"
+            class="m-0 h-4 w-4 flex-none cursor-pointer accent-light-black"
             id="demo-consent"
             name="consent"
             type="checkbox"
             required
           />
-          <label class="demo_consent-label" for="demo-consent">
+          <label
+            class="text-sm leading-normal text-[#1d1e2199]"
+            for="demo-consent"
+          >
             You agree to our friendly <a
               href="/privacy-policy"
-              class="contact_consent-link">privacy policy</a
+              class="text-light-black underline">privacy policy</a
             >.
           </label>
         </div>
 
         <button
-          class="contact_submit demo_submit"
+          class="contact_submit w-full cursor-pointer rounded-lg border-none bg-[linear-gradient(to_top,#0c0c0c_50%,#aca094_217%)] px-4 py-2.5 font-inter text-sm leading-normal font-medium tracking-[-0.00875rem] text-white shadow-[inset_0_-0.125rem_0.0625rem_#ffffff0d,inset_0_0.0625rem_0.0375rem_#00000080] filter-[drop-shadow(0_0.125rem_0.1875rem_#0c0c0c33)] transition-opacity duration-300 ease-[cubic-bezier(0.455,0.03,0.515,0.955)] hover:opacity-85 disabled:cursor-default disabled:opacity-60"
           type="submit"
           data-contact-submit
         >
@@ -168,7 +201,7 @@ const LOGOS = [
           /* Filled by scripts/contact-form.js; polite so it never interrupts. */
         }
         <p
-          class="contact_status"
+          class="contact_status m-0 text-sm leading-normal text-[#1d1e2199] empty:hidden"
           data-contact-status
           role="status"
           aria-live="polite"
@@ -178,12 +211,18 @@ const LOGOS = [
     </div>
   </div>
 
-  <div class="demo_panel is-pitch">
-    <div class="demo_pitch-inner">
-      <div class="demo_pitch-text">
-        <h2 class="demo_heading">See VistIQ in action</h2>
+  <div
+    class="grid place-items-center-safe overflow-y-auto bg-[#f0eeec] px-8 py-16 max-tablet:order-1 max-tablet:px-6 max-tablet:pt-22"
+  >
+    <div class="flex w-full max-w-154 flex-col items-center gap-8.5">
+      <div class="flex w-full flex-col items-center gap-3">
+        <h2
+          class="m-0 bg-[linear-gradient(66deg,var(--color-light-black)_29%,rgb(117_117_117/0)_163%)] bg-clip-text text-center font-facultyglyphic text-5xl leading-tight tracking-[-0.03rem] text-transparent max-tablet:text-4xl"
+        >
+          See VistIQ in action
+        </h2>
 
-        <p class="demo_paragraph">
+        <p class="m-0 text-center text-sm leading-normal text-[#1d1e2199]">
           In 30 minutes, we'll show you how VistIQ helps investment teams
           centralize their AI workflows and institutional memory in one unified
           platform, from sourcing and diligence to real time analytics and
@@ -191,15 +230,16 @@ const LOGOS = [
         </p>
       </div>
 
-      <ul class="demo_bullets">
+      <ul class="m-0 flex list-none flex-col items-center gap-1 pl-0">
         {
           BULLETS.map((bullet) => (
-            <li class="demo_bullet">
-              <span class="demo_bullet-icon" aria-hidden="true">
+            <li class="flex items-center gap-1 text-sm leading-normal text-light-black">
+              <span class="h-5 w-5 flex-none text-green" aria-hidden="true">
                 <svg
                   viewBox="0 0 20 20"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  class="block h-full w-full"
                 >
                   <path
                     d="M4.79167 10.7221L6.94996 13.6782C7.62642 14.6047 9.01492 14.5867 9.66717 13.6429L15.2083 5.625"
@@ -216,14 +256,18 @@ const LOGOS = [
         }
       </ul>
 
-      <ul class="demo_logos">
+      <ul
+        class="m-0 flex list-none flex-wrap items-center justify-center gap-[2.9rem] pl-0"
+      >
         {
           LOGOS.map((logo) => (
             <li
-              class="demo_logo"
-              style={`--demo-logo-mask: url("${logo.src}"); --demo-logo-width: ${logo.width}rem;`}
+              class="demo_logo h-[1.78rem] bg-light-black [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain]"
+              style={`width:${logo.width}rem;mask-image:url("${logo.src}")`}
             >
-              <span class="demo_logo-sr">{logo.name}</span>
+              <span class="absolute h-px w-px overflow-hidden [clip-path:inset(50%)] whitespace-nowrap">
+                {logo.name}
+              </span>
             </li>
           ))
         }

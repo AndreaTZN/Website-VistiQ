@@ -68,25 +68,32 @@ const CHANNELS = [
 ];
 ---
 
-<section class="contact_section">
+<section class="w-full bg-white py-25 max-mobile-landscape:py-14">
   <div class="container-medium">
-    <div class="contact_layout">
-      <div class="contact_form-wrap">
+    <div
+      class="grid grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] items-start gap-x-18 gap-y-16 max-tablet:grid-cols-1"
+    >
+      <div class="flex w-full flex-col items-start gap-8">
         <Eyebrow label="Send a message" line />
 
         <form
-          class="contact_form"
+          class="flex w-full flex-col gap-6"
           data-contact-form
           data-fallback={TYPEFORM_URL}
           action={endpoint}
           method="post"
           novalidate
         >
-          <div class="contact_field-row">
-            <div class="contact_field">
-              <label class="contact_label" for="contact-name">Name</label>
+          <div
+            class="grid grid-cols-2 gap-6 max-mobile-landscape:grid-cols-1"
+          >
+            <div class="flex flex-col gap-2">
+              <label
+                class="m-0 text-sm leading-normal font-medium text-light-black"
+                for="contact-name">Name</label
+              >
               <input
-                class="contact_input"
+                class="contact_input w-full rounded-lg border border-[#1d1e211a] bg-beige px-4 py-3 font-inter text-base leading-normal text-light-black transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955),background-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] placeholder:text-light-black/40 focus:border-light-black focus:bg-white focus:outline-none"
                 id="contact-name"
                 name="name"
                 type="text"
@@ -96,10 +103,13 @@ const CHANNELS = [
               />
             </div>
 
-            <div class="contact_field">
-              <label class="contact_label" for="contact-email">Email</label>
+            <div class="flex flex-col gap-2">
+              <label
+                class="m-0 text-sm leading-normal font-medium text-light-black"
+                for="contact-email">Email</label
+              >
               <input
-                class="contact_input"
+                class="contact_input w-full rounded-lg border border-[#1d1e211a] bg-beige px-4 py-3 font-inter text-base leading-normal text-light-black transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955),background-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] placeholder:text-light-black/40 focus:border-light-black focus:bg-white focus:outline-none"
                 id="contact-email"
                 name="email"
                 type="email"
@@ -110,10 +120,13 @@ const CHANNELS = [
             </div>
           </div>
 
-          <div class="contact_field">
-            <label class="contact_label" for="contact-category">Category</label>
+          <div class="flex flex-col gap-2">
+            <label
+              class="m-0 text-sm leading-normal font-medium text-light-black"
+              for="contact-category">Category</label
+            >
             <select
-              class="contact_select"
+              class="contact_select w-full cursor-pointer appearance-none rounded-lg border border-[#1d1e211a] bg-beige bg-[url('data:image/svg+xml,%3Csvg_xmlns=%27http://www.w3.org/2000/svg%27_width=%2712%27_height=%278%27_fill=%27none%27%3E%3Cpath_stroke=%27%231d1e21%27_stroke-opacity=%27.6%27_stroke-width=%271.5%27_d=%27m1_1.5_5_5_5-5%27/%3E%3C/svg%3E')] bg-position-[right_1rem_center] bg-no-repeat py-3 pr-10 pl-4 font-inter text-base leading-normal text-light-black transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955),background-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] focus:border-light-black focus:bg-white focus:outline-none"
               id="contact-category"
               name="category"
               required
@@ -127,10 +140,13 @@ const CHANNELS = [
             </select>
           </div>
 
-          <div class="contact_field">
-            <label class="contact_label" for="contact-message">Message</label>
+          <div class="flex flex-col gap-2">
+            <label
+              class="m-0 text-sm leading-normal font-medium text-light-black"
+              for="contact-message">Message</label
+            >
             <textarea
-              class="contact_textarea"
+              class="contact_input min-h-34 w-full resize-y rounded-lg border border-[#1d1e211a] bg-beige px-4 py-3 font-inter text-base leading-normal text-light-black transition-[border-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955),background-color_0.3s_cubic-bezier(0.455,0.03,0.515,0.955)] placeholder:text-light-black/40 focus:border-light-black focus:bg-white focus:outline-none"
               id="contact-message"
               name="message"
               rows="5"
@@ -139,7 +155,7 @@ const CHANNELS = [
           </div>
 
           {/* Honeypot: bots fill it, humans never see it. */}
-          <div class="contact_honeypot" aria-hidden="true">
+          <div class="absolute h-px w-px overflow-hidden [clip-path:inset(50%)] whitespace-nowrap" aria-hidden="true">
             <label for="contact-company-website">Leave this field empty</label>
             <input
               id="contact-company-website"
@@ -150,14 +166,18 @@ const CHANNELS = [
             />
           </div>
 
-          <div class="contact_actions">
-            <button class="contact_submit" type="submit" data-contact-submit>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-4">
+            <button
+              class="contact_submit cursor-pointer rounded-lg border-none bg-[linear-gradient(to_top,#0c0c0c_50%,#aca094_217%)] px-4 py-2.5 font-inter text-sm leading-normal font-medium tracking-[-0.00875rem] text-white shadow-[inset_0_-0.125rem_0.0625rem_#ffffff0d,inset_0_0.0625rem_0.0375rem_#00000080] filter-[drop-shadow(0_0.125rem_0.1875rem_#0c0c0c33)] transition-opacity duration-300 ease-[cubic-bezier(0.455,0.03,0.515,0.955)] hover:opacity-85 disabled:cursor-default disabled:opacity-60"
+              type="submit"
+              data-contact-submit
+            >
               <span data-contact-submit-label>Send Message</span>
             </button>
-            <p class="contact_consent">
+            <p class="m-0 text-sm leading-normal text-[#1d1e2199]">
               By sending this form you agree to our <a
                 href="/privacy-policy"
-                class="contact_consent-link">Privacy Policy</a
+                class="text-light-black underline">Privacy Policy</a
               >.
             </p>
           </div>
@@ -166,7 +186,7 @@ const CHANNELS = [
             /* Filled by scripts/contact-form.js; polite so it never interrupts. */
           }
           <p
-            class="contact_status"
+            class="contact_status m-0 text-sm leading-normal text-[#1d1e2199] empty:hidden"
             data-contact-status
             role="status"
             aria-live="polite"
@@ -175,19 +195,25 @@ const CHANNELS = [
         </form>
       </div>
 
-      <aside class="contact_aside">
+      <aside class="flex w-full flex-col items-start gap-8">
         <Eyebrow label="Direct channels" line />
 
-        <ol class="contact_channels">
+        <ol class="m-0 flex w-full list-none flex-col gap-8 pl-0">
           {
             CHANNELS.map((channel) => (
-              <li class="contact_channel">
-                <p class="contact_channel-number">{channel.number}</p>
-                <div class="contact_channel-text">
-                  <h2 class="contact_channel-title">{channel.title}</h2>
-                  <p class="contact_channel-paragraph">{channel.paragraph}</p>
+              <li class="mb-0 flex items-start gap-6">
+                <p class="m-0 w-14 flex-none text-center font-facultyglyphic text-3xl leading-normal font-normal text-green max-mobile-landscape:w-11 max-mobile-landscape:text-2xl">
+                  {channel.number}
+                </p>
+                <div class="flex flex-col items-start gap-1">
+                  <h2 class="m-0 font-inter text-[1.375rem] leading-normal font-medium text-light-black">
+                    {channel.title}
+                  </h2>
+                  <p class="m-0 text-base leading-normal text-[#1d1e2199]">
+                    {channel.paragraph}
+                  </p>
                   <a
-                    class="contact_channel-link"
+                    class="mt-2 text-sm leading-normal font-medium text-light-black underline transition-opacity duration-300 ease-[cubic-bezier(0.455,0.03,0.515,0.955)] hover:opacity-60"
                     href={channel.href}
                     target={
                       channel.href.startsWith("http") ? "_blank" : undefined
@@ -204,8 +230,10 @@ const CHANNELS = [
           }
         </ol>
 
-        <div class="contact_aside-cta">
-          <p class="contact_aside-note">
+        <div
+          class="flex w-full flex-col items-start gap-4 border-t border-[#1d1e211a] pt-8"
+        >
+          <p class="m-0 text-base leading-normal text-[#1d1e2199]">
             Prefer a guided form? The demo questionnaire takes two minutes.
           </p>
           <Button variant="secondary" href={DEMO_URL}>Request a demo</Button

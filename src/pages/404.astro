@@ -4,22 +4,39 @@ import Button from "../components/ui/Button.astro";
 ---
 
 <BaseLayout title="Not Found" canonical="/404">
-  <section class="error404_section">
+  <section
+    class="relative z-0 flex min-h-svh w-full items-center overflow-hidden bg-beige-dark py-40 max-mobile-landscape:py-30 max-mobile-landscape:pb-14"
+  >
     <div class="container-medium">
-      <div class="error404_content">
-        <p class="error404_eyebrow">Error 404</p>
+      <div class="mx-auto flex max-w-194 flex-col items-center gap-8">
+        <p class="m-0 text-sm leading-normal font-medium tracking-[0.06rem] text-light-black/50 uppercase">
+          Error 404
+        </p>
 
-        <p class="error404_code" aria-hidden="true">404</p>
+        <p
+          class="m-0 bg-[linear-gradient(135deg,var(--color-light-black)_14%,rgb(117_117_117/0)_141%)] bg-clip-text text-[11rem] leading-none font-normal tracking-[-0.05em] text-transparent font-facultyglyphic max-mobile-landscape:text-[6.5rem]"
+          aria-hidden="true"
+        >
+          404
+        </p>
 
-        <div class="error404_text">
-          <h1 class="error404_heading">This page went off-market</h1>
-          <p class="error404_paragraph">
+        <div class="flex w-full flex-col items-center gap-3">
+          <h1
+            class="m-0 text-center text-4xl leading-tight tracking-[-0.03rem] font-medium text-light-black max-mobile-landscape:text-[1.75rem]"
+          >
+            This page went off-market
+          </h1>
+          <p
+            class="m-0 max-w-128 text-center text-xl leading-normal text-light-black/60 max-mobile-landscape:text-lg"
+          >
             The page you are looking for does not exist or has been moved.
             Let's get you back on track.
           </p>
         </div>
 
-        <div class="error404_buttons">
+        <div
+          class="flex items-center gap-3 max-mobile-landscape:w-full max-mobile-landscape:max-w-68 max-mobile-landscape:flex-col max-mobile-landscape:items-stretch max-mobile-landscape:gap-3"
+        >
           <Button variant="primary" href="/">Back to home</Button>
           <Button
             variant="secondary"
@@ -31,12 +48,27 @@ import Button from "../components/ui/Button.astro";
       </div>
     </div>
 
-    <div class="error404_corner is-top-left" aria-hidden="true"></div>
-    <div class="error404_corner is-top-right" aria-hidden="true"></div>
-    <div class="error404_corner is-bottom-left" aria-hidden="true"></div>
-    <div class="error404_corner is-bottom-right" aria-hidden="true"></div>
+    <div
+      class="absolute top-8 left-6 h-2 w-2 bg-[#1d1e2133] max-mobile-landscape:hidden"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute top-8 right-6 h-2 w-2 bg-[#1d1e2133] max-mobile-landscape:hidden"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute bottom-8 left-6 h-2 w-2 bg-[#1d1e2133] max-mobile-landscape:hidden"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute right-6 bottom-8 h-2 w-2 bg-[#1d1e2133] max-mobile-landscape:hidden"
+      aria-hidden="true"
+    ></div>
 
-    <div class="error404_glow" aria-hidden="true"></div>
+    <div
+      class="pointer-events-none absolute inset-0 -z-1 bg-[radial-gradient(circle_at_50%_45%,rgb(255_255_255/0.5)_0%,rgb(255_255_255/0)_55%)]"
+      aria-hidden="true"
+    ></div>
     <div class="noise"></div>
   </section>
 </BaseLayout>

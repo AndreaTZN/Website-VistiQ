@@ -9,16 +9,22 @@ import Corners from "../ui/Corners.astro";
 import Eyebrow from "../ui/Eyebrow.astro";
 ---
 
-<section class="value-prop_section">
+<section
+  class="relative z-0 w-full overflow-hidden py-25 max-mobile-landscape:py-14"
+>
   <Corners class="value-prop_corner" />
 
   <div class="container-medium">
-    <div class="value-prop_content">
+    <div class="flex flex-col items-center gap-6 *:last:mt-2">
       <Eyebrow label="What it does for you" align="center" />
 
-      <div class="value-prop_text">
-        <h2 class="heading is-centered">10x your investment team</h2>
-        <p class="value-prop_paragraph">
+      <div class="flex w-full flex-col items-center gap-4">
+        <h2 class="heading is-centered font-facultyglyphic">
+          10x your investment team
+        </h2>
+        <p
+          class="m-0 max-w-205 text-center text-xl leading-normal text-light-black opacity-60 max-mobile-landscape:text-lg"
+        >
           Give every investment professional the intelligence and execution
           capacity of an always-on AI team. VistIQ eliminates repetitive work,
           surfaces the right information at the right time, and continuously

@@ -11,9 +11,11 @@
 interface Props {
   /** Extra class on each marker, for section-level overrides. */
   class?: string;
+  /** Inline --corners-* overrides, for instances that vary per render (e.g. a mapped list). */
+  style?: string;
 }
 
-const { class: className } = Astro.props;
+const { class: className, style } = Astro.props;
 
 const POSITIONS = ["top-left", "top-right", "bottom-left", "bottom-right"];
 ---
@@ -22,6 +24,7 @@ const POSITIONS = ["top-left", "top-right", "bottom-left", "bottom-right"];
   POSITIONS.map((position) => (
     <span
       class:list={["corners_item", `is-${position}`, className]}
+      style={style}
       aria-hidden="true"
     />
   ))

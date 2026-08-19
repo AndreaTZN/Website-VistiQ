@@ -11,15 +11,19 @@ Webflow, the interactions were rewritten by hand in GSAP.
   `astro/tsconfigs/base` with `allowJs: true` / `checkJs: false` — the editor reads the JSDoc
   for IntelliSense, but the scripts are not type-checked. `.astro` frontmatter is still
   TypeScript (see the `Props` interface in `BaseLayout`).
-- **Styling**: plain CSS with custom properties, imported through a single `main.css`
+- **Styling**: Tailwind CSS v4, via `@tailwindcss/vite` (no `tailwind.config.js` — the theme
+  is declared in a CSS `@theme` block). Utilities in the markup are the default; the CSS files
+  under `src/styles/` hold what utilities can't express, and are imported through a single
+  `main.css`.
 - **Animations**: GSAP — always use GSAP (never CSS transitions, never another library)
 - **Smooth scroll**: Lenis, driven by the GSAP ticker
 - **WebGL**: three.js — only in [globe-particles.js](src/scripts/globe-particles.js)
 - **Sitemap**: `@astrojs/sitemap`, registered in [astro.config.mjs](astro.config.mjs)
 - **Package manager**: pnpm
 
-No slider library: the testimonial carousel is hand-written in
-[testimonials.js](src/scripts/testimonials.js).
+No slider library: the testimonial carousel and the mobile coverage slider are hand-written
+in [testimonials.js](src/scripts/testimonials.js) and
+[coverage-slider.js](src/scripts/coverage-slider.js).
 
 ## Commands
 
@@ -42,7 +46,7 @@ src/
   components/demo/       # request-a-demo page: DemoHero
   components/ui/         # Button, Corners, Eyebrow, Dock — shared primitives
   scripts/               # main.js entry + one module per behaviour
-  styles/                # base/ · components/ · sections/, via main.css
+  styles/                # main.css (Tailwind import + @theme) → base/ · components/ · sections/
   assets/                # images imported through astro:assets (benefits, testimonials)
 public/
   images/                # AVIF/PNG/SVG exports from Webflow (+ per-section subfolders)
@@ -71,12 +75,22 @@ Behaviour is split in two, so a new page doesn't pay for the home page's WebGL:
   home-only sections, then `revealPage()` **last**.
 
 A new page imports `baseline` plus only the sections it uses, then calls `revealPage()` if it
-passes `animated`. Transitive JS cost today: home ~683 KB, a baseline-only page ~130 KB.
+passes `animated`. Transitive JS cost today (measured on `dist/`): home ~683 KB, `/contact`
+~133 KB, `/request-a-demo` ~71 KB (no baseline — no Lenis), `/404` ~0 KB.
 
-Home order after `initBaseline()`: `initAccordions()` → `initTestimonials()` →
-`initAnimations()` → `initGlobeParticles()` ×2 → `initCoveragePattern()` →
-`initArchitectureCards()` → `initHeroCards()` → `initChatbox()` → `initDock()` →
-`initWatermark()` → `revealPage()`
+Home order after `initBaseline()`: `initHowItWorksVideo()` → `initAccordions()` →
+`initTestimonials()` → `initAnimations()` → `initGlobeParticles()` → `initGlobeParticles(".sub-footer_section", { introOnEnter: true })`
+→ `initCoveragePattern()` → `initArchitectureCards()` → `initHeroCards()` → `initChatbox()` →
+`initDock()` → `initWatermark()` → `revealPage()`
+
+The other pages compose their own entry in a `<script>` block instead of importing `main`:
+
+| Page               | Entry                                                                        |
+| ------------------ | ---------------------------------------------------------------------------- |
+| `index`            | `import '../scripts/main'`                                                   |
+| `contact`          | `initBaseline()` + `initContactForm()` + `initWatermark()`                    |
+| `request-a-demo`   | `initButtonCharacterStagger()` + `initContactForm()` + `initDemoClose()`      |
+| `404`              | `initButtonCharacterStagger()` only                                          |
 
 | Module                                                     | Responsibility                                                  |
 | ---------------------------------------------------------- | --------------------------------------------------------------- |
@@ -94,9 +108,16 @@ Home order after `initBaseline()`: `initAccordions()` → `initTestimonials()` �
 | [hero-cards.js](src/scripts/hero-cards.js)                 | Hero floating cards                                             |
 | [chatbox.js](src/scripts/chatbox.js)                       | Hero chatbox teaser — wired to nothing, makes no request        |
 | [watermark.js](src/scripts/watermark.js)                   | Footer watermark, emboss light follows the cursor               |
+| [coverage-slider.js](src/scripts/coverage-slider.js)       | Coverage lifecycle pager — progressive enhancement over a native-scrolling grid, controls stay hidden without real overflow |
+| [dock.js](src/scripts/dock.js)                             | Floating section dock — label follows the section on screen. `SECTIONS` must mirror `DOCK_SECTIONS` in [Dock.astro](src/components/ui/Dock.astro) |
+| [how-it-works-video.js](src/scripts/how-it-works-video.js) | Background video — playback gated on reduced motion and visibility (~16 MB of sources, so nothing loads beyond metadata until close) |
+| [contact-form.js](src/scripts/contact-form.js)             | Contact + demo form: validates in JS (`novalidate`), POSTs to `PUBLIC_CONTACT_ENDPOINT` if set, otherwise falls back to the Typeform in `data-fallback` |
+| [demo-close.js](src/scripts/demo-close.js)                 | Close button on `/request-a-demo` — `history.back()` only for a same-origin referrer, else the anchor's href |
 
 `initGlobeParticles()` is called **twice** — once with no argument, once with
-`".sub-footer_section"` — because the same ring renders behind two sections. Each call builds
+`".sub-footer_section"` and `{ introOnEnter: true }` (the sub-footer is far down the page, so
+its ~6.3s intro is held until the section scrolls in rather than being over on arrival) —
+because the same ring renders behind two sections. Each call builds
 its own WebGL context, so both are gated on visibility: a ScrollTrigger flips a flag and the
 ticker skips `renderer.render()` while its section is offscreen. Only the draw call is skipped
 — `uTime` and the entrance timeline keep running, so the ring is already settled when the
@@ -120,10 +141,14 @@ that property when adding one.
 
 ## Reduced motion
 
-Every animated module guards on `(prefers-reduced-motion: reduce)` — `smooth-scroll`,
-`accordion`, `testimonials`, `globe-particles`, `architecture-cards`, `hero-cards`, `chatbox`,
-`watermark`. Native scrolling stays intact and reveal targets are shown immediately. Any new
-animation must respect the same guard (or `gsap.matchMedia()`).
+Every animated module guards on `(prefers-reduced-motion: reduce)` — `accordion`,
+`architecture-cards`, `chatbox`, `contact-form`, `coverage-pattern`, `coverage-slider`, `dock`,
+`globe-particles`, `hero-cards`, `how-it-works-video`, `testimonials`, `watermark` — each
+returns early, so its reveal targets are shown immediately instead of animating in.
+
+`smooth-scroll` is the exception: Lenis is installed unconditionally, so smooth scrolling is
+**not** disabled under reduced motion. Treat that as a known gap, not as the pattern to copy —
+any new animation must carry the guard (or `gsap.matchMedia()`).
 
 ## Reveal guard (flash prevention)
 
@@ -139,23 +164,63 @@ calls `revealPage()` stays invisible.**
 If you add a new reveal target, add its selector to that inline style in
 [BaseLayout.astro](src/layouts/BaseLayout.astro) — otherwise it flashes in its final state.
 
-## Styling
+## Styling — Tailwind v4
 
-- Everything is imported by [main.css](src/styles/main.css) in a deliberate cascade order:
-  `normalize → fonts → tokens → fluid-type → elements → components/* → sections/* → globals`.
-  **Several rules win by source order, not specificity — keep the order when adding an
-  import.**
-- `globals.css` comes last on purpose: it holds what were inline `<style>` embeds in the
-  Webflow export, and must override everything above it.
-- Design tokens live in [tokens.css](src/styles/base/tokens.css) as Webflow-style custom
-  properties (`--base-color--*`, `--size--*`, `--text-color--*`). Use them; don't hardcode.
-- Class names follow the Webflow export convention: `section_element` /
-  `how-it-works_card-bar` / `is-*` variants. Match it — do not introduce BEM or utility classes.
-- **Always size and space in `rem`, never `px`.** The root font-size is fluid
-  ([fluid-type.css](src/styles/base/fluid-type.css)), so every rem value scales with the
-  viewport instead of stepping at breakpoints.
-- A new section gets its own file in `styles/sections/` plus one import in `main.css`.
-  `main.css` is the single entry point — no page imports its own stylesheet.
+Tailwind is wired through the Vite plugin in [astro.config.mjs](astro.config.mjs). **There is
+no `tailwind.config.js`** — v4 is configured in CSS, in the `@theme` block at the top of
+[main.css](src/styles/main.css).
+
+**Write utilities in the markup first.** Reach for a CSS file only when utilities genuinely
+can't express it: a shape driven by custom properties the scripts write to
+([corners.css](src/styles/components/corners.css)), a keyframed or measured effect, or a
+Webflow class a script still queries by name.
+
+### The theme
+
+`@theme` in `main.css` declares the design tokens, and Tailwind derives utilities from them —
+so a token is used as `bg-beige` / `text-light-black` / `font-facultyglyphic`, not as a raw
+`var()`:
+
+| Token group   | Names                                                     | Utilities                        |
+| ------------- | --------------------------------------------------------- | -------------------------------- |
+| `--color-*`   | `white`, `light-black`, `beige`, `beige-dark`, `sage`, `green` | `bg-*`, `text-*`, `border-*` |
+| `--font-*`    | `inter` (body), `facultyglyphic` (display)                | `font-inter`, `font-facultyglyphic` |
+| `--breakpoint-*` | `tablet` 991px, `mobile-landscape` 767px, `mobile` 479px | `max-tablet:`, `max-mobile-landscape:`, `max-mobile:` |
+
+The breakpoints are **named after the Webflow ones and used max-width first** — the design is
+desktop-down, so `max-tablet:` is the common direction, not `md:`. Don't redefine `sm`/`md`/`lg`
+to mean something non-standard, and don't hardcode a pixel query when a named variant exists.
+
+Colours outside the theme appear as arbitrary values with the alpha baked in
+(`text-[#1d1e2199]`, `bg-[#1d1e211a]`) — that's the convention for the Webflow greys that were
+never tokens.
+
+### Cascade order — still load-bearing
+
+`main.css` imports in a deliberate order: `tailwindcss` + `@theme` → `base/` → `components/` →
+`sections/` → `base/globals.css`. **Keep it when adding an import** — several project rules win
+by source order, not specificity, and `globals.css` comes last on purpose (it holds what were
+inline `<style>` embeds in the Webflow export and must override everything above).
+
+Importing `tailwindcss` first is for readability, not correctness: Tailwind's output lives in
+internal `@layer` blocks, which the cascade-layers spec always ranks below un-layered rules. So
+every project rule outranks a utility regardless of import order — which also means **a utility
+in the markup will not override a section rule targeting the same element.** Fix the CSS rather
+than stacking `!` on the utility.
+
+### Rules that survive the migration
+
+- **Always size and space in `rem`, never `px`** — including inside arbitrary values
+  (`tracking-[-0.00875rem]`, `inset-[0.125em]`). The root font-size is fluid
+  ([fluid-type.css](src/styles/base/fluid-type.css)), so every rem scales with the viewport
+  instead of stepping at breakpoints. A `px` arbitrary value silently opts out of that.
+- Class names in the remaining CSS follow the Webflow export convention: `section_element` /
+  `architecture_memory-chip` / `is-*` variants. Match it there — don't introduce BEM.
+- A section that still needs CSS gets one file in `styles/sections/` plus one import in
+  `main.css`. `main.css` is the single entry point — no page imports its own stylesheet.
+- `@apply` is used sparingly, only in [globals.css](src/styles/base/globals.css), to give a
+  Webflow class a Tailwind body (`.noise`, `.container-medium`, `.image-fit-cover`). Prefer
+  utilities in the markup over adding a new `@apply` class.
 
 ## JS hooks — `data-*`, not `id`
 
@@ -168,8 +233,13 @@ Scripts target elements through classes and `data-*` attributes, never `id`:
 | `data-lenis-stop` / `data-lenis-start`                                                  | scroll lock (Lenis' own)   |
 | `data-button-animate`, `data-button-animate-chars`, `data-button-animate-bg`            | button hover               |
 | `data-accordion*` (`-item`, `-trigger`, `-panel`, `-visual`, `-illu`, `-square`)        | Benefits accordion         |
-| `data-testimonials`, `data-testimonial-*` (`quote`, `author`, `logo`, `picture`, `dot`) | Testimonials carousel      |
+| `data-testimonials`, `data-testimonial-*` (`quote`, `text`, `picture`, `dot`, `dot-fill`) | Testimonials carousel      |
 | `data-chatbox`, `data-chatbox-input`, `data-chatbox-send`                               | hero chatbox               |
+| `data-coverage-slider` (+ `-viewport`, `-track`, `-step`, `-controls`, `-prev`, `-next`, `-dots`) | Coverage lifecycle pager |
+| `data-dock` (+ `-prev`, `-next`, `-label`, `-index`, `-announce`)                       | section dock               |
+| `data-how-it-works-video`                                                               | gated background video     |
+| `data-contact-form` (+ `-status`, `-submit`, `-submit-label`), `data-fallback`          | contact / demo form        |
+| `data-demo-close`                                                                       | `/request-a-demo` close button |
 | `data-line`                                                                             | line-drawing scroll scenes |
 
 Add a new hook as a `data-*` attribute and query it in the matching module. Keep Webflow's

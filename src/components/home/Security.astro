@@ -35,41 +35,53 @@ const PILLARS = [
 ];
 ---
 
-<section id="Data" class="security_section">
+<section id="Data" class="w-full bg-white py-25 max-mobile-landscape:py-14">
   <div class="container-medium">
-    <div class="security_header">
+    <div class="flex flex-col items-start gap-6">
       <Eyebrow label="Security & compliance" line />
 
-      <div class="security_intro">
-        <div class="security_intro-text">
-          <h2 class="heading">
+      <div
+        class="flex w-full justify-between gap-8 max-tablet:flex-col max-tablet:items-start max-tablet:gap-8"
+      >
+        <div class="flex flex-col items-start gap-4">
+          <h2 class="heading font-facultyglyphic">
             <span>Autonomy requires governance</span>
           </h2>
-          <p class="security_paragraph">
+          <p
+            class="m-0 max-w-194 text-xl leading-normal text-[#1d1e2199] max-mobile-landscape:text-lg"
+          >
             VistIQ is designed from the ground up for the confidentiality and
             governance requirements of private markets. Every user, data source,
             AI output and agent action operates within a controlled and
             auditable environment.
           </p>
         </div>
-        <div class="security_buttons">
+        <div class="flex items-center gap-4">
           <Button variant="primary" href="/request-a-demo">
             Request a demo
           </Button>
         </div>
       </div>
     </div>
-    <ol class="security_pillars">
+    <ol
+      class="m-0 mt-12 grid list-none grid-cols-4 gap-x-6 gap-y-10 pl-0 max-tablet:grid-cols-1 max-mobile-landscape:mt-10"
+    >
       {
         PILLARS.map((pillar) => (
-          <li class="security_pillar">
-            <div class="security_pillar-line" />
-            <div class="security_pillar-body">
-              <p class="security_pillar-number">{pillar.number}</p>
-              <div class="security_pillar-text">
-                <h3 class="security_pillar-title">{pillar.title}</h3>
+          <li class="flex flex-col items-start gap-6">
+            <div class="h-0.5 w-full bg-[#1d1e211a]" />
+            <div class="flex w-full flex-col items-start gap-3 max-tablet:flex-row">
+              <p class="m-0 flex-none text-center font-facultyglyphic text-4xl leading-normal font-normal text-green max-tablet:w-14 max-mobile-landscape:text-3xl">
+                {pillar.number}
+              </p>
+              <div class="flex flex-col [&>p+p]:mt-6">
+                <h3 class="m-0 font-inter text-[1.375rem] leading-normal font-medium text-light-black">
+                  {pillar.title}
+                </h3>
                 {pillar.paragraphs.map((paragraph) => (
-                  <p class="security_pillar-paragraph">{paragraph}</p>
+                  <p class="m-0 text-base leading-normal text-[#1d1e2199]">
+                    {paragraph}
+                  </p>
                 ))}
               </div>
             </div>

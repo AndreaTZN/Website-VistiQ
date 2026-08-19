@@ -2,43 +2,58 @@
   Cascade order mirrors the original Webflow load order:
   normalize → webflow base → design tokens → project styles → overrides.
   Keep it — several project rules rely on winning by source order, not specificity.
+
+  Tailwind's own output (Preflight, theme, utilities) is wrapped in internal
+  @layer blocks, which the cascade-layers spec always ranks below any
+  un-layered rule regardless of specificity or import order. So every
+  @import below keeps winning over Tailwind's utilities exactly as it wins
+  over each other today — importing "tailwindcss" first is for readability,
+  not because import order matters for the layering guarantee.
 */
+@import "tailwindcss";
+
+@theme {
+  /* Colors ported 1:1 from the original base/tokens.css (deleted — every
+     consumer now reads these instead of --base-color--*). */
+  --color-white: white;
+  --color-light-black: #1d1e21;
+  --color-beige: #fbf9f7;
+  --color-beige-dark: #f4f2f0;
+  --color-sage: #ccd9d0;
+  --color-green: #22ad01;
+
+  /* Named so Tailwind auto-derives max-tablet:/max-mobile-landscape:/max-mobile:
+     variants matching the site's Webflow breakpoints (991/767/479px), instead
+     of redefining sm/md/lg to mean something non-standard. */
+  --breakpoint-tablet: 61.9375rem; /* 991px */
+  --breakpoint-mobile-landscape: 47.9375rem; /* 767px */
+  --breakpoint-mobile: 29.9375rem; /* 479px */
+
+  /* Inter is already the body default (base/elements.css); Facultyglyphic is
+     the display font, applied to headings by default and sometimes to a
+     non-heading element that wants the same display treatment. */
+  --font-facultyglyphic: Facultyglyphic, Georgia, sans-serif;
+  --font-inter: Inter, Arial, sans-serif;
+}
 
 /* 1. Foundations */
-@import "./base/normalize.css";
-
 @import "./base/fonts.css";
-@import "./base/tokens.css";
 @import "./base/fluid-type.css";
 
-/* 2. Elements and shared utilities */
-@import "./base/elements.css";
-
 /* 3. Components */
-@import "./components/button.css";
 @import "./components/corners.css";
 @import "./components/dock.css";
-@import "./components/eyebrow.css";
 @import "./components/heading.css";
-@import "./components/error404.css";
 @import "./components/scrollbar.css";
 
 /* 4. Sections */
 @import "./sections/nav.css";
-@import "./sections/announcement-bar.css";
 @import "./sections/hero-v2.css";
-@import "./sections/value-prop.css";
-@import "./sections/how-it-works.css";
 @import "./sections/coverage.css";
 @import "./sections/benefits.css";
 @import "./sections/architecture.css";
 @import "./sections/testimonials.css";
-@import "./sections/security.css";
-@import "./sections/sub-footer.css";
-@import "./sections/footer-v2.css";
 @import "./sections/contact.css";
-/* After contact.css: the demo page reuses its `contact_*` field rules. */
-@import "./sections/demo.css";
 
 /* 5. Global overrides (were inline <style> embeds in the Webflow export) */
 @import "./base/globals.css";

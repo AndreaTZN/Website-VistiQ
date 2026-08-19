@@ -8,6 +8,12 @@ html {
 
 /* Make text look crisper and more legible in all browsers */
 body {
+  background-color: var(--color-white);
+  color: var(--color-light-black);
+  overscroll-behavior: none;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -19,50 +25,6 @@ input[type="file"]:focus-visible {
   outline: none;
 }
 
-.inherit-color * {
-  color: inherit;
-}
-
-/* Apply "..." after 3 lines of text */
-.text-style-3lines {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-/* Apply "..." after 2 lines of text */
-.text-style-2lines {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
-/* These classes are never overwritten */
-.hide {
-  display: none !important;
-}
-
-@media screen and (max-width: 991px) {
-  .hide,
-  .hide-tablet {
-    display: none !important;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .hide-mobile-landscape {
-    display: none !important;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .hide-mobile {
-    display: none !important;
-  }
-}
-
 .no-scrollbar {
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
@@ -72,33 +34,15 @@ input[type="file"]:focus-visible {
   display: none;
 }
 
-/* Was a Webflow "colors" embed */
-.hero2_illu-tag {
-  background: linear-gradient(
-    134deg,
-    #fff -67.99%,
-    rgba(255, 255, 255, 0.1) 163.62%
-  );
-}
-
 .noise {
-  z-index: -1;
-  opacity: 0.2;
+  @apply pointer-events-none absolute inset-0 -z-1 opacity-20;
   background-image: url("/images/noise_1noise.avif");
   background-position: 0 0;
   background-size: auto;
-  position: absolute;
-  inset: 0%;
-  pointer-events: none;
 }
-.container-small {
-  width: calc(min(100%, 78.5rem) - 5rem);
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .page-wrapper {
-  width: 100%;
-  height: 100%;
+  @apply h-full w-full;
 }
 
 .main-wrapper {
@@ -106,20 +50,11 @@ input[type="file"]:focus-visible {
 }
 
 .container-medium {
-  z-index: 1;
+  @apply relative z-1 mx-auto overflow-visible;
   width: calc(min(100%, 78.5rem) - 2rem);
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  overflow: visible;
 }
 
-.navigation {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-}
-
+/* Queried by class in scripts/menu.js (document.querySelector(".menu")). */
 .menu {
   z-index: 10000;
   grid-column-gap: 16px;
@@ -135,47 +70,6 @@ input[type="file"]:focus-visible {
   inset: 0%;
 }
 
-.menu-header_wrapper {
-  justify-content: flex-end;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  display: flex;
-}
-
-.svg {
-  display: flex;
-}
-
 .image-fit-cover {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-@media screen and (max-width: 991px) {
-  .hide-tablet {
-    display: none;
-  }
-
-  .max-width-full-tablet {
-    width: 100%;
-    max-width: none;
-  }
-
-  .navigation {
-    display: none;
-  }
-
-  .menu {
-    grid-column-gap: 16px;
-    grid-row-gap: 16px;
-    grid-template-rows: auto auto;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-columns: 1fr;
-  }
-
-  .footer-copyright_infos {
-    text-align: left;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+  @apply h-full w-full object-cover;
 }

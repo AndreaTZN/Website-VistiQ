@@ -32,15 +32,19 @@ const {
 
 <div
   class:list={[
-    "eyebrow",
-    `is-${align}`,
-    alignMobile && `is-mobile-${alignMobile}`,
+    "flex w-full flex-col gap-3",
+    align === "center" && "items-center",
+    alignMobile === "left" && "max-mobile-landscape:items-start",
+    alignMobile === "center" && "max-mobile-landscape:items-center",
     className,
   ]}
 >
-  <div class="eyebrow_row">
-    <span class="eyebrow_square" aria-hidden="true"></span>
-    <span class="eyebrow_label">{label}</span>
+  <div class="flex items-center gap-3">
+    <span class="h-3 w-3 flex-none bg-green" aria-hidden="true"></span>
+    <span
+      class="text-sm leading-normal font-semibold tracking-[0.0175rem] text-[#1d1e2199] uppercase"
+      >{label}</span
+    >
   </div>
-  {line && <div class="eyebrow_line" />}
+  {line && <div class="h-px w-full bg-[#1d1e211a]" />}
 </div>
