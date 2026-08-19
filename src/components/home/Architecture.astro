@@ -95,6 +95,62 @@ const MEMORY_TAGS = [
   { label: "Agents", logo: "tag-agents" },
 ];
 
+/**
+ * "One workforce" timeline — the deal thread shown in the full-width card.
+ * `tag` is optional; the last step is still open, hence `pending`.
+ */
+const WORKFORCE_STEPS = [
+  {
+    title: "Pitch deck received",
+    tag: "scored 82 / thesis",
+    date: "12 Mar",
+    author: "Séverine",
+    avatar: { initials: "SG" },
+    comment:
+      "Fits the agri-industrial thesis. Closest comparable in our history: Novaflow, 2023.",
+  },
+  {
+    title: "IC memo drafted",
+    tag: "+ generated from deck + 2 calls",
+    date: "14 Mar",
+    author: "Abhishek",
+    avatar: { initials: "AB" },
+    comment: "Reworked the unit economics section, churn is not disclosed.",
+  },
+  {
+    title: "Investment committee — approved",
+    date: "21 Mar",
+    author: "Marc",
+    avatar: { initials: "MA" },
+    comment:
+      "Approved, subject to two reference calls and the ESOP being clarified.",
+  },
+  {
+    title: "Term sheet sent",
+    date: "24 Mar",
+    author: "Marc",
+    avatar: { initials: "MA" },
+    comment: "€4M for 14%, two weeks of exclusivity.",
+  },
+  {
+    title: "Meeting minutes",
+    tag: "+ transcribed",
+    date: "28 Mar",
+    author: "Abhishek",
+    avatar: { initials: "AB" },
+    comment: "Founders aligned on the ESOP. Full minutes filed to the company.",
+  },
+  {
+    title: "Reference calls",
+    tag: "3 of 5 done",
+    date: "in progress",
+    pending: true,
+    author: "Séverine",
+    avatar: { initials: "SG" },
+    comment: "Two customers left to call. Notes go straight into the file.",
+  },
+];
+
 const CARDS = [
   {
     title: "Connectors One governed data layer. Always up to date.",
@@ -105,6 +161,11 @@ const CARDS = [
     title: "Agents our autonomous investment team",
     body: "Specialized AI agents that work continuously across your firm, monitoring, analyzing, preparing and executing. They understand context, coordinate work and act.",
     modifier: "is-agents",
+  },
+  {
+    title: "One workforce. Humans and AI agents, working together.",
+    body: "On every deal, humans and agents investigate together: analyzing documents, researching markets, challenging assumptions, coordinating diligence, preparing investment cases and moving work forward. Partners bring judgment and conviction. Investment teams bring expertise and relationships. Agents bring continuous intelligence and execution. One deal. One context. One memory. One workforce.",
+    modifier: "is-workforce",
   },
   {
     title: "Signal & event",
@@ -288,6 +349,104 @@ const CARDS = [
                         </div>
                       </div>
                     ))}
+                  </div>
+                </div>
+              )}
+              {card.modifier === "is-workforce" && (
+                <div class="architecture_workforce">
+                  {/* Two offset ghosts read as a stack of deals behind the open one. */}
+                  <span
+                    class="architecture_workforce-ghost is-back"
+                    aria-hidden="true"
+                  />
+                  <span
+                    class="architecture_workforce-ghost is-mid"
+                    aria-hidden="true"
+                  />
+                  <div class="architecture_workforce-card">
+                    <div class="architecture_workforce-head">
+                      <div class="architecture_workforce-head-text">
+                        <p class="architecture_workforce-title">
+                          Agriloop — Series B opportunity
+                        </p>
+                        <p class="architecture_workforce-meta">
+                          €12M round · FF II · opened 12 March
+                        </p>
+                      </div>
+                      <div class="architecture_workforce-avatars">
+                        <span class="architecture_workforce-avatar">SG</span>
+                        <span class="architecture_workforce-avatar is-alt">
+                          AB
+                        </span>
+                        <span class="architecture_workforce-avatar is-alt2">
+                          MA
+                        </span>
+                        <span class="architecture_workforce-avatar is-more">
+                          +2
+                        </span>
+                      </div>
+                    </div>
+                    <span
+                      class="architecture_workforce-divider"
+                      aria-hidden="true"
+                    />
+                    <div class="architecture_workforce-steps">
+                      {WORKFORCE_STEPS.map((step) => (
+                        <div class="architecture_workforce-step">
+                          <div class="architecture_workforce-connector">
+                            <span
+                              class={`architecture_workforce-bullet ${step.pending ? "is-pending" : ""}`}
+                              aria-hidden="true"
+                            >
+                              {!step.pending && (
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                >
+                                  <path
+                                    d="m4 8.5 2.5 2.5L12 5.5"
+                                    stroke="#fff"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              )}
+                            </span>
+                            <span
+                              class="architecture_workforce-line"
+                              aria-hidden="true"
+                            />
+                          </div>
+                          <div class="architecture_workforce-body">
+                            <div class="architecture_workforce-step-head">
+                              <span class="architecture_workforce-step-title">
+                                {step.title}
+                              </span>
+                              {step.tag && (
+                                <span class="architecture_workforce-tag">
+                                  {step.tag}
+                                </span>
+                              )}
+                              <span
+                                class={`architecture_workforce-date ${step.pending ? "is-pending" : ""}`}
+                              >
+                                {step.date}
+                              </span>
+                            </div>
+                            <div class="architecture_workforce-comment">
+                              <span class="architecture_workforce-avatar">
+                                {step.avatar.initials}
+                              </span>
+                              <p class="architecture_workforce-comment-text">
+                                <strong>{step.author}</strong> : {step.comment}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}

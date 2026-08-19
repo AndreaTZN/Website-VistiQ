@@ -95,6 +95,24 @@ const canonicalURL = new URL(canonical, Astro.site);
           .has-reveals:not(.is-ready) .architecture_source-check path {
             stroke-opacity: 0;
           }
+          /* Architecture "One workforce": entrance targets of initWorkforceCard. */
+          .has-reveals:not(.is-ready) .architecture_workforce-head,
+          .has-reveals:not(.is-ready) .architecture_workforce-ghost,
+          .has-reveals:not(.is-ready) .architecture_workforce-bullet,
+          .has-reveals:not(.is-ready) .architecture_workforce-step-head,
+          .has-reveals:not(.is-ready) .architecture_workforce-comment {
+            opacity: 0;
+            visibility: hidden;
+          }
+          /* Scaled, not faded — these grow from zero instead of appearing.
+             Each collapses on its own axis: scale(0) would zero both, and GSAP
+             only animates the one axis back, leaving the other at zero. */
+          .has-reveals:not(.is-ready) .architecture_workforce-divider {
+            transform: scaleX(0);
+          }
+          .has-reveals:not(.is-ready) .architecture_workforce-line {
+            transform: scaleY(0);
+          }
           /* The dock slides up once the first listed section is reached. */
           .has-reveals:not(.is-ready) [data-dock] {
             opacity: 0;

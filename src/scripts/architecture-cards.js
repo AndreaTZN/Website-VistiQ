@@ -247,6 +247,85 @@ function initMemoryCard(root) {
 }
 
 /* ------------------------------------------------------------------ *
+ * 5. One workforce — the deal thread writes itself, step by step
+ * ------------------------------------------------------------------ */
+
+/**
+ * The card reads as a thread being filled in, so the steps run sequentially
+ * rather than as one stagger: each connector line grows down to the next
+ * bullet, the bullet pops, then the step's text and comment slide in.
+ *
+ * The lines are plain divs (not SVG), so they scale on scaleY rather than
+ * drawSVG — same downward growth, no extra plugin.
+ */
+function initWorkforceCard(card) {
+  const steps = gsap.utils.toArray(
+    card.querySelectorAll(".architecture_workforce-step"),
+  );
+  if (!steps.length) return;
+
+  const head = card.querySelector(".architecture_workforce-head");
+  const divider = card.querySelector(".architecture_workforce-divider");
+  const ghosts = gsap.utils.toArray(
+    card.querySelectorAll(".architecture_workforce-ghost"),
+  );
+
+  const bullets = steps.map((s) =>
+    s.querySelector(".architecture_workforce-bullet"),
+  );
+  const lines = steps.map((s) =>
+    s.querySelector(".architecture_workforce-line"),
+  );
+  const bodies = steps.map((s) =>
+    s.querySelector(".architecture_workforce-step-head"),
+  );
+  const comments = steps.map((s) =>
+    s.querySelector(".architecture_workforce-comment"),
+  );
+
+  if (head) gsap.set(head, { autoAlpha: 0, y: -8 });
+  // scaleY/scaleX are set explicitly on both: the reveal guard collapses these
+  // on one axis, and GSAP would otherwise leave the other at the CSS value.
+  if (divider)
+    gsap.set(divider, { scaleX: 0, scaleY: 1, transformOrigin: "left center" });
+  gsap.set(ghosts, { autoAlpha: 0, y: 14, scale: 0.97 });
+  gsap.set(bullets, { autoAlpha: 0, scale: 0 });
+  gsap.set(lines, { scaleY: 0, scaleX: 1, transformOrigin: "top center" });
+  gsap.set([bodies, comments], { autoAlpha: 0, y: 10 });
+
+  onEnter(card, (tl) => {
+    if (head) tl.to(head, { autoAlpha: 1, y: 0, duration: 0.5 });
+    if (divider)
+      tl.to(divider, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, "-=0.3");
+
+    steps.forEach((_, i) => {
+      // Each step overlaps the previous one so the thread keeps moving
+      // instead of stopping between rows.
+      const at = i === 0 ? "-=0.2" : "-=0.45";
+
+      tl.to(
+        bullets[i],
+        { autoAlpha: 1, scale: 1, duration: 0.4, ease: "back.out(2)" },
+        at,
+      )
+        .to(
+          [bodies[i], comments[i]],
+          { autoAlpha: 1, y: 0, duration: 0.45, stagger: 0.08 },
+          "-=0.2",
+        )
+        .to(lines[i], { scaleY: 1, duration: 0.45 }, "-=0.4");
+    });
+
+    // The stacked deals settle in behind once the thread is under way.
+    tl.to(
+      ghosts,
+      { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1 },
+      0.35,
+    );
+  });
+}
+
+/* ------------------------------------------------------------------ *
  * Entry point
  * ------------------------------------------------------------------ */
 
@@ -263,9 +342,11 @@ export function initArchitectureCards() {
   // Triggered on the visual itself, not the card — it sits lower in the card,
   // so using the card would start the fan before it is actually on screen.
   const memory = section.querySelector(".architecture_memory");
+  const workforce = section.querySelector(".architecture_card.is-workforce");
 
   if (sources) initSourcesCard(sources);
   if (agents) initStackCard(agents);
   if (signals) initStackCard(signals, { delay: 0.15 });
   if (memory) initMemoryCard(memory);
+  if (workforce) initWorkforceCard(workforce);
 }

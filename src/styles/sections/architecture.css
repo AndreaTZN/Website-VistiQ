@@ -263,3 +263,240 @@
 .architecture_memory-spinner img {
   @apply block h-full w-full;
 }
+
+/* One workforce — full-width deal timeline */
+
+.architecture_card.is-workforce {
+  @apply col-span-3 max-tablet:col-span-2 max-mobile-landscape:col-span-1;
+}
+
+.architecture_card.is-workforce .architecture_card-visual {
+  /* Taller than the shared height: the timeline is the point of this card,
+     and it is cropped at the bottom by design. */
+  @apply h-[20.875rem] items-start bg-[#eef3fa] max-mobile-landscape:h-[16rem] max-mobile-landscape:py-0;
+}
+
+.architecture_workforce {
+  @apply relative z-1 flex w-full max-w-[29.5rem] justify-center pt-[2.75rem];
+}
+
+/* The two stacked deals behind the open one. */
+.architecture_workforce-ghost {
+  @apply absolute top-[3.75rem] left-1/2 h-full w-full rounded-[1.0625rem] border-[0.09rem] border-white/20 bg-white/40 shadow-[0_1rem_4.625rem_-1.175rem_#0000001f] backdrop-blur-[0.79rem];
+}
+
+.architecture_workforce-ghost.is-back {
+  @apply top-[4.8rem] -translate-x-1/2 bg-white/10;
+  margin-left: 1.06rem;
+}
+
+.architecture_workforce-ghost.is-mid {
+  @apply -translate-x-1/2;
+}
+
+.architecture_workforce-card {
+  @apply relative flex w-full flex-col gap-[0.875rem] rounded-[1.0625rem] border-[0.09rem] border-white/20 bg-white/96 p-[1.3125rem] shadow-[0_1.1rem_5.1rem_#0000001f] backdrop-blur-[0.87rem];
+}
+
+.architecture_workforce-head {
+  @apply flex items-center justify-between gap-4;
+}
+
+.architecture_workforce-head-text {
+  @apply flex flex-col gap-[0.1rem];
+}
+
+.architecture_workforce-title {
+  @apply m-0 text-[1.09rem] leading-normal font-semibold text-light-black;
+}
+
+.architecture_workforce-meta {
+  @apply m-0 text-[0.82rem] leading-normal text-[#828282];
+}
+
+.architecture_workforce-avatars {
+  @apply flex flex-none items-center;
+}
+
+.architecture_workforce-avatar {
+  @apply flex h-[1.31rem] w-[1.31rem] flex-none items-center justify-center rounded-[100vw] bg-[#4f53d1] text-[0.545rem] leading-none font-medium text-white;
+}
+
+.architecture_workforce-avatars .architecture_workforce-avatar {
+  @apply -mr-[0.33rem] border-[0.09rem] border-white last:mr-0;
+}
+
+.architecture_workforce-avatar.is-alt {
+  @apply bg-[#7a6a5c];
+}
+
+.architecture_workforce-avatar.is-alt2 {
+  @apply bg-[#3f6b4f];
+}
+
+.architecture_workforce-avatar.is-more {
+  @apply bg-[#f1f3f5] text-[#8e94a5];
+}
+
+.architecture_workforce-divider {
+  @apply block h-[0.055rem] w-full bg-[#eff1f0];
+}
+
+.architecture_workforce-steps {
+  @apply flex flex-col gap-[1.31rem];
+}
+
+.architecture_workforce-step {
+  @apply flex gap-[0.875rem];
+}
+
+.architecture_workforce-connector {
+  @apply relative flex w-[1.31rem] flex-none flex-col items-center;
+}
+
+/* Runs from under the bullet to the next step; the last one is clipped by
+   the card's overflow anyway, so no last-child exception is needed. */
+.architecture_workforce-line {
+  @apply absolute top-[1.31rem] bottom-[-1.31rem] w-[0.11rem] bg-[#eff1f0];
+}
+
+.architecture_workforce-bullet {
+  @apply relative z-1 flex h-[1.31rem] w-[1.31rem] flex-none items-center justify-center rounded-[100vw] bg-[#2aa555];
+}
+
+.architecture_workforce-bullet svg {
+  @apply block h-[0.68rem] w-[0.68rem];
+}
+
+.architecture_workforce-bullet.is-pending {
+  @apply border-[0.09rem] border-dashed border-[#b0b6ad] bg-transparent;
+}
+
+.architecture_workforce-body {
+  @apply flex min-w-0 flex-1 flex-col gap-[0.44rem];
+}
+
+.architecture_workforce-step-head {
+  @apply flex flex-wrap items-center gap-[0.545rem];
+}
+
+.architecture_workforce-step-title {
+  @apply text-[0.82rem] leading-normal font-semibold text-light-black;
+}
+
+.architecture_workforce-tag {
+  @apply rounded-[0.22rem] border-[0.055rem] border-[#e5e7eb] bg-white px-[0.44rem] py-[0.22rem] text-[0.6rem] leading-normal font-semibold text-light-black;
+}
+
+/* Pushed right so the date sits opposite the title, as in the design. */
+.architecture_workforce-date {
+  @apply ml-auto text-[0.71rem] leading-normal text-[#828282];
+}
+
+.architecture_workforce-date.is-pending {
+  @apply text-[#b0b6ad];
+}
+
+.architecture_workforce-comment {
+  @apply flex items-center gap-[0.44rem] rounded-[0.655rem] border-[0.055rem] border-[#e5e7eb] bg-[#f9fafb] p-[0.655rem];
+}
+
+.architecture_workforce-comment-text {
+  @apply m-0 min-w-0 flex-1 text-[0.71rem] leading-normal text-light-black;
+}
+
+.architecture_workforce-comment-text strong {
+  @apply font-bold;
+}
+
+/* The card is drawn at ~40% scale in the design, so its type is sized for a
+   wide canvas. On a phone it is rendered near 1:1 and those sizes fall under
+   the readable floor — scale the whole card up rather than the visual down. */
+@media (max-width: 767px) {
+  .architecture_card.is-workforce .architecture_card-visual {
+    @apply h-[26rem];
+  }
+
+  /* Full width minus a gutter: the card must not run into the visual's edges. */
+  .architecture_workforce {
+    @apply max-w-none px-4 pt-8;
+  }
+
+  .architecture_workforce-card {
+    @apply gap-4 rounded-2xl p-4;
+  }
+
+  .architecture_workforce-title {
+    @apply text-[0.95rem];
+  }
+
+  .architecture_workforce-meta {
+    @apply text-[0.75rem];
+  }
+
+  .architecture_workforce-steps {
+    @apply gap-5;
+  }
+
+  /* Title, tag and date stop competing for one line: the date drops under. */
+  .architecture_workforce-step-head {
+    @apply gap-x-2 gap-y-1;
+  }
+
+  .architecture_workforce-step-title {
+    @apply text-[0.875rem];
+  }
+
+  .architecture_workforce-tag {
+    @apply text-[0.6875rem];
+  }
+
+  .architecture_workforce-date {
+    @apply text-[0.75rem];
+  }
+
+  .architecture_workforce-comment {
+    @apply items-start p-3;
+  }
+
+  .architecture_workforce-comment-text {
+    @apply text-[0.8125rem];
+  }
+
+  .architecture_workforce-avatar {
+    @apply h-6 w-6 text-[0.625rem];
+  }
+
+  /* The desktop overlap is tuned for 1.31rem avatars; at 1.5rem it eats the
+     initials, so give the stack a little more room. */
+  .architecture_workforce-avatars .architecture_workforce-avatar {
+    @apply -mr-[0.2rem];
+  }
+
+  /* Keep title + tag together and let the date own the second line, instead
+     of the date being pushed down alone by a long tag. */
+  .architecture_workforce-date {
+    @apply ml-0 w-full;
+  }
+
+  .architecture_workforce-connector {
+    @apply w-6;
+  }
+
+  .architecture_workforce-bullet {
+    @apply h-6 w-6;
+  }
+
+  .architecture_workforce-bullet svg {
+    @apply h-3 w-3;
+  }
+
+  .architecture_workforce-line {
+    @apply top-6 bottom-[-1.25rem];
+  }
+
+  /* One ghost is enough at this width; two read as clutter. */
+  .architecture_workforce-ghost.is-back {
+    @apply hidden;
+  }
+}
