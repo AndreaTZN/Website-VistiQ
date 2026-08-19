@@ -1,7 +1,4 @@
 ---
-/** Empty unless the deploy sets it — the script then uses the Typeform. */
-const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT ?? "";
-
 const BULLETS = [
   "A tailored walkthrough built around your workflow",
   "Live Q&A with a product specialist",
@@ -68,7 +65,7 @@ const LOGOS = [
         class="contact_form flex flex-col gap-5"
         data-contact-form
         data-required="name,email,title,company,companyType,consent"
-        action={endpoint}
+        action="/api/contact"
         method="post"
         novalidate
       >
