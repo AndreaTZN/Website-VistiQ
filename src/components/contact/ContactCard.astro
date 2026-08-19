@@ -98,15 +98,23 @@ const labelClass = "m-0 text-sm leading-normal text-light-black";
               />
 
               {/* Halo + dot were two SVG circles in Figma — a ring and a filled
-                  disc do the same thing without two extra requests. */}
+                  disc do the same thing without two extra requests. The halo
+                  is its own layer so scripts/contact-pins.js can pulse it
+                  without the dot inheriting the scale. */}
               <span
                 class:list={[
-                  "contact_pin pointer-events-none absolute size-[2.05rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green/20",
+                  "contact_pin pointer-events-none absolute size-[2.05rem] -translate-x-1/2 -translate-y-1/2",
                   office.pin,
                 ]}
+                data-contact-pin
                 aria-hidden="true"
               >
-                <span class="absolute top-1/2 left-1/2 size-[1.025rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green" />
+                <span
+                  class="absolute inset-0 rounded-full bg-green/20"
+                  data-contact-pin-halo></span>
+                <span
+                  class="absolute top-1/2 left-1/2 size-[1.025rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green"
+                ></span>
               </span>
 
               <div class="absolute bottom-6 left-6 flex flex-col gap-4">
