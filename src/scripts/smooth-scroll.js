@@ -7,6 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 export let lenis = null;
 
 export function initSmoothScroll() {
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
   lenis = new Lenis({ anchors: true });
 
   lenis.on("scroll", ScrollTrigger.update);
@@ -15,9 +17,6 @@ export function initSmoothScroll() {
 
   ScrollTrigger.clearScrollMemory("manual");
 
-  // après le restore navigateur + après le refresh de ScrollTrigger
-  window.addEventListener("load", () => {
-    lenis.scrollTo(0, { immediate: true, force: true });
-    ScrollTrigger.refresh();
-  });
+  // Media settling changes every trigger position, so recompute once loaded.
+  window.addEventListener("load", () => ScrollTrigger.refresh());
 }
