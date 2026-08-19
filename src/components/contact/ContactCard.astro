@@ -26,9 +26,11 @@ const CATEGORIES = [
 ];
 
 /**
- * `map` is positioned inside its 229px-tall panel with the same crop as the
- * Figma frame, and `pin` sits on top of it — both in percentages so the panel
- * can grow with the fluid root font-size instead of pinning to a pixel canvas.
+ * Each office gets a map layer sized in rem (so it scales with the fluid root
+ * font-size) and anchored to the panel's right edge, the way the Figma frame
+ * crops it. The pin is positioned against that layer rather than the panel, so
+ * the two stay locked together whatever the panel's width — which is what
+ * stops the map from stretching as the column narrows.
  */
 const OFFICES = [
   {
@@ -36,16 +38,18 @@ const OFFICES = [
     title: "Miami US Office",
     lines: ["929 Alton Rd Ste 500", "Miami, FL 33139"],
     map: "/images/contact/map-usa.svg",
-    mapClass: "left-[-8.4%] top-[-135%] h-[199.8%] w-[114.2%]",
-    pin: "left-[89.2%] top-[55%]",
+
+    mapClass: "right-[-4rem] -top-[17.5rem] h-[28.6rem]",
+    pin: "left-[85.5%] top-[95%]",
   },
   {
     flag: "🇫🇷",
     title: "Paris Headquarters",
     lines: ["29 Rue de Choiseul", "75002, Paris, France"],
     map: "/images/contact/map-france.svg",
-    mapClass: "left-[45.2%] top-[5.7%] h-[192.1%] w-[76.4%]",
-    pin: "left-[80.6%] top-[48.5%]",
+
+    mapClass: "right-[-6rem] top-[0.8rem] h-[27.5rem]",
+    pin: "left-[50.3%] top-[22.3%]",
   },
 ];
 
@@ -85,37 +89,44 @@ const labelClass = "m-0 text-sm leading-normal text-light-black";
                 index === OFFICES.length - 1 && "border-b-0",
               ]}
             >
-              <img
+              {/* Map + pin share one sized wrapper, so the pin tracks the
+                  country instead of the panel: the panel's width changes with
+                  the breakpoint, the wrapper's does not. `w-auto` on the img
+                  lets the height drive the width, which is what keeps the
+                  outline from stretching. */}
+              <div
                 class:list={[
-                  "pointer-events-none absolute max-w-none select-none",
+                  "pointer-events-none absolute select-none",
                   office.mapClass,
                 ]}
-                src={office.map}
-                alt=""
                 aria-hidden="true"
-                loading="lazy"
-                decoding="async"
-              />
+              >
+                <img
+                  class="h-full w-auto max-w-none"
+                  src={office.map}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
 
-              {/* Halo + dot were two SVG circles in Figma — a ring and a filled
+                {/* Halo + dot were two SVG circles in Figma — a ring and a filled
                   disc do the same thing without two extra requests. The halo
                   is its own layer so scripts/contact-pins.js can pulse it
                   without the dot inheriting the scale. */}
-              <span
-                class:list={[
-                  "contact_pin pointer-events-none absolute size-[2.05rem] -translate-x-1/2 -translate-y-1/2",
-                  office.pin,
-                ]}
-                data-contact-pin
-                aria-hidden="true"
-              >
                 <span
-                  class="absolute inset-0 rounded-full bg-green/20"
-                  data-contact-pin-halo></span>
-                <span
-                  class="absolute top-1/2 left-1/2 size-[1.025rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green"
-                ></span>
-              </span>
+                  class:list={[
+                    "contact_pin absolute size-[2.05rem] -translate-x-1/2 -translate-y-1/2",
+                    office.pin,
+                  ]}
+                  data-contact-pin
+                >
+                  <span
+                    class="absolute inset-0 rounded-full bg-green/20"
+                    data-contact-pin-halo
+                  />
+                  <span class="absolute top-1/2 left-1/2 size-[1.025rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green" />
+                </span>
+              </div>
 
               <div class="absolute bottom-6 left-6 flex flex-col gap-4">
                 <p class="m-0 text-xl leading-normal font-medium text-light-black">
