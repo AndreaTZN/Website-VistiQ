@@ -13,6 +13,12 @@ export interface Props {
    * flash in their final state before GSAP takes over.
    */
   animated?: boolean;
+  /**
+   * Keeps the page out of search results. The sitemap filter in
+   * astro.config.mjs must exclude the same route — a sitemap entry and a
+   * noindex tag contradict each other.
+   */
+  noindex?: boolean;
 }
 
 const {
@@ -21,6 +27,7 @@ const {
   canonical = Astro.url.pathname,
   ogImage = "/images/openGraph.webp",
   animated = false,
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(canonical, Astro.site);
@@ -44,6 +51,12 @@ const canonicalURL = new URL(canonical, Astro.site);
     <meta name="twitter:title" content={title} />
     {description && <meta name="twitter:description" content={description} />}
     <meta name="twitter:image" content={ogImage} />
+
+    {
+      /* `follow` on purpose: the page is kept out of the index, but its
+         outgoing links should still be crawled. */
+      noindex && <meta name="robots" content="noindex, follow" />
+    }
 
     <link rel="canonical" href={canonicalURL} />
     <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />

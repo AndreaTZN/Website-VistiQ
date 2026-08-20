@@ -13,7 +13,12 @@ const description =
 const UPDATED = "2026-08-20";
 ---
 
-<BaseLayout title={title} description={description} canonical="/terms-of-use">
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/terms-of-use"
+  noindex
+>
   <main class="main-wrapper">
     <AnnouncementBar />
     <Nav belowAnnouncement />
