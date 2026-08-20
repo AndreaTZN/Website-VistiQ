@@ -137,18 +137,6 @@
   @apply absolute overflow-hidden rounded-lg bg-white shadow-[0_0.3125rem_0.625rem_#0000000a,0_2.375rem_4.75rem_#00000014];
 }
 
-/* The container stays pointer-events:none so the hero copy and chatbox above
-   it keep receiving clicks; only the cards themselves opt back in, and only
-   once hero-cards.js has made them draggable (it adds .is-draggable after the
-   intro). Without the class the cards stay inert, as before. */
-.hero-v2_card.is-draggable {
-  @apply pointer-events-auto cursor-grab;
-}
-
-.hero-v2_card.is-dragging {
-  @apply cursor-grabbing;
-}
-
 /* Composed line icons: each piece keeps its exported inset (inline). */
 .hero-v2_card-icon {
   @apply relative block flex-none;

@@ -26,3 +26,4 @@ pnpm-debug.log*
 # wrangler local secrets
 .dev.vars
 .wrangler/
+.shipstudio/project.json
