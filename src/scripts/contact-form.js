@@ -86,7 +86,7 @@ export function initContactForm() {
 
     // Honeypot filled → a bot. Pretend it worked and drop the message.
     if (String(form.elements.namedItem("companyWebsite")?.value || "").trim()) {
-      setStatus("Thanks — your message is on its way.", "success");
+      setStatus("Thanks! Your message is on its way.", "success");
       return;
     }
 
@@ -121,7 +121,7 @@ export function initContactForm() {
 
       form.reset();
       setStatus(
-        "Thanks — your message is on its way. We reply within one business day.",
+        "Thanks! Your message is on its way. We reply within one business day.",
         "success",
       );
     } catch {
