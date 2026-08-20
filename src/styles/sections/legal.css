@@ -1,0 +1,70 @@
+/*
+  Legal pages — the two documents are plain prose written as bare HTML, so the
+  vertical rhythm is set with descendant selectors rather than a utility on
+  every heading and paragraph. Scoped to .legal_prose, used only by
+  components/legal/LegalPage.astro.
+*/
+
+.legal_prose > h2 {
+  @apply mt-12 mb-4 font-facultyglyphic text-3xl leading-tight tracking-[-0.02rem] text-light-black max-mobile-landscape:mt-10 max-mobile-landscape:text-2xl;
+}
+
+/* The first heading sits right under the section padding, so it needs no
+   extra space above it. */
+.legal_prose > h2:first-child {
+  @apply mt-0;
+}
+
+.legal_prose > h3 {
+  @apply mt-8 mb-2 font-inter text-xl leading-normal font-medium text-light-black;
+}
+
+.legal_prose > p {
+  @apply my-0 text-base leading-relaxed text-[#1d1e21cc];
+}
+
+.legal_prose > p + p {
+  @apply mt-4;
+}
+
+.legal_prose > ul,
+.legal_prose > ol {
+  @apply mt-4 mb-0 flex list-none flex-col gap-2 pl-0;
+}
+
+/* Custom marker: the list is list-none so the bullet is drawn as a dash,
+   which matches the flat, document-like tone of these pages. */
+.legal_prose > ul > li {
+  @apply relative pl-5 text-base leading-relaxed text-[#1d1e21cc];
+}
+
+.legal_prose > ul > li::before {
+  content: "—";
+  @apply absolute left-0 text-light-black/40;
+}
+
+.legal_prose > ol {
+  @apply list-decimal pl-5;
+}
+
+.legal_prose > ol > li {
+  @apply text-base leading-relaxed text-[#1d1e21cc];
+}
+
+.legal_prose strong {
+  @apply font-medium text-light-black;
+}
+
+.legal_prose a {
+  @apply text-light-black underline underline-offset-2 transition-opacity duration-300 ease-[cubic-bezier(0.455,0.03,0.515,0.955)] hover:opacity-70;
+}
+
+/* Placeholders the site owner still has to fill in — visibly marked so they
+   cannot ship unnoticed. */
+.legal_placeholder {
+  @apply rounded-[0.25rem] bg-[#f4d97b66] px-1 font-medium text-light-black;
+}
+
+.legal_prose > hr {
+  @apply my-12 h-px w-full border-none bg-[#1d1e211a];
+}

@@ -1,0 +1,261 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/global/Nav.astro";
+import AnnouncementBar from "../components/global/AnnouncementBar.astro";
+import FooterV2 from "../components/global/FooterV2.astro";
+import LegalPage from "../components/legal/LegalPage.astro";
+
+const title = "Privacy Policy — VistIQ";
+const description =
+  "How VistIQ collects, uses, shares and protects personal data across its website and platform, and the rights you can exercise over your data.";
+
+/** Bump when the document changes — it drives the "Last updated" line. */
+const UPDATED = "2026-08-20";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/privacy-policy"
+>
+  <main class="main-wrapper">
+    <AnnouncementBar />
+    <Nav belowAnnouncement />
+
+    <LegalPage
+      heading="Privacy Policy"
+      intro="This policy explains what personal data VistIQ collects, why we collect it, who we share it with, and how you can exercise your rights."
+      updated={UPDATED}
+    >
+      <h2>1. Who we are</h2>
+      <p>
+        This website and the VistIQ platform are operated by <span
+          class="legal_placeholder">[LEGAL ENTITY NAME]</span
+        >, a <span class="legal_placeholder">[LEGAL FORM]</span> registered at <span
+          class="legal_placeholder">[REGISTERED ADDRESS]</span
+        >, registered under number <span class="legal_placeholder"
+          >[COMPANY REGISTRATION NUMBER]</span
+        > ("VistIQ", "we", "us").
+      </p>
+      <p>
+        For the purposes of the EU General Data Protection Regulation (GDPR),
+        VistIQ acts as the <strong>data controller</strong> for personal data collected
+        through this website and for the account data of our customers. When we process
+        content that our customers upload into the platform, we act as a <strong
+          >data processor</strong
+        > on their behalf, under the terms of the applicable customer agreement.
+      </p>
+      <p>
+        Data protection contact: <a href="mailto:[PRIVACY EMAIL]"
+          ><span class="legal_placeholder">[PRIVACY EMAIL]</span></a
+        >. <span class="legal_placeholder"
+          >[IF APPOINTED: DPO NAME AND CONTACT DETAILS]</span
+        >
+      </p>
+
+      <h2>2. What data we collect</h2>
+      <h3>2.1 Data you give us</h3>
+      <ul>
+        <li>
+          <strong>Contact and demo requests</strong> — first and last name, business
+          email, company name, company type, role and any message you write in our
+          forms.
+        </li>
+        <li>
+          <strong>Account data</strong> — the identifiers and profile details needed
+          to create and administer a platform account.
+        </li>
+        <li>
+          <strong>Customer content</strong> — documents, notes and other material
+          our customers upload to the platform, which may incidentally contain personal
+          data about third parties.
+        </li>
+        <li>
+          <strong>Correspondence</strong> — the content of emails and support requests
+          you send us.
+        </li>
+      </ul>
+
+      <h3>2.2 Data we collect automatically</h3>
+      <ul>
+        <li>
+          <strong>Technical data</strong> — IP address, browser type and version,
+          device type, operating system, language and referring page.
+        </li>
+        <li>
+          <strong>Usage data</strong> — pages viewed, time on page and interactions
+          with the site, collected in aggregate.
+        </li>
+        <li>
+          <strong>Security logs</strong> — records of authentication attempts and
+          activity used to detect abuse.
+        </li>
+      </ul>
+      <p>
+        We do not knowingly collect data from children, and the site is not
+        directed at them.
+      </p>
+
+      <h2>3. Why we use your data, and on what legal basis</h2>
+      <ul>
+        <li>
+          <strong>To respond to your enquiries and schedule demos</strong> — necessary
+          for steps taken at your request prior to entering a contract, or our legitimate
+          interest in answering business enquiries.
+        </li>
+        <li>
+          <strong>To provide and operate the platform</strong> — performance of the
+          contract with our customer.
+        </li>
+        <li>
+          <strong>To secure our services</strong> — our legitimate interest in preventing
+          fraud, abuse and unauthorised access.
+        </li>
+        <li>
+          <strong>To improve the site and our products</strong> — our legitimate interest
+          in understanding how our services are used, using aggregated data wherever
+          possible.
+        </li>
+        <li>
+          <strong>To send commercial communications</strong> — your consent where
+          required, or our legitimate interest in contacting business prospects.
+          You can opt out at any time.
+        </li>
+        <li>
+          <strong>To meet legal obligations</strong> — compliance with accounting,
+          tax and other applicable law.
+        </li>
+      </ul>
+
+      <h2>4. Cookies and similar technologies</h2>
+      <p>
+        <span class="legal_placeholder"
+          >[CONFIRM THE EXACT COOKIE SET IN USE BEFORE PUBLISHING]</span
+        > We use strictly necessary cookies to make the site work. Where we use analytics
+        or marketing cookies, we ask for your consent first and you can withdraw
+        it at any time through the cookie settings.
+      </p>
+      <p>
+        Most browsers let you block or delete cookies. Blocking strictly
+        necessary cookies may prevent parts of the site from working.
+      </p>
+
+      <h2>5. Who we share data with</h2>
+      <p>
+        We do not sell personal data. We share it only with the categories of
+        recipients below, under contracts that restrict what they may do with
+        it:
+      </p>
+      <ul>
+        <li>
+          <strong>Service providers</strong> — hosting, infrastructure, email delivery,
+          analytics, CRM and support tooling. <span class="legal_placeholder"
+            >[LIST KEY SUB-PROCESSORS OR LINK TO A SUB-PROCESSOR PAGE]</span
+          >
+        </li>
+        <li>
+          <strong>Professional advisers</strong> — auditors, lawyers and insurers
+          where necessary.
+        </li>
+        <li>
+          <strong>Authorities</strong> — where we are legally required to disclose
+          data, or to establish or defend legal claims.
+        </li>
+        <li>
+          <strong>Acquirers</strong> — if we are involved in a merger, acquisition
+          or asset sale, subject to the protections in this policy.
+        </li>
+      </ul>
+
+      <h2>6. International transfers</h2>
+      <p>
+        Where personal data is transferred outside the European Economic Area, we
+        rely on an adequacy decision or on the European Commission's Standard
+        Contractual Clauses, together with any supplementary measures required.
+        You can request a copy of the relevant safeguards using the contact
+        details above. <span class="legal_placeholder"
+          >[CONFIRM HOSTING REGIONS AND TRANSFER MECHANISMS]</span
+        >
+      </p>
+
+      <h2>7. How long we keep data</h2>
+      <ul>
+        <li>
+          <strong>Enquiry and demo data</strong> — <span class="legal_placeholder"
+            >[RETENTION PERIOD, e.g. 3 YEARS FROM LAST CONTACT]</span
+          >.
+        </li>
+        <li>
+          <strong>Account data</strong> — for the life of the account, then <span
+            class="legal_placeholder">[RETENTION PERIOD]</span
+          > after closure.
+        </li>
+        <li>
+          <strong>Customer content</strong> — for the term of the customer agreement,
+          then deleted or returned per that agreement.
+        </li>
+        <li>
+          <strong>Accounting records</strong> — for the period required by law.
+        </li>
+      </ul>
+
+      <h2>8. How we protect data</h2>
+      <p>
+        We apply technical and organisational measures appropriate to the risk,
+        including encryption in transit and at rest, access control on a
+        need-to-know basis, logging and monitoring, and supplier due diligence.
+        No system is completely secure, but we work to keep our safeguards
+        current. <span class="legal_placeholder"
+          >[REFERENCE ANY CERTIFICATIONS SUCH AS SOC 2 OR ISO 27001 ONCE HELD]</span
+        >
+      </p>
+
+      <h2>9. Your rights</h2>
+      <p>
+        Subject to the conditions in applicable law, you may request access to
+        your personal data, its rectification or erasure, restriction of or
+        objection to processing, and data portability. Where processing is based
+        on consent, you may withdraw it at any time without affecting processing
+        carried out beforehand.
+      </p>
+      <p>
+        To exercise these rights, write to <a href="mailto:[PRIVACY EMAIL]"
+          ><span class="legal_placeholder">[PRIVACY EMAIL]</span></a
+        >. We reply within one month, and may ask you to verify your identity. If
+        our answer does not satisfy you, you can lodge a complaint with your
+        local supervisory authority — in France, the <a
+          href="https://www.cnil.fr"
+          target="_blank"
+          rel="noopener">CNIL</a
+        >.
+      </p>
+      <p>
+        If your data was uploaded to the platform by one of our customers,
+        address your request to that customer; we will assist them in responding.
+      </p>
+
+      <h2>10. Changes to this policy</h2>
+      <p>
+        We may update this policy to reflect changes in our services or in the
+        law. The revision date at the top of the page always shows the current
+        version, and we will flag material changes where required.
+      </p>
+
+      <h2>11. Contact</h2>
+      <p>
+        Questions about this policy can be sent to <a
+          href="mailto:[PRIVACY EMAIL]"
+          ><span class="legal_placeholder">[PRIVACY EMAIL]</span></a
+        > or through our <a href="/contact">contact page</a>.
+      </p>
+    </LegalPage>
+
+    <FooterV2 />
+  </main>
+</BaseLayout>
+
+<script>
+  // Baseline only: static prose, no section animation and no reveal guard.
+  import { initBaseline } from "../scripts/baseline";
+  initBaseline();
+</script>

@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/global/Nav.astro";
+import AnnouncementBar from "../components/global/AnnouncementBar.astro";
+import FooterV2 from "../components/global/FooterV2.astro";
+import LegalPage from "../components/legal/LegalPage.astro";
+
+const title = "Terms of Use — VistIQ";
+const description =
+  "The terms governing your use of the VistIQ website: acceptable use, intellectual property, disclaimers, liability and the applicable law.";
+
+/** Bump when the document changes — it drives the "Last updated" line. */
+const UPDATED = "2026-08-20";
+---
+
+<BaseLayout title={title} description={description} canonical="/terms-of-use">
+  <main class="main-wrapper">
+    <AnnouncementBar />
+    <Nav belowAnnouncement />
+
+    <LegalPage
+      heading="Terms of Use"
+      intro="These terms govern your access to and use of the VistIQ website. Access to the VistIQ platform itself is governed by a separate written agreement."
+      updated={UPDATED}
+    >
+      <h2>1. Acceptance of these terms</h2>
+      <p>
+        By accessing or using <span class="legal_placeholder"
+          >[WEBSITE DOMAIN]</span
+        > (the "Site"), you agree to these Terms of Use. If you do not accept them,
+        do not use the Site.
+      </p>
+      <p>
+        The Site is published by <span class="legal_placeholder"
+          >[LEGAL ENTITY NAME]</span
+        >, a <span class="legal_placeholder">[LEGAL FORM]</span> with share capital
+        of <span class="legal_placeholder">[SHARE CAPITAL]</span>, registered at <span
+          class="legal_placeholder">[REGISTERED ADDRESS]</span
+        > under number <span class="legal_placeholder"
+          >[COMPANY REGISTRATION NUMBER]</span
+        > ("VistIQ", "we", "us"). Publication director: <span
+          class="legal_placeholder">[PUBLICATION DIRECTOR]</span
+        >. Hosting provider: <span class="legal_placeholder"
+          >[HOSTING PROVIDER NAME AND ADDRESS]</span
+        >.
+      </p>
+
+      <h2>2. Relationship to the platform agreement</h2>
+      <p>
+        These terms cover the Site only. Use of the VistIQ platform, including
+        any trial, pilot or production access, is governed by the separate
+        subscription or evaluation agreement signed between VistIQ and the
+        customer. Where the two conflict in respect of the platform, that
+        agreement prevails.
+      </p>
+
+      <h2>3. Permitted use</h2>
+      <p>
+        We grant you a personal, non-exclusive, non-transferable and revocable
+        right to access the Site for your own information and for legitimate
+        business purposes.
+      </p>
+      <p>You agree not to:</p>
+      <ul>
+        <li>
+          use the Site in a way that breaches applicable law or infringes the
+          rights of others;
+        </li>
+        <li>
+          attempt to gain unauthorised access to the Site, its servers or any
+          connected system;
+        </li>
+        <li>
+          probe, scan or test the vulnerability of the Site without our prior
+          written authorisation;
+        </li>
+        <li>
+          scrape, crawl or extract content at a scale that disrupts the Site, or
+          use it to build a competing product;
+        </li>
+        <li>
+          introduce malware, or take any action that imposes an unreasonable load
+          on our infrastructure;
+        </li>
+        <li>
+          reproduce, distribute or publicly display Site content beyond what
+          these terms allow.
+        </li>
+      </ul>
+      <p>
+        We may suspend or restrict access to the Site, in whole or in part,
+        without notice, if we reasonably believe these terms have been breached.
+      </p>
+
+      <h2>4. Intellectual property</h2>
+      <p>
+        The Site and everything it contains — text, graphics, interfaces, logos,
+        illustrations, software and their arrangement — are protected by
+        intellectual property law and belong to VistIQ or its licensors. The
+        VistIQ name and logo are trademarks of VistIQ and may not be used without
+        our prior written consent.
+      </p>
+      <p>
+        You may view, download and print extracts from the Site for your internal
+        business use, provided you keep all proprietary notices intact. No other
+        licence is granted, whether express or implied.
+      </p>
+
+      <h2>5. Content and accuracy</h2>
+      <p>
+        Content on the Site is provided for general information about our
+        products. It does not constitute investment, legal, tax or professional
+        advice, and no statement on the Site should be relied on as a
+        recommendation to make or refrain from making any investment decision.
+      </p>
+      <p>
+        Product descriptions, performance figures and roadmap statements describe
+        our current expectations and may change without notice. We make
+        reasonable efforts to keep the Site accurate and up to date, but we do
+        not warrant that it is complete, current or error-free.
+      </p>
+
+      <h2>6. Third-party links and marks</h2>
+      <p>
+        The Site may link to third-party websites and may display third-party
+        names, logos or integrations for identification purposes. Those marks
+        remain the property of their respective owners, and their appearance does
+        not imply a partnership or endorsement unless stated. We do not control
+        third-party sites and accept no responsibility for their content or
+        practices.
+      </p>
+
+      <h2>7. Availability</h2>
+      <p>
+        We aim to keep the Site available, but we provide it "as is" and "as
+        available". Access may be interrupted for maintenance, updates or reasons
+        beyond our control, and we give no guarantee of uninterrupted or
+        error-free access.
+      </p>
+
+      <h2>8. Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, VistIQ shall not be liable for any
+        indirect or consequential loss, nor for any loss of profit, revenue, data
+        or business opportunity, arising from your use of or inability to use the
+        Site. <span class="legal_placeholder"
+          >[CONFIRM WITH COUNSEL: AGGREGATE LIABILITY CAP AND ANY JURISDICTION-SPECIFIC
+          CARVE-OUTS]</span
+        >
+      </p>
+      <p>
+        Nothing in these terms excludes or limits liability that cannot be
+        excluded or limited under applicable law, including liability for fraud
+        or for death or personal injury caused by negligence. If you are a
+        consumer, your statutory rights are unaffected.
+      </p>
+
+      <h2>9. Privacy</h2>
+      <p>
+        Personal data collected through the Site is handled as described in our <a
+          href="/privacy-policy">Privacy Policy</a
+        >, which forms part of these terms.
+      </p>
+
+      <h2>10. Changes to these terms</h2>
+      <p>
+        We may amend these terms at any time. The version published on this page
+        is the one in force, and the revision date at the top shows when it last
+        changed. Continuing to use the Site after a change constitutes acceptance
+        of the amended terms.
+      </p>
+
+      <h2>11. Governing law and jurisdiction</h2>
+      <p>
+        These terms are governed by <span class="legal_placeholder"
+          >[GOVERNING LAW, e.g. FRENCH LAW]</span
+        >. Any dispute relating to the Site shall be submitted to the exclusive
+        jurisdiction of the courts of <span class="legal_placeholder"
+          >[COMPETENT COURTS]</span
+        >, subject to any mandatory protection available to consumers in their
+        country of residence.
+      </p>
+
+      <h2>12. Contact</h2>
+      <p>
+        Questions about these terms can be sent to <a href="mailto:[LEGAL EMAIL]"
+          ><span class="legal_placeholder">[LEGAL EMAIL]</span></a
+        > or through our <a href="/contact">contact page</a>.
+      </p>
+    </LegalPage>
+
+    <FooterV2 />
+  </main>
+</BaseLayout>
+
+<script>
+  // Baseline only: static prose, no section animation and no reveal guard.
+  import { initBaseline } from "../scripts/baseline";
+  initBaseline();
+</script>

@@ -87,7 +87,6 @@ function formatHtml(data, subject) {
 <html><body style="margin:0;padding:24px;background:#f4f2f0;font-family:Inter,Arial,sans-serif">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto">
     <tr><td style="background:#fbf9f7;border-radius:12px;padding:28px 32px">
-      <img src="https://www.vistiq.ai/logo.png" alt="VistIQ" width="101" height="29" style="display:block;border:0;padding-bottom:12px">
       <div style="font-size:19px;font-weight:600;color:#1d1e21;padding-bottom:20px">${escapeHtml(subject)}</div>
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
       <div style="padding-top:24px;margin-top:20px;border-top:1px solid #f4f2f0;font-size:12px;color:#1d1e2199">
@@ -137,7 +136,10 @@ async function handleContact(request, env) {
     },
     body: JSON.stringify({
       from: FROM,
-      to: env.CONTACT_TO.split(",").map((address) => address.trim()),
+      // Comma-separated list; drop empties so a trailing comma is harmless.
+      to: env.CONTACT_TO.split(",")
+        .map((address) => address.trim())
+        .filter(Boolean),
       reply_to: email,
       subject,
       text: formatText(data),

@@ -54,6 +54,7 @@
 @import "./sections/architecture.css";
 @import "./sections/testimonials.css";
 @import "./sections/contact.css";
+@import "./sections/legal.css";
 
 /* 5. Global overrides (were inline <style> embeds in the Webflow export) */
 @import "./base/globals.css";

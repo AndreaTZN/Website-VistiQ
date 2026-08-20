@@ -1,0 +1,59 @@
+---
+/**
+ * Shared shell for the legal pages. They are pure prose, so the only styling
+ * that matters is the typographic rhythm — expressed once here rather than
+ * repeated on every heading and paragraph of each document.
+ */
+export interface Props {
+  /** Document title, rendered as the page's h1. */
+  heading: string;
+  /** Short standfirst under the title. */
+  intro: string;
+  /** ISO date of the last revision, e.g. "2026-08-20". */
+  updated: string;
+}
+
+const { heading, intro, updated } = Astro.props;
+
+const updatedLabel = new Date(`${updated}T00:00:00Z`).toLocaleDateString(
+  "en-GB",
+  { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" },
+);
+---
+
+<section
+  class="relative z-0 w-full overflow-hidden bg-beige-dark pt-40 pb-25 max-mobile-landscape:pt-30 max-mobile-landscape:pb-14"
+>
+  <div class="container-medium">
+    <div class="mx-auto flex max-w-194 flex-col gap-4">
+      <p
+        class="m-0 text-sm leading-normal font-medium tracking-[0.06rem] text-light-black/50 uppercase"
+      >
+        Legal
+      </p>
+      <h1
+        class="m-0 font-facultyglyphic text-5xl leading-tight tracking-[-0.03rem] text-light-black max-mobile-landscape:text-4xl"
+      >
+        {heading}
+      </h1>
+      <p class="m-0 text-xl leading-normal text-[#1d1e2199] max-mobile-landscape:text-lg">
+        {intro}
+      </p>
+      <p class="m-0 text-sm leading-normal text-[#1d1e2199]">
+        Last updated: <time datetime={updated}>{updatedLabel}</time>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="relative z-0 w-full bg-white py-25 max-mobile-landscape:py-14">
+  <div class="container-medium">
+    {/* Descendant selectors: the slot is plain prose, so the rhythm is set
+        here instead of on each element of the two documents. */}
+    <div
+      class="legal_prose mx-auto flex max-w-194 flex-col text-base leading-relaxed text-[#1d1e21cc]"
+    >
+      <slot />
+    </div>
+  </div>
+</section>
