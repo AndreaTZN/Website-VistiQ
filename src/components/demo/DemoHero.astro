@@ -64,7 +64,7 @@ const LOGOS = [
       <form
         class="contact_form flex flex-col gap-5"
         data-contact-form
-        data-required="name,email,title,company,companyType,consent"
+        data-required="name,email,title,company,companyType"
         action="/api/contact"
         method="post"
         novalidate
@@ -164,24 +164,12 @@ const LOGOS = [
           />
         </div>
 
-        <div class="flex items-center gap-2">
-          <input
-            class="m-0 h-4 w-4 flex-none cursor-pointer accent-light-black"
-            id="demo-consent"
-            name="consent"
-            type="checkbox"
-            required
-          />
-          <label
-            class="text-sm leading-normal text-[#1d1e2199]"
-            for="demo-consent"
-          >
-            You agree to our friendly <a
-              href="/privacy-policy"
-              class="text-light-black underline">privacy policy</a
-            >.
-          </label>
-        </div>
+        <p class="m-0 text-sm leading-normal text-[#1d1e2199]">
+          By sending this form you agree to our <a
+            href="/privacy-policy"
+            class="text-light-black underline">privacy policy</a
+          >.
+        </p>
 
         <button
           class="contact_submit w-full cursor-pointer rounded-lg border-none bg-[linear-gradient(to_top,#0c0c0c_50%,#aca094_217%)] px-4 py-2.5 font-inter text-sm leading-normal font-medium tracking-[-0.00875rem] text-white shadow-[inset_0_-0.125rem_0.0625rem_#ffffff0d,inset_0_0.0625rem_0.0375rem_#00000080] filter-[drop-shadow(0_0.125rem_0.1875rem_#0c0c0c33)] transition-opacity duration-300 ease-[cubic-bezier(0.455,0.03,0.515,0.955)] hover:opacity-85 disabled:cursor-default disabled:opacity-60"

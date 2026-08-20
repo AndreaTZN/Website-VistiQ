@@ -8,7 +8,7 @@
  *
  * The contact + demo forms POST the JSON shape built in
  * `src/scripts/contact-form.js`; the fields differ per page (the demo form
- * carries title/company/companyType/consent), so the mail body is generated
+ * carries title/company/companyType), so the mail body is generated
  * from whatever keys arrive rather than a fixed template.
  */
 
@@ -30,17 +30,72 @@ const FIELD_LABELS = {
   title: "Job title",
   company: "Company",
   companyType: "Company type",
-  consent: "Consent",
 };
 
-/** `label: value` lines, known fields first, in FIELD_LABELS order. */
-function formatBody(data) {
+/** Known fields first in FIELD_LABELS order, then anything else that arrived. */
+function orderedEntries(data) {
   const known = Object.keys(FIELD_LABELS).filter((key) => key in data);
   const rest = Object.keys(data).filter((key) => !(key in FIELD_LABELS));
 
-  return [...known, ...rest]
-    .map((key) => `${FIELD_LABELS[key] ?? key}: ${String(data[key]).trim()}`)
+  return [...known, ...rest].map((key) => {
+    const value = String(data[key]).trim();
+    // A checkbox posts the literal "on"; spell it out in the mail instead.
+    return [FIELD_LABELS[key] ?? key, value === "on" ? "Yes" : value];
+  });
+}
+
+/** `label: value` lines — the plain-text part, and the fallback for clients
+    that refuse HTML. */
+function formatText(data) {
+  return orderedEntries(data)
+    .map(([label, value]) => `${label}: ${value}`)
     .join("\n");
+}
+
+const ESCAPES = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
+
+/** Values come straight from a public form: escape before interpolating. */
+function escapeHtml(value) {
+  return value.replace(/[&<>"]/g, (char) => ESCAPES[char]);
+}
+
+/**
+ * Mail clients strip <style> blocks and ignore most modern CSS, so this is
+ * table-based with inline styles only — the one layout every client renders
+ * the same way. Colours are the site's own tokens (main.css @theme).
+ */
+function formatHtml(data, subject) {
+  const rows = orderedEntries(data)
+    .map(([label, value]) => {
+      // The message deserves its own block; short fields read better inline.
+      const isLong = value.length > 60;
+      const safe = escapeHtml(value).replace(/\n/g, "<br>");
+
+      return isLong
+        ? `<tr><td colspan="2" style="padding:16px 0 0;border-top:1px solid #f4f2f0">
+             <div style="font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:#1d1e2199;padding-bottom:6px">${escapeHtml(label)}</div>
+             <div style="font-size:15px;line-height:1.6;color:#1d1e21">${safe}</div>
+           </td></tr>`
+        : `<tr>
+             <td width="110" style="padding:10px 12px 10px 0;font-size:13px;color:#1d1e2199;white-space:nowrap;vertical-align:top">${escapeHtml(label)}</td>
+             <td style="padding:10px 0;font-size:15px;color:#1d1e21;font-weight:500;width:100%">${safe}</td>
+           </tr>`;
+    })
+    .join("");
+
+  return `<!doctype html>
+<html><body style="margin:0;padding:24px;background:#f4f2f0;font-family:Inter,Arial,sans-serif">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto">
+    <tr><td style="background:#fbf9f7;border-radius:12px;padding:28px 32px">
+      <img src="https://www.vistiq.ai/logo.png" alt="VistIQ" width="101" height="29" style="display:block;border:0;padding-bottom:12px">
+      <div style="font-size:19px;font-weight:600;color:#1d1e21;padding-bottom:20px">${escapeHtml(subject)}</div>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${rows}</table>
+      <div style="padding-top:24px;margin-top:20px;border-top:1px solid #f4f2f0;font-size:12px;color:#1d1e2199">
+        Reply to this email to answer ${escapeHtml(String(data.email || "").trim())} directly.
+      </div>
+    </td></tr>
+  </table>
+</body></html>`;
 }
 
 async function handleContact(request, env) {
@@ -72,9 +127,7 @@ async function handleContact(request, env) {
   if (!email || !name) return new Response(null, { status: 400 });
 
   // `category` only exists on the contact form; the demo form has none.
-  const subject = data.category
-    ? `Contact — ${data.category} — ${name}`
-    : `Demo request — ${name}`;
+  const subject = data.category ? `Contact` : `Demo request`;
 
   const sent = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -87,7 +140,8 @@ async function handleContact(request, env) {
       to: env.CONTACT_TO.split(",").map((address) => address.trim()),
       reply_to: email,
       subject,
-      text: formatBody(data),
+      text: formatText(data),
+      html: formatHtml(data, subject),
     }),
   });
 
