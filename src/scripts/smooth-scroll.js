@@ -9,7 +9,14 @@ export let lenis = null;
 export function initSmoothScroll() {
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
-  lenis = new Lenis({ anchors: true });
+  lenis = new Lenis({
+    anchors: true,
+
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    /** Touch is already inertial — smoothing it fights the OS and feels laggy. */
+    syncTouch: false,
+  });
 
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add((time) => lenis?.raf(time * 1000));

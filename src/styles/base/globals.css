@@ -35,7 +35,7 @@ input[type="file"]:focus-visible {
 }
 
 .noise {
-  @apply pointer-events-none absolute inset-0 -z-1 opacity-20;
+  @apply pointer-events-none absolute inset-0 -z-1 opacity-10;
   background-image: url("/images/noise_1noise.avif");
   background-position: 0 0;
   background-size: auto;

@@ -1,4 +1,9 @@
 ---
+// Imported, not a public/ path: astro:assets hashes and optimizes the file, so
+// the URL is only known at build time — hence the inline style below rather
+// than a bg-[url()] utility, which needs a literal path.
+import texture from "../../assets/textures.jpg";
+
 const BULLETS = [
   "A tailored walkthrough built around your workflow",
   "Live Q&A with a product specialist",
@@ -256,9 +261,11 @@ const LOGOS = [
       </ul> -->
     </div>
     <div
-      class="pointer-events-none absolute top-0 left-0 -z-1 w-full bg-[url('/images/texture.svg')] bg-top bg-no-repeat aspect-1000/418"
+      class="pointer-events-none absolute top-0 left-0 -z-1 w-full h-full bg-cover bg-top bg-no-repeat"
+      style={`background-image:url("${texture.src}")`}
       aria-hidden="true"
     >
     </div>
+    <div class="noise"></div>
   </div>
 </section>
