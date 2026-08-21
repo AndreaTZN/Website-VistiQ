@@ -178,7 +178,7 @@
 
 .hero-v2_card.is-health {
   /* Sits on top of the fund card, as in the composition. */
-  @apply z-2 top-36 left-[-6.75rem] w-[20.2rem] px-[0.92rem] pt-[0.92rem] pb-[1.6rem];
+  @apply z-2 top-36 left-[-0.75rem] w-[20.2rem] px-[0.92rem] pt-[0.92rem] pb-[1.6rem];
 }
 
 .hero-v2_card-health-head {
@@ -232,7 +232,7 @@
      it as the entrance-tween target. */
   --card-opacity: 0.4;
   opacity: var(--card-opacity);
-  @apply top-[15.43rem] left-[2.96rem] w-[13.1rem];
+  @apply top-[18.43rem] left-[2.96rem] w-[13.1rem];
 }
 
 .hero-v2_card-fund-head {

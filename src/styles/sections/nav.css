@@ -22,14 +22,8 @@
   @apply relative rounded-lg px-4 py-2.5 text-sm leading-normal font-medium tracking-[-0.0088rem] text-light-black;
 }
 
-.nav-button_primary-bg {
-  @apply absolute inset-0 -z-10 rounded-lg bg-white;
-}
-
 @media screen and (max-width: 991px) {
   .nav-button_primary {
-    background-color: var(--color-light-black);
-    color: var(--color-white);
   }
 }
 
@@ -56,8 +50,4 @@
 
 .nav_container.is-scroll .nav_logo-link {
   max-width: 3rem;
-}
-
-.nav_container.is-scroll .nav-button_primary .nav-button_primary-bg {
-  background-color: var(--color-light-black);
 }
