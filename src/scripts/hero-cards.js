@@ -43,7 +43,6 @@ export function initHeroCards() {
     gsap.to(card, {
       y: `+=${gsap.utils.random(10, 18)}`,
       x: `+=${gsap.utils.random(-8, 8)}`,
-      rotation: `+=${gsap.utils.random(-1.5, 1.5)}`,
       duration: gsap.utils.random(3.5, 5.5),
       ease: "sine.inOut",
       yoyo: true,
