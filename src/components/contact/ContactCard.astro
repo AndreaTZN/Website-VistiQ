@@ -33,6 +33,8 @@ const OFFICES = [
     title: "Miami US Office",
     lines: ["929 Alton Rd Ste 500", "Miami, FL 33139"],
     map: "/images/contact/map-usa.svg",
+    mapWidth: 571.555,
+    mapHeight: 359.764,
 
     mapClass: "right-[-4rem] -top-[17.5rem] h-[28.6rem]",
     pin: "left-[85.5%] top-[95%]",
@@ -42,6 +44,8 @@ const OFFICES = [
     title: "Paris Headquarters",
     lines: ["29 Rue de Choiseul", "75002, Paris, France"],
     map: "/images/contact/map-france.svg",
+    mapWidth: 449.342,
+    mapHeight: 440.398,
 
     mapClass: "right-[-6rem] top-[0.8rem] h-[27.5rem]",
     pin: "left-[50.3%] top-[22.3%]",
@@ -96,9 +100,15 @@ const labelClass = "m-0 text-sm leading-normal text-light-black";
                 ]}
                 aria-hidden="true"
               >
+                {/* width/height are the SVGs' viewBox dimensions: iOS Safari
+                    will not infer an aspect ratio from viewBox alone for an SVG
+                    loaded through <img>, so `w-auto` collapses to 0 and the map
+                    vanishes. Stating them keeps the ratio explicit everywhere. */}
                 <img
                   class="h-full w-auto max-w-none"
                   src={office.map}
+                  width={office.mapWidth}
+                  height={office.mapHeight}
                   alt=""
                   loading="lazy"
                   decoding="async"
